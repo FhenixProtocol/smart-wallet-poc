@@ -29,7 +29,7 @@
   "devDependencies": {
     "@ethersproject/abi": "^5.7.0",
     "@ethersproject/providers": "^5.7.1",
-    "@fhenixprotocol/contracts": "0.3.0",
+    "@fhenixprotocol/contracts": "0.3.0-alpha.6",
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.3",
     "@nomicfoundation/hardhat-ethers": "^3.0.5",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.6",

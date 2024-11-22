@@ -1678,6 +1678,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fhenixprotocol/contracts@npm:0.3.0-alpha.6":
+  version: 0.3.0-alpha.6
+  resolution: "@fhenixprotocol/contracts@npm:0.3.0-alpha.6"
+  dependencies:
+    "@openzeppelin/contracts": ^5.0.0
+  checksum: b5d23325fbc455cb866395e8fdc5b5e305553936bba180b0a85701cdb9ca002bc94ebbb4e2031ca7604549f6ba8dd458da0fb513315e2e8f2e64f32fd534aaa6
+  languageName: node
+  linkType: hard
+
 "@hapi/hoek@npm:^9.0.0, @hapi/hoek@npm:^9.3.0":
   version: 9.3.0
   resolution: "@hapi/hoek@npm:9.3.0"
@@ -3783,7 +3792,7 @@ __metadata:
   dependencies:
     "@ethersproject/abi": ^5.7.0
     "@ethersproject/providers": ^5.7.1
-    "@fhenixprotocol/contracts": 0.3.0
+    "@fhenixprotocol/contracts": 0.3.0-alpha.6
     "@nomicfoundation/hardhat-chai-matchers": ^2.0.3
     "@nomicfoundation/hardhat-ethers": ^3.0.5
     "@nomicfoundation/hardhat-network-helpers": ^1.0.6

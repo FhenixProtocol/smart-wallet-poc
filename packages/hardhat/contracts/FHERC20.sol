@@ -3,33 +3,37 @@
 pragma solidity >=0.8.19 <0.9.0;
 
 import { ERC20 } from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import { FHE, euint128, inEuint128 } from "@fhenixprotocol/contracts/FHE.sol";
-import { PermissionedV2, PermissionV2 } from "./PermissionedV2.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 import { IFHERC20 } from "./IFHERC20.sol";
+import { PermissionedV2, PermissionV2 } from "@fhenixprotocol/contracts/access/PermissionedV2.sol";
 
+/**
+ * Version of the FHERC20 able to be deployed on non-FHE chains
+ * All FHE operations and variables have been replaced with cleartext variables
+ * Used to test Smart Wallet PermitV2s on sepolia while waiting for Alchemy's
+ *   smart wallet infrastructure to be deployed on Fhenix Nitrogen testnet
+ */
 contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 	// A mapping from address to an encrypted balance.
-	mapping(address => euint128) internal _encBalances;
+	mapping(address => uint128) internal _encBalances;
 	// A mapping from address (owner) to a mapping of address (spender) to an encrypted amount.
-	mapping(address => mapping(address => euint128)) internal _encAllowances;
-	euint128 internal _encTotalSupply = FHE.asEuint128(0);
+	mapping(address => mapping(address => uint128)) internal _encAllowances;
+	uint128 internal _encTotalSupply = 0;
 	uint8 private _decimals;
 
 	constructor(
 		string memory name,
 		string memory symbol,
-		uint8 dec,
-		address permitV2 // TODO: Remove when PermitV2 deployed to fixed address
-	) ERC20(name, symbol) PermissionedV2(permitV2, "FHERC20") {
+		uint8 dec
+	) ERC20(name, symbol) PermissionedV2("FHERC20") {
 		_decimals = dec;
 	}
 
-	// TODO: Remove when no longer mock token
-	function mint(address to, uint256 amount) public {
+	function mint(address to, uint128 amount) public {
 		_mint(to, amount);
 	}
-	function encMint(address to, uint256 amount) public {
-		_encMint(to, FHE.asEuint128(amount));
+	function encMint(address to, uint128 amount) public {
+		_encMint(to, amount);
 	}
 	function decimals() public view override returns (uint8) {
 		return _decimals;
@@ -46,7 +50,7 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 		virtual
 		override
 		withPermission(permission)
-		returns (euint128)
+		returns (uint128)
 	{
 		return _encTotalSupply;
 	}
@@ -64,7 +68,7 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 		withPermission(permission)
 		returns (string memory)
 	{
-		return _encTotalSupply.seal(permission.publicKey);
+		return Strings.toString(_encTotalSupply);
 	}
 
 	/**
@@ -78,9 +82,9 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 		virtual
 		override
 		withPermission(permission)
-		returns (euint128)
+		returns (uint128)
 	{
-		return _encBalances[getPermitIssuer(permission.permitId)];
+		return _encBalances[permission.issuer];
 	}
 
 	/**
@@ -96,23 +100,20 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 		withPermission(permission)
 		returns (string memory)
 	{
-		return
-			_encBalances[getPermitIssuer(permission.permitId)].seal(
-				permission.publicKey
-			);
+		return Strings.toString(_encBalances[permission.issuer]);
 	}
 
 	/**
 	 * @dev Moves a `value` amount of tokens from the caller's account to `to`.
-	 * Accepts the value as inEuint128, more convenient for calls from EOAs.
+	 * Accepts the value as inUint128, more convenient for calls from EOAs.
 	 *
 	 * Returns a boolean value indicating whether the operation succeeded.
 	 */
 	function encTransfer(
 		address to,
-		inEuint128 calldata ieAmount
+		uint128 ieAmount
 	) public virtual override returns (bool) {
-		_encTransfer(msg.sender, to, FHE.asEuint128(ieAmount));
+		_encTransfer(msg.sender, to, ieAmount);
 		return true;
 	}
 
@@ -133,9 +134,9 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 		virtual
 		override
 		withPermission(permission)
-		returns (euint128)
+		returns (uint128)
 	{
-		address issuer = getPermitIssuer(permission.permitId);
+		address issuer = permission.issuer;
 		if (issuer != owner && issuer != spender) {
 			revert FHERC20NotOwnerOrSpender();
 		}
@@ -163,11 +164,11 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 		withPermission(permission)
 		returns (string memory)
 	{
-		address issuer = getPermitIssuer(permission.permitId);
+		address issuer = permission.issuer;
 		if (issuer != owner && issuer != spender) {
 			revert FHERC20NotOwnerOrSpender();
 		}
-		return _encAllowances[owner][spender].seal(permission.publicKey);
+		return Strings.toString(_encAllowances[owner][spender]);
 	}
 
 	/**
@@ -180,16 +181,16 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 	 */
 	function encApprove(
 		address spender,
-		inEuint128 calldata ieAmount
+		uint128 ieAmount
 	) public virtual override returns (bool) {
-		_encApprove(msg.sender, spender, FHE.asEuint128(ieAmount));
+		_encApprove(msg.sender, spender, ieAmount);
 		return true;
 	}
 
 	/**
 	 * @dev Moves `ieAmount` tokens from `from` to `to` using the
 	 * allowance mechanism. `value` is then deducted from the caller's
-	 * allowance. Accepts the value as inEuint128, more convenient for calls from EOAs.
+	 * allowance. Accepts the value as inUint128, more convenient for calls from EOAs.
 	 *
 	 * Returns a boolean value indicating whether the operation succeeded.
 	 *
@@ -198,13 +199,9 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 	function encTransferFrom(
 		address from,
 		address to,
-		inEuint128 calldata ieAmount
+		uint128 ieAmount
 	) public virtual override returns (bool) {
-		euint128 encSpent = _encSpendAllowance(
-			from,
-			msg.sender,
-			FHE.asEuint128(ieAmount)
-		);
+		uint128 encSpent = _encSpendAllowance(from, msg.sender, ieAmount);
 		_encTransfer(from, to, encSpent);
 		return true;
 	}
@@ -219,7 +216,7 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 	 */
 	function encrypt(uint128 amount) public virtual override returns (bool) {
 		_burn(msg.sender, amount);
-		_encMint(msg.sender, FHE.asEuint128(amount));
+		_encMint(msg.sender, amount);
 
 		emit Encrypted(msg.sender, amount);
 
@@ -235,8 +232,8 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 	 * Emits a {Decrypted} event.
 	 */
 	function decrypt(uint128 amount) public virtual override returns (bool) {
-		euint128 eAmount = _encBurn(msg.sender, FHE.asEuint128(amount));
-		amount = FHE.decrypt(eAmount);
+		uint128 eAmount = _encBurn(msg.sender, amount);
+		amount = eAmount;
 		_mint(msg.sender, amount);
 
 		emit Decrypted(msg.sender, amount);
@@ -246,17 +243,17 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 
 	/**
 	 * @dev Moves `eAmount` tokens from the caller's account to `to`.
-	 * Accepts the value as euint128, more convenient for calls from other contracts
+	 * Accepts the value as uint128, more convenient for calls from other contracts
 	 *
-	 * Returns an `euint128` of the true amount transferred.
+	 * Returns an `uint128` of the true amount transferred.
 	 *
 	 * Emits an {EncTransfer} event.
 	 */
 	function _encTransfer(
 		address from,
 		address to,
-		euint128 eAmount
-	) internal returns (euint128) {
+		uint128 eAmount
+	) internal returns (uint128) {
 		if (from == address(0)) {
 			revert ERC20InvalidSender(address(0));
 		}
@@ -265,11 +262,7 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 		}
 
 		// Make sure the sender has enough tokens.
-		eAmount = FHE.select(
-			eAmount.lte(_encBalances[from]),
-			eAmount,
-			FHE.asEuint128(0)
-		);
+		eAmount = eAmount <= _encBalances[from] ? eAmount : 0;
 
 		_encBeforeTokenTransfer(from, to, eAmount);
 
@@ -287,11 +280,11 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 	/**
 	 * @dev Creates `eAmount` encrypted tokens and assigns them to `to`.
 	 * Increases `encTotalSupply` by `eAmount`
-	 * Accepts the value as euint128, more convenient for calls from other contracts
+	 * Accepts the value as uint128, more convenient for calls from other contracts
 	 *
 	 * Emits an {EncTransfer} event with `from` set to the zero address.
 	 */
-	function _encMint(address to, euint128 eAmount) internal {
+	function _encMint(address to, uint128 eAmount) internal {
 		if (to == address(0)) {
 			revert ERC20InvalidReceiver(address(0));
 		}
@@ -309,23 +302,19 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 	/**
 	 * @dev Destroys `eAmount` encrypted tokens from `to`.
 	 * Decreases `encTotalSupply` by `eAmount`
-	 * Accepts the value as euint128, more convenient for calls from other contracts
+	 * Accepts the value as uint128, more convenient for calls from other contracts
 	 *
 	 * Emits an {EncTransfer} event with `to` set to the zero address.
 	 */
 	function _encBurn(
 		address from,
-		euint128 eAmount
-	) internal returns (euint128) {
+		uint128 eAmount
+	) internal returns (uint128) {
 		if (from == address(0)) {
 			revert ERC20InvalidSender(address(0));
 		}
 
-		eAmount = FHE.select(
-			_encBalances[msg.sender].gte(eAmount),
-			eAmount,
-			FHE.asEuint128(0)
-		);
+		eAmount = _encBalances[msg.sender] >= eAmount ? eAmount : 0;
 
 		_encBeforeTokenTransfer(from, address(0), eAmount);
 
@@ -342,7 +331,7 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 	function _encApprove(
 		address owner,
 		address spender,
-		euint128 eAmount
+		uint128 eAmount
 	) internal {
 		if (owner == address(0)) {
 			revert ERC20InvalidApprover(address(0));
@@ -356,10 +345,12 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 	function _encSpendAllowance(
 		address owner,
 		address spender,
-		euint128 eAmount
-	) internal virtual returns (euint128) {
-		euint128 eCurrentAllowance = _encAllowances[owner][spender];
-		euint128 eSpent = FHE.min(eCurrentAllowance, eAmount);
+		uint128 eAmount
+	) internal virtual returns (uint128) {
+		uint128 eCurrentAllowance = _encAllowances[owner][spender];
+		uint128 eSpent = eCurrentAllowance < eAmount
+			? eCurrentAllowance
+			: eAmount;
 		_encApprove(owner, spender, (eCurrentAllowance - eSpent));
 
 		return eSpent;
@@ -372,7 +363,7 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 	function _encBeforeTokenTransfer(
 		address from,
 		address to,
-		euint128 eAmount
+		uint128 eAmount
 	) internal virtual {}
 
 	/**
@@ -382,6 +373,6 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 	function _encAfterTokenTransfer(
 		address from,
 		address to,
-		euint128 eAmount
+		uint128 eAmount
 	) internal virtual {}
 }

@@ -4,8 +4,7 @@ pragma solidity >=0.8.19 <0.9.0;
 // Fhenix Protocol (last updated v0.1.0) (token/FHERC20/IFHERC20.sol)
 // Inspired by OpenZeppelin (https://github.com/OpenZeppelin/openzeppelin-contracts) (token/ERC20/IERC20.sol)
 
-import { euint128, inEuint128 } from "@fhenixprotocol/contracts/FHE.sol";
-import { PermissionV2 } from "./PermissionedV2.sol";
+import { PermissionV2 } from "@fhenixprotocol/contracts/access/PermissionedV2.sol";
 
 /**
  * @dev Interface of the ERC-20 standard as defined in the ERC.
@@ -44,7 +43,7 @@ interface IFHERC20 {
 	 */
 	function encTotalSupply(
 		PermissionV2 calldata permission
-	) external view returns (euint128);
+	) external view returns (uint128);
 
 	/**
 	 * @dev Returns the encrypted value of tokens in existence, sealed for the caller.
@@ -58,7 +57,7 @@ interface IFHERC20 {
 	 */
 	function encBalanceOf(
 		PermissionV2 memory permission
-	) external view returns (euint128);
+	) external view returns (uint128);
 
 	/**
 	 * @dev Returns the value of the encrypted tokens owned by the issuer of the PermitNft, sealed for the caller
@@ -69,14 +68,11 @@ interface IFHERC20 {
 
 	/**
 	 * @dev Moves a `value` amount of tokens from the caller's account to `to`.
-	 * Accepts the value as inEuint128, more convenient for calls from EOAs.
+	 * Accepts the value as uint128, more convenient for calls from EOAs.
 	 *
 	 * Returns a boolean value indicating whether the operation succeeded.
 	 */
-	function encTransfer(
-		address to,
-		inEuint128 calldata ieAmount
-	) external returns (bool);
+	function encTransfer(address to, uint128 amount) external returns (bool);
 
 	/**
 	 * @dev Returns the remaining number of tokens that `spender` will be
@@ -89,7 +85,7 @@ interface IFHERC20 {
 		PermissionV2 memory permission,
 		address owner,
 		address spender
-	) external view returns (euint128);
+	) external view returns (uint128);
 
 	/**
 	 * @dev Returns the remaining number of tokens that `spender` will be
@@ -123,13 +119,13 @@ interface IFHERC20 {
 	 */
 	function encApprove(
 		address spender,
-		inEuint128 calldata ieAmount
+		uint128 amount
 	) external returns (bool);
 
 	/**
 	 * @dev Moves `ieAmount` tokens from `from` to `to` using the
 	 * allowance mechanism. `value` is then deducted from the caller's
-	 * allowance. Accepts the value as inEuint128, more convenient for calls from EOAs.
+	 * allowance. Accepts the value as uint128, more convenient for calls from EOAs.
 	 *
 	 * Returns a boolean value indicating whether the operation succeeded.
 	 *
@@ -138,7 +134,7 @@ interface IFHERC20 {
 	function encTransferFrom(
 		address from,
 		address to,
-		inEuint128 calldata ieAmount
+		uint128 amount
 	) external returns (bool);
 
 	/**
