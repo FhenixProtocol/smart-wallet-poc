@@ -10,7 +10,7 @@
 // import { getBlockExplorerAddressLink } from "~~/utils/scaffold-eth";
 // import { FhenixPermitV2Dropdown } from "../fhenix/PermitV2/FhenixPermitV2Dropdown";
 import { FaucetButton } from "../FaucetButton";
-import { useUser, useAuthModal, useSignerStatus, useLogout } from "@account-kit/react";
+import { useUser, useAuthModal, useSignerStatus, useLogout, useAccount } from "@account-kit/react";
 
 export const HeaderButtonsSection = () => {
   return (
@@ -23,9 +23,16 @@ export const HeaderButtonsSection = () => {
 
 const AccountKitConnectButton = () => {
   const user = useUser();
+  const { account } = useAccount({ type: "LightAccount" });
   const { openAuthModal } = useAuthModal();
   const signerStatus = useSignerStatus();
   const { logout } = useLogout();
+
+  console.log({
+    signerStatus,
+    user,
+    account,
+  });
 
   if (signerStatus.isInitializing) return <div className="btn btn-disabled">Loading...</div>;
   if (user == null || signerStatus.isDisconnected)

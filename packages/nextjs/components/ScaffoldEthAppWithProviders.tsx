@@ -11,7 +11,6 @@ import { BlockieAvatar } from "~~/components/scaffold-eth";
 import { ProgressBar } from "~~/components/scaffold-eth/ProgressBar";
 import { useInitializeNativeCurrencyPrice } from "~~/hooks/scaffold-eth";
 import { wagmiConfig } from "~~/services/web3/wagmiConfig";
-import { useWagmiInitFhenixClient } from "~~/hooks/fhenix/store";
 import { useInitializeTokenPrices } from "~~/hooks/encrypto/useInitializeTokenPrices";
 import { useInitializeTokens } from "~~/hooks/encrypto/useInitializeTokens";
 import FHERC20s from "~~/contracts/FHERC20s.json";
@@ -23,7 +22,6 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   useInitializeNativeCurrencyPrice();
   useInitializeTokenPrices();
   useInitializeTokens(FHERC20s);
-  useWagmiInitFhenixClient();
 
   return (
     <>
@@ -51,6 +49,9 @@ export const ScaffoldEthAppWithProviders = ({
   initialState?: AlchemyClientState;
   children: React.ReactNode;
 }) => {
+  console.log({
+    initialState,
+  });
   const { resolvedTheme } = useTheme();
   const isDarkMode = resolvedTheme === "dark";
   const [mounted, setMounted] = useState(false);
