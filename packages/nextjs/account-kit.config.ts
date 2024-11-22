@@ -8,7 +8,12 @@ const accountKitUiConfig: AlchemyAccountsUIConfig = {
     sections: [
       [{ type: "email" }],
       [{ type: "passkey" }, { type: "social", authProviderId: "google", mode: "popup" }],
-      [{ type: "external_wallets", walletConnect: { projectId: "your-project-id" } }],
+      [
+        {
+          type: "external_wallets",
+          walletConnect: { projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID as string },
+        },
+      ],
     ],
     addPasskeyOnSignup: false,
   },
