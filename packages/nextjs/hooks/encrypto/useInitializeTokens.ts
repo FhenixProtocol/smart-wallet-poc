@@ -1,0 +1,83 @@
+import { useAccount } from "wagmi";
+import { useFhenixReadContracts } from "../fhenix/useFhenixReadContracts";
+import { useDeployedContractInfo } from "../scaffold-eth";
+import { useEffect } from "react";
+import { TokenData, useEncryptoState } from "~~/services/store/encryptoStore";
+import { useFhenixPermissionV2 } from "fhenix-utils";
+import { processUnsealables } from "fhenix-utils/encryption/types";
+
+const chunk = (a: any[], size: number) =>
+  Array.from(new Array(Math.ceil(a.length / size)), (_, i) => a.slice(i * size, i * size + size));
+
+export const useInitializeTokens = (fherc20Adds: string[]) => {
+  const setTokensLoading = useEncryptoState(state => state.setTokensLoading);
+  const setTokens = useEncryptoState(state => state.setTokens);
+  const refetchKey = useEncryptoState(state => state.refetchKey);
+  const { address: account } = useAccount();
+  const { sealingKey } = useFhenixPermissionV2(account);
+
+  const { data: fherc20Contract } = useDeployedContractInfo("FHERC20");
+  const fherc20Abi = fherc20Contract?.abi as NonNullable<typeof fherc20Contract>["abi"];
+  const { address } = useAccount();
+
+  const { data, isLoading, refetch } = useFhenixReadContracts({
+    contracts: fherc20Adds.flatMap(add => [
+      {
+        abi: fherc20Abi,
+        address: add,
+        functionName: "symbol",
+      },
+      {
+        abi: fherc20Abi,
+        address: add,
+        functionName: "decimals",
+      },
+      {
+        abi: fherc20Abi,
+        address: add,
+        functionName: "balanceOf",
+        args: address == null ? undefined : [address],
+      },
+      {
+        abi: fherc20Abi,
+        address: add,
+        functionName: "sealedBalanceOf",
+        args: ["populate-fhenix-permission"],
+      },
+    ]),
+  });
+
+  useEffect(() => {
+    refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refetchKey]);
+
+  useEffect(() => {
+    if (isLoading) setTokensLoading(true);
+  }, [isLoading, setTokensLoading]);
+
+  useEffect(() => {
+    if (data == null) return;
+
+    const tokensData = chunk(data, 4).flatMap((tokenChunk, i) => {
+      if (
+        tokenChunk[0].status !== "success" ||
+        tokenChunk[1].status !== "success" ||
+        tokenChunk[2].status !== "success"
+      )
+        return [];
+
+      const encBalance = processUnsealables([sealingKey, tokenChunk[3].result], (key, encBal) => key.unseal(encBal));
+
+      return {
+        address: fherc20Adds[i],
+        symbol: tokenChunk[0].result,
+        decimals: tokenChunk[1].result,
+        balance: tokenChunk[2].result,
+        encBalance,
+      } as TokenData;
+    });
+
+    setTokens(tokensData);
+  }, [data, fherc20Adds, sealingKey, setTokens]);
+};
