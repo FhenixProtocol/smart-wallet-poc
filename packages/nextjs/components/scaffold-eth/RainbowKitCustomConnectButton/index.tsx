@@ -21,9 +21,11 @@ export const AccountKitCustomConnectButton = () => {
   const signerStatus = useSignerStatus();
   const { logout } = useLogout();
 
+  console.log({ signerStatus, user });
+
   if (signerStatus.isInitializing) return <div className="btn btn-disabled">Loading...</div>;
 
-  if (user == null)
+  if (user == null || signerStatus.isDisconnected)
     return (
       <div className="btn" onClick={openAuthModal}>
         LOGIN
@@ -31,7 +33,13 @@ export const AccountKitCustomConnectButton = () => {
     );
 
   return (
-    <div className="btn" onClick={() => logout()}>
+    <div
+      className="btn"
+      onClick={() => {
+        console.log("logout");
+        logout();
+      }}
+    >
       {user.email ?? "anon"}
     </div>
   );
