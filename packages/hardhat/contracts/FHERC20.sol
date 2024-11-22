@@ -2,10 +2,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.19 <0.9.0;
 
-import { ERC20 } from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
+import { ERC20 } from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import { IFHERC20 } from "./IFHERC20.sol";
 import { PermissionedV2, PermissionV2 } from "@fhenixprotocol/contracts/access/PermissionedV2.sol";
+import { SealedUint } from "@fhenixprotocol/contracts/FHE.sol";
 
 /**
  * Version of the FHERC20 able to be deployed on non-FHE chains
@@ -66,9 +67,10 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 		virtual
 		override
 		withPermission(permission)
-		returns (string memory)
+		returns (SealedUint memory)
 	{
-		return Strings.toString(_encTotalSupply);
+		return
+			SealedUint({ data: Strings.toString(_encTotalSupply), utype: 4 });
 	}
 
 	/**
@@ -98,9 +100,13 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 		virtual
 		override
 		withPermission(permission)
-		returns (string memory)
+		returns (SealedUint memory)
 	{
-		return Strings.toString(_encBalances[permission.issuer]);
+		return
+			SealedUint({
+				data: Strings.toString(_encBalances[permission.issuer]),
+				utype: 4
+			});
 	}
 
 	/**
@@ -162,13 +168,17 @@ contract FHERC20 is IFHERC20, ERC20, PermissionedV2 {
 		virtual
 		override
 		withPermission(permission)
-		returns (string memory)
+		returns (SealedUint memory)
 	{
 		address issuer = permission.issuer;
 		if (issuer != owner && issuer != spender) {
 			revert FHERC20NotOwnerOrSpender();
 		}
-		return Strings.toString(_encAllowances[owner][spender]);
+		return
+			SealedUint({
+				data: Strings.toString(_encAllowances[owner][spender]),
+				utype: 4
+			});
 	}
 
 	/**

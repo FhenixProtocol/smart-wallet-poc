@@ -5,6 +5,7 @@ pragma solidity >=0.8.19 <0.9.0;
 // Inspired by OpenZeppelin (https://github.com/OpenZeppelin/openzeppelin-contracts) (token/ERC20/IERC20.sol)
 
 import { PermissionV2 } from "@fhenixprotocol/contracts/access/PermissionedV2.sol";
+import { SealedUint } from "@fhenixprotocol/contracts/FHE.sol";
 
 /**
  * @dev Interface of the ERC-20 standard as defined in the ERC.
@@ -50,7 +51,7 @@ interface IFHERC20 {
 	 */
 	function sealedTotalSupply(
 		PermissionV2 calldata permission
-	) external view returns (string memory);
+	) external view returns (SealedUint memory);
 
 	/**
 	 * @dev Returns the value of the encrypted tokens owned by `account`
@@ -64,7 +65,7 @@ interface IFHERC20 {
 	 */
 	function sealedBalanceOf(
 		PermissionV2 memory permission
-	) external view returns (string memory);
+	) external view returns (SealedUint memory);
 
 	/**
 	 * @dev Moves a `value` amount of tokens from the caller's account to `to`.
@@ -100,7 +101,7 @@ interface IFHERC20 {
 		PermissionV2 memory permission,
 		address owner,
 		address spender
-	) external view returns (string memory);
+	) external view returns (SealedUint memory);
 
 	/**
 	 * @dev Sets `ieAmount` tokens as the allowance of `spender` over the
