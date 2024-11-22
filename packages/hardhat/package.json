@@ -15,6 +15,7 @@
     "test": "REPORT_GAS=true hardhat test --network hardhat",
     "verify": "hardhat etherscan-verify",
     "hardhat-verify": "hardhat verify",
+    "clear": "rimraf ./artifacts ./cache ./coverage ./types ./coverage.json ./deployments/localfhenix",
     "--------------": "",
     " --- fhenix ---": "",
     "  --------------": "",
@@ -22,9 +23,7 @@
     "localfhenix:test": "REPORT_GAS=true hardhat test --network localfhenix",
     "localfhenix:faucet": "hardhat task:fhenix:usefaucet",
     "localfhenix:deploy": "hardhat deploy --network localfhenix",
-    "localfhenix:stop": "hardhat localfhenix:stop",
-    "fhenix:checkExposedEncryptedVars": "hardhat task:fhenix:checkExposedEncryptedVars",
-    "clear": "rimraf ./artifacts ./cache ./coverage ./types ./coverage.json ./deployments/localfhenix"
+    "localfhenix:stop": "hardhat localfhenix:stop"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.7.0",

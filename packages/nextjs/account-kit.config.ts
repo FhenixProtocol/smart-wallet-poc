@@ -1,6 +1,6 @@
-import { fhenixNitrogen } from "./utils/fhenix/networks";
 import { AlchemyAccountsUIConfig, cookieStorage, createConfig as createAccountKitConfig } from "@account-kit/react";
-import { alchemy, defineAlchemyChain, sepolia } from "@account-kit/infra";
+import { alchemy, sepolia } from "@account-kit/infra";
+// TODO: Re-introduce fhenix nitrogen once it is added to alchemy account-kit
 
 const accountKitUiConfig: AlchemyAccountsUIConfig = {
   illustrationStyle: "outline",
