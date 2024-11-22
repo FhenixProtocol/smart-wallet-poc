@@ -12,37 +12,38 @@
 import { FaucetButton } from "../FaucetButton";
 import { useUser, useAuthModal, useSignerStatus, useLogout } from "@account-kit/react";
 
-/**
- * Custom Wagmi Connect Button (watch balance + custom design)
- */
-export const AccountKitCustomConnectButton = () => {
+export const HeaderButtonsSection = () => {
+  return (
+    <div className="flex flex-row gap-4">
+      <FaucetButton />
+      <AccountKitConnectButton />
+    </div>
+  );
+};
+
+const AccountKitConnectButton = () => {
   const user = useUser();
   const { openAuthModal } = useAuthModal();
   const signerStatus = useSignerStatus();
   const { logout } = useLogout();
 
+  if (signerStatus.isInitializing) return <div className="btn btn-disabled">Loading...</div>;
+  if (user == null || signerStatus.isDisconnected)
+    return (
+      <div className="btn" onClick={openAuthModal}>
+        LOGIN
+      </div>
+    );
+
   return (
-    <div className="flex flex-row gap-4">
-      <FaucetButton />
-      {signerStatus.isInitializing && <div className="btn btn-disabled">Loading...</div>}
-
-      {(user == null || signerStatus.isDisconnected) && (
-        <div className="btn" onClick={openAuthModal}>
-          LOGIN
-        </div>
-      )}
-
-      {user != null && signerStatus.isConnected && (
-        <div
-          className="btn"
-          onClick={() => {
-            console.log("logout");
-            logout();
-          }}
-        >
-          {user.email ?? "anon"}
-        </div>
-      )}
+    <div
+      className="btn"
+      onClick={() => {
+        console.log("logout");
+        logout();
+      }}
+    >
+      {user.email ?? "anon"}
     </div>
   );
 };
