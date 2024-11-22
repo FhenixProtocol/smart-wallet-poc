@@ -1,6 +1,6 @@
 import { TokenData } from "~~/services/store/encryptoStore";
 import { useFhenixClient } from "../fhenix/store";
-import { Config, useAccount, useBalance, useConnectorClient, useReadContract, useSwitchChain } from "wagmi";
+import { Config, useBalance, useConnectorClient, useReadContract, useSwitchChain } from "wagmi";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { addCustomNetwork, Erc20Bridger, EthBridger, getL2Network, L2Network } from "@arbitrum/sdk";
 import { fhenixNitrogen } from "~~/utils/fhenix/networks";
@@ -10,6 +10,7 @@ import { IErc20Abi } from "./IErc20Abi";
 
 import { providers } from "ethers";
 import type { Account, Chain, Client, Transport } from "viem";
+import { useAccount } from "@account-kit/react";
 
 export function clientToSigner(client: Client<Transport, Chain, Account>) {
   const { account, chain, transport } = client;
@@ -98,7 +99,7 @@ export const useInitializeArbBridge = () => {
 };
 
 export const useTokenBridgeBalances = (tokenL2Address: string) => {
-  const { address: account } = useAccount();
+  const { address } = useAccount({ type: "LightAccount " });
 
   // L2 Balance
   const { data: tokenL2Balance } = useReadContract({
@@ -106,7 +107,7 @@ export const useTokenBridgeBalances = (tokenL2Address: string) => {
     abi: IErc20Abi,
     address: tokenL2Address,
     functionName: "balanceOf",
-    args: account == null ? undefined : [account],
+    args: address == null ? undefined : [address],
   });
 
   // L1 Address
@@ -123,7 +124,7 @@ export const useTokenBridgeBalances = (tokenL2Address: string) => {
     abi: IErc20Abi,
     address: tokenL1Address,
     functionName: "balanceOf",
-    args: account == null ? undefined : [account],
+    args: address == null ? undefined : [address],
   });
 
   return { tokenL1Address, tokenL2Address, tokenL1Balance, tokenL2Balance };

@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { useLocalFhenixFaucet } from "fhenix-utils";
 import { Address as AddressType } from "viem";
-import { useAccount } from "wagmi";
 import { BanknotesIcon } from "@heroicons/react/24/outline";
 import { AddressInput, EtherInput } from "~~/components/scaffold-eth";
 import { getParsedError, notification } from "~~/utils/scaffold-eth";
 import { fhenixLocal } from "~~/utils/fhenix/networks";
+import { useChain } from "@account-kit/react";
 
 /**
  * Faucet modal which lets you send ETH to any address.
@@ -17,7 +17,7 @@ export const Faucet = () => {
   const [inputAddress, setInputAddress] = useState<AddressType>();
   const [sendValue, setSendValue] = useState("");
 
-  const { chain: ConnectedChain } = useAccount();
+  const { chain: ConnectedChain } = useChain();
 
   const faucetFn = useLocalFhenixFaucet();
 

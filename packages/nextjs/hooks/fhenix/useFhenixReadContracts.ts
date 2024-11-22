@@ -1,4 +1,4 @@
-import { useAccount, useReadContracts } from "wagmi";
+import { useReadContracts } from "wagmi";
 import { useFhenixClient } from "./store";
 import { transformFhenixInputArgs } from "./utils";
 import { useFhenixPermissionV2 } from "fhenix-utils";
@@ -8,6 +8,7 @@ import {
   UseFhenixReadContractsReturnType,
 } from "fhenix-utils/multicall/multicall";
 import { unsealFhenixSealedItems } from "fhenix-utils/encryption/output";
+import { useAccount } from "@account-kit/react";
 
 export const useFhenixReadContracts = <
   const contracts extends readonly unknown[],
@@ -16,7 +17,7 @@ export const useFhenixReadContracts = <
 >(
   parameters: UseFhenixReadContractsParameters<contracts, allowFailure, true>,
 ): UseFhenixReadContractsReturnType<contracts, allowFailure, selectData> => {
-  const { address: account } = useAccount();
+  const { address: account } = useAccount({ type: "LightAccount" });
   const fhenixClient = useFhenixClient();
   const { permissionV2, sealingKey } = useFhenixPermissionV2(account);
 

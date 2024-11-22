@@ -1,10 +1,10 @@
-import { useAccount } from "wagmi";
 import { useFhenixReadContracts } from "../fhenix/useFhenixReadContracts";
 import { useDeployedContractInfo } from "../scaffold-eth";
 import { useEffect } from "react";
 import { TokenData, useEncryptoState } from "~~/services/store/encryptoStore";
-import { useFhenixPermissionV2 } from "fhenix-utils";
 import { processUnsealables } from "fhenix-utils/encryption/types";
+import { useFhenixPermit } from "~~/permits/hooks";
+import { useAccount } from "@account-kit/react";
 
 const chunk = (a: any[], size: number) =>
   Array.from(new Array(Math.ceil(a.length / size)), (_, i) => a.slice(i * size, i * size + size));
@@ -13,12 +13,11 @@ export const useInitializeTokens = (fherc20Adds: string[]) => {
   const setTokensLoading = useEncryptoState(state => state.setTokensLoading);
   const setTokens = useEncryptoState(state => state.setTokens);
   const refetchKey = useEncryptoState(state => state.refetchKey);
-  const { address: account } = useAccount();
-  const { sealingKey } = useFhenixPermissionV2(account);
+  const { address } = useAccount({ type: "LightAccount" });
+  const permit = useFhenixPermit(address);
 
   const { data: fherc20Contract } = useDeployedContractInfo("FHERC20");
   const fherc20Abi = fherc20Contract?.abi as NonNullable<typeof fherc20Contract>["abi"];
-  const { address } = useAccount();
 
   const { data, isLoading, refetch } = useFhenixReadContracts({
     contracts: fherc20Adds.flatMap(add => [
@@ -42,7 +41,7 @@ export const useInitializeTokens = (fherc20Adds: string[]) => {
         abi: fherc20Abi,
         address: add,
         functionName: "sealedBalanceOf",
-        args: ["populate-fhenix-permission"],
+        args: permit == null ? undefined : [permit.getPermission()],
       },
     ]),
   });
@@ -67,7 +66,7 @@ export const useInitializeTokens = (fherc20Adds: string[]) => {
       )
         return [];
 
-      const encBalance = processUnsealables([sealingKey, tokenChunk[3].result], (key, encBal) => key.unseal(encBal));
+      const encBalance = processUnsealables([permit, tokenChunk[3].result], (permit, encBal) => permit.unseal(encBal));
 
       return {
         address: fherc20Adds[i],
@@ -79,5 +78,5 @@ export const useInitializeTokens = (fherc20Adds: string[]) => {
     });
 
     setTokens(tokensData);
-  }, [data, fherc20Adds, sealingKey, setTokens]);
+  }, [data, fherc20Adds, permit, setTokens]);
 };

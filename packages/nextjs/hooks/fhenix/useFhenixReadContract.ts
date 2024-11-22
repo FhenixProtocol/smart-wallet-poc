@@ -1,5 +1,5 @@
 import { Abi, ContractFunctionArgs, ContractFunctionName } from "viem";
-import { useAccount, useReadContract } from "wagmi";
+import { useReadContract } from "wagmi";
 import { type Config } from "@wagmi/core";
 import { useFhenixClient } from "./store";
 import { parseAccount } from "viem/accounts";
@@ -12,9 +12,10 @@ import {
   UseFhenixReadContractParameters,
   UseFhenixReadContractReturnType,
 } from "fhenix-utils/multicall/multicall";
+import { useAccount } from "@account-kit/react";
 
 const useConfigOrAccount = (configAccount: any) => {
-  const { address: connectedAccount } = useAccount();
+  const { address: connectedAccount } = useAccount({ type: "LightAccount" });
   const account = configAccount ?? connectedAccount;
   return account == null ? undefined : parseAccount(account).address;
 };

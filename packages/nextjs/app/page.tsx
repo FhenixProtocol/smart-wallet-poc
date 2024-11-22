@@ -48,6 +48,7 @@ const Home: NextPage = () => {
   return (
     <div className="flex flex-col max-w-[975px] gap-12 mx-auto p-8 pt-32 w-full">
       <CreatePermitV2Button />
+
       <div className="flex flex-col gap-6 justify-center items-center">
         <div className="flex flex-row flex-wrap flex-1 w-full gap-12 justify-between items-start">
           <PortfolioTotalHeader />

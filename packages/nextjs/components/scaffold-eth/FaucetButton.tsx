@@ -2,17 +2,18 @@
 
 import { useState } from "react";
 import { useLocalFhenixFaucet } from "fhenix-utils";
-import { useAccount } from "wagmi";
 import { BanknotesIcon } from "@heroicons/react/24/outline";
 import { useWatchBalance } from "~~/hooks/scaffold-eth";
 import { getParsedError, notification } from "~~/utils/scaffold-eth";
 import { fhenixLocal } from "~~/utils/fhenix/networks";
+import { useAccount, useChain } from "@account-kit/react";
 
 /**
  * FaucetButton button which lets you grab eth.
  */
 export const FaucetButton = () => {
-  const { address, chain: ConnectedChain } = useAccount();
+  const { address } = useAccount({ type: "LightAccount" });
+  const { chain: ConnectedChain } = useChain();
   const { data: balance } = useWatchBalance({ address });
 
   const [loading, setLoading] = useState(false);

@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { UseWriteContractParameters, useAccount } from "wagmi";
+import { UseWriteContractParameters } from "wagmi";
 import { useDeployedContractInfo, useTargetNetwork, useTransactor } from "~~/hooks/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
 import { ContractAbi, ContractName } from "~~/utils/scaffold-eth/contract";
 import { useFhenixWriteContract } from "./useFhenixWriteContract";
 import { FhenixWriteContractOptions, FhenixWriteContractVariables, TransactorFuncOptions } from "fhenix-utils";
 import { ContractFunctionName } from "viem";
+import { useChain } from "@account-kit/react";
 
 /**
  * Wrapper around wagmi's useWriteContract hook which automatically loads (by name) the contract ABI and address from
@@ -17,7 +18,7 @@ export const useFhenixScaffoldWriteContract = <TContractName extends ContractNam
   contractName: TContractName,
   writeContractParams?: UseWriteContractParameters,
 ) => {
-  const { chain } = useAccount();
+  const { chain } = useChain();
   const writeTx = useTransactor();
   const [isMining, setIsMining] = useState(false);
   const { targetNetwork } = useTargetNetwork();

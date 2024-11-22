@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTargetNetwork } from "./useTargetNetwork";
 import { MutateOptions } from "@tanstack/react-query";
 import { Abi, ExtractAbiFunctionNames } from "abitype";
-import { Config, UseWriteContractParameters, useAccount, useWriteContract } from "wagmi";
+import { Config, UseWriteContractParameters, useWriteContract } from "wagmi";
 import { WriteContractErrorType, WriteContractReturnType } from "wagmi/actions";
 import { WriteContractVariables } from "wagmi/query";
 import { useDeployedContractInfo, useTransactor } from "~~/hooks/scaffold-eth";
@@ -13,6 +13,7 @@ import {
   ScaffoldWriteContractOptions,
   ScaffoldWriteContractVariables,
 } from "~~/utils/scaffold-eth/contract";
+import { useChain } from "@account-kit/react";
 
 /**
  * Wrapper around wagmi's useWriteContract hook which automatically loads (by name) the contract ABI and address from
@@ -24,7 +25,7 @@ export const useScaffoldWriteContract = <TContractName extends ContractName>(
   contractName: TContractName,
   writeContractParams?: UseWriteContractParameters,
 ) => {
-  const { chain } = useAccount();
+  const { chain } = useChain();
   const writeTx = useTransactor();
   const [isMining, setIsMining] = useState(false);
   const { targetNetwork } = useTargetNetwork();
