@@ -6,6 +6,7 @@ import { ConfidentialityRatioHeader } from "~~/components/ConfidentialityRatioHe
 import { PortfolioTotalHeader } from "~~/components/PortfolioTotalHeader";
 import { SortedTokens } from "~~/components/SortedTokens";
 import { PermitV2 } from "~~/permits/permitV2";
+import { setActivePermitHash, setPermit } from "~~/permits/store";
 import { AbstractSigner } from "~~/permits/types";
 
 const CreatePermitV2Button = () => {
@@ -32,9 +33,11 @@ const CreatePermitV2Button = () => {
       abstractSigner,
     );
 
-    console.log({
+    setPermit(account.address, permit);
+    setActivePermitHash(account.address, permit.getHash());
+
+    console.log("Created and Stored PermitV2", {
       permit,
-      permission: permit.getPermission(),
     });
   };
   return (

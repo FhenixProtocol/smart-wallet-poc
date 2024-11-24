@@ -16,6 +16,8 @@ export const useInitializeTokens = (fherc20Adds: string[]) => {
   const { address } = useAccount({ type: "LightAccount" });
   const permit = useFhenixPermit(address);
 
+  console.log({ permit, address });
+
   const { data: fherc20Contract } = useDeployedContractInfo("FHERC20");
   const fherc20Abi = fherc20Contract?.abi as NonNullable<typeof fherc20Contract>["abi"];
 
@@ -41,10 +43,12 @@ export const useInitializeTokens = (fherc20Adds: string[]) => {
         abi: fherc20Abi,
         address: add,
         functionName: "sealedBalanceOf",
-        args: permit == null ? undefined : [permit.getPermission()],
+        args: ["populate-fhenix-permission"],
       },
     ]),
   });
+
+  console.log({ data });
 
   useEffect(() => {
     refetch();

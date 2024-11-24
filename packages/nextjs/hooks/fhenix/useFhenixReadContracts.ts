@@ -1,14 +1,13 @@
 import { useReadContracts } from "wagmi";
 import { useFhenixClient } from "./store";
 import { transformFhenixInputArgs } from "./utils";
-import { useFhenixPermissionV2 } from "fhenix-utils";
 import {
   FhenixMulticallReturnType,
   UseFhenixReadContractsParameters,
   UseFhenixReadContractsReturnType,
 } from "fhenix-utils/multicall/multicall";
-import { unsealFhenixSealedItems } from "fhenix-utils/encryption/output";
 import { useAccount } from "@account-kit/react";
+import { useFhenixPermit } from "~~/permits/hooks";
 
 export const useFhenixReadContracts = <
   const contracts extends readonly unknown[],
@@ -17,17 +16,23 @@ export const useFhenixReadContracts = <
 >(
   parameters: UseFhenixReadContractsParameters<contracts, allowFailure, true>,
 ): UseFhenixReadContractsReturnType<contracts, allowFailure, selectData> => {
-  const { address: account } = useAccount({ type: "LightAccount" });
+  const { address } = useAccount({ type: "LightAccount" });
   const fhenixClient = useFhenixClient();
-  const { permissionV2, sealingKey } = useFhenixPermissionV2(account);
+  const permit = useFhenixPermit(address);
+
+  console.log("Permit in uFRC", permit);
 
   const transformedContracts = parameters?.contracts?.map((contract: any) => {
     if (contract.args == null) return contract;
     return {
       ...contract,
-      args: transformFhenixInputArgs(contract.args, fhenixClient, permissionV2),
-      account,
+      args: transformFhenixInputArgs(contract.args, fhenixClient, permit?.getPermission()),
+      account: address,
     };
+  });
+
+  console.log({
+    transformedContracts,
   });
 
   // const queryDisabled = transformedContracts?.some((contract: any) => {
@@ -45,7 +50,7 @@ export const useFhenixReadContracts = <
           if (item.status === "failure") return item;
           return {
             ...item,
-            result: sealingKey == null ? item.result : unsealFhenixSealedItems(item.result, sealingKey),
+            result: permit == null ? item.result : permit.unseal(item.result),
           };
         });
       },

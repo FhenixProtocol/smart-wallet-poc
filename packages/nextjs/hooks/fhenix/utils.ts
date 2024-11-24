@@ -1,9 +1,9 @@
 import { Abi } from "abitype";
 import { FhenixClientSync } from "fhenixjs";
 import { Encryptable } from "fhenix-utils/encryption/input";
-import { FhenixPermissionV2 } from "fhenix-utils";
 import { FhenixContractFunctionArgs } from "fhenix-utils/multicall/multicall";
 import { ContractFunctionName } from "viem";
+import { PermissionV2 } from "~~/permits/types";
 
 export const transformFhenixInputArgs = <
   abi extends Abi | readonly unknown[],
@@ -13,7 +13,7 @@ export const transformFhenixInputArgs = <
 >(
   args: argsIn | unknown | undefined,
   fhenixClient: FhenixClientSync | undefined,
-  permission: FhenixPermissionV2 | undefined,
+  permission: PermissionV2 | undefined,
 ): argsOut | undefined => {
   if (args == null) return undefined;
   const withPermission = (args as any[]).map((arg: any) => (arg === "populate-fhenix-permission" ? permission : arg));
