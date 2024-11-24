@@ -5,6 +5,11158 @@
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
+  31337: {
+    DAI: {
+      address: "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    ETH: {
+      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    FHERC20: {
+      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {
+        decrypt: "contracts/IFHERC20.sol",
+        encAllowance: "contracts/IFHERC20.sol",
+        encApprove: "contracts/IFHERC20.sol",
+        encBalanceOf: "contracts/IFHERC20.sol",
+        encTotalSupply: "contracts/IFHERC20.sol",
+        encTransfer: "contracts/IFHERC20.sol",
+        encTransferFrom: "contracts/IFHERC20.sol",
+        encrypt: "contracts/IFHERC20.sol",
+        sealedAllowance: "contracts/IFHERC20.sol",
+        sealedBalanceOf: "contracts/IFHERC20.sol",
+        sealedTotalSupply: "contracts/IFHERC20.sol",
+        allowance: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        approve: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        balanceOf: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        decimals: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        name: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        symbol: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        totalSupply: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        transfer: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        transferFrom: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        checkPermissionSatisfies:
+          "@fhenixprotocol/contracts/access/PermissionedV2.sol",
+        eip712Domain: "@fhenixprotocol/contracts/access/PermissionedV2.sol",
+        project: "@fhenixprotocol/contracts/access/PermissionedV2.sol",
+        version: "@fhenixprotocol/contracts/access/PermissionedV2.sol",
+      },
+    },
+    LINK: {
+      address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MATIC: {
+      address: "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    UNI: {
+      address: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    USDC: {
+      address: "0x0165878A594ca255338adfa4d48449f69242Eb8F",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    USDT: {
+      address: "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    wBTC: {
+      address: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
   412346: {
     BNB: {
       address: "0x76BBa4FB819d361a217D2B12A90d5fb138d5E3DF",
@@ -10856,6 +22008,11158 @@ const deployedContracts = {
             },
           ],
           stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  11155111: {
+    DAI: {
+      address: "0xA9E9Da7D4586De69D7F00D5E7637243A3160B731",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    ETH: {
+      address: "0x114a20424BaFB9C574792Be5a5DDD035b235D06e",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    FHERC20: {
+      address: "0xD0FbB3cc7AA92477Ee2cc0327976bb350dA2FFec",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {
+        decrypt: "contracts/IFHERC20.sol",
+        encAllowance: "contracts/IFHERC20.sol",
+        encApprove: "contracts/IFHERC20.sol",
+        encBalanceOf: "contracts/IFHERC20.sol",
+        encTotalSupply: "contracts/IFHERC20.sol",
+        encTransfer: "contracts/IFHERC20.sol",
+        encTransferFrom: "contracts/IFHERC20.sol",
+        encrypt: "contracts/IFHERC20.sol",
+        sealedAllowance: "contracts/IFHERC20.sol",
+        sealedBalanceOf: "contracts/IFHERC20.sol",
+        sealedTotalSupply: "contracts/IFHERC20.sol",
+        allowance: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        approve: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        balanceOf: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        decimals: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        name: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        symbol: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        totalSupply: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        transfer: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        transferFrom: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        checkPermissionSatisfies:
+          "@fhenixprotocol/contracts/access/PermissionedV2.sol",
+        eip712Domain: "@fhenixprotocol/contracts/access/PermissionedV2.sol",
+        project: "@fhenixprotocol/contracts/access/PermissionedV2.sol",
+        version: "@fhenixprotocol/contracts/access/PermissionedV2.sol",
+      },
+    },
+    LINK: {
+      address: "0x3983042ebED80b9Ba0812a1f5B44be732E6f44Ce",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    MATIC: {
+      address: "0x73bFA3ECe52EC1060B00736a692d247542664856",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    UNI: {
+      address: "0x1922224442DF4E1f00A96Ae5914Ed89e85278568",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    USDC: {
+      address: "0x678836bfAAbA4A16Cc15C57487C3c3eD70df5Fdb",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    USDT: {
+      address: "0xc4837Fa2ccDF649EBED486E4BcB723E4013b49E7",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    wBTC: {
+      address: "0xc75De0BE2189952ac7B91Bb2c72E89932FEC9ef3",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "symbol",
+              type: "string",
+            },
+            {
+              internalType: "uint8",
+              name: "dec",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "FHERC20NotOwnerOrSpender",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_ContractUnauthorized",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Disabled",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_Expired",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_IssuerSignature",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "PermissionInvalid_RecipientSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Decrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "EncApproved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+          ],
+          name: "EncTransfer",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "Encrypted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "checkPermissionSatisfies",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "decrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "encAllowance",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encApprove",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encBalanceOf",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encMint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "encTotalSupply",
+          outputs: [
+            {
+              internalType: "uint128",
+              name: "",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "ieAmount",
+              type: "uint128",
+            },
+          ],
+          name: "encTransferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "encrypt",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "amount",
+              type: "uint128",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "project",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "sealedAllowance",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedBalanceOf",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "issuer",
+                  type: "address",
+                },
+                {
+                  internalType: "uint64",
+                  name: "expiration",
+                  type: "uint64",
+                },
+                {
+                  internalType: "address[]",
+                  name: "contracts",
+                  type: "address[]",
+                },
+                {
+                  internalType: "string[]",
+                  name: "projects",
+                  type: "string[]",
+                },
+                {
+                  internalType: "address",
+                  name: "recipient",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "validatorId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "validatorContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sealingKey",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "issuerSignature",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "recipientSignature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct PermissionV2",
+              name: "permission",
+              type: "tuple",
+            },
+          ],
+          name: "sealedTotalSupply",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "data",
+                  type: "string",
+                },
+                {
+                  internalType: "uint8",
+                  name: "utype",
+                  type: "uint8",
+                },
+              ],
+              internalType: "struct SealedUint",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "version",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
           type: "function",
         },
       ],

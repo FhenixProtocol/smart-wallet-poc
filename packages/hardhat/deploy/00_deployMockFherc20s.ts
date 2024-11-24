@@ -19,6 +19,8 @@ const MockTokens: MockToken[] = [
 
 const deployMockFherc20s: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployer } = await hre.getNamedAccounts();
+
+  console.log({ deployer });
   const { deploy } = hre.deployments;
 
   // Fund the account before deploying.
@@ -29,12 +31,10 @@ const deployMockFherc20s: DeployFunction = async function (hre: HardhatRuntimeEn
     }
   }
 
-  const permitV2 = await hre.deployments.get("PermitV2");
-
   // Deploy plain FHERC20 to get abi in frontend
   await deploy("FHERC20", {
     from: deployer,
-    args: [`MOCK FHERC20 Token`, "MOCK", 18, permitV2.address],
+    args: [`MOCK FHERC20 Token`, "MOCK", 18],
     log: true,
     autoMine: true,
   });
@@ -45,7 +45,7 @@ const deployMockFherc20s: DeployFunction = async function (hre: HardhatRuntimeEn
     const deployResult = await deploy(token.symbol, {
       contract: "FHERC20",
       from: deployer,
-      args: [`${token.symbol} FHERC20 Token`, token.symbol, token.decimals, permitV2.address],
+      args: [`${token.symbol} FHERC20 Token`, token.symbol, token.decimals],
       log: true,
       autoMine: true,
     });

@@ -29,6 +29,8 @@ task("task:mintMockTokens")
       await fhenixjs.getFunds(signer.address);
     }
 
+    console.log(`Minting mock fherc20 tokens for ${taskArguments.address}`);
+
     for (const { symbol, decimals } of MockTokens) {
       const fherc20Deployment = await deployments.get(symbol);
       const Fherc20 = (await ethers.getContractAt("FHERC20", fherc20Deployment.address)) as unknown as FHERC20;
@@ -38,6 +40,7 @@ task("task:mintMockTokens")
       const encAmount = BigInt(Math.round(Math.random() * e6)) * 10n ** BigInt(decimals - 6);
       const encTx = await Fherc20.encMint(taskArguments.address, encAmount);
       await encTx.wait();
-      console.log(`Minted ${amount} ${symbol} to ${taskArguments.address}`);
+      console.log(`${symbol} :: Minted ${amount} ${symbol}`);
+      console.log(`${symbol} :: Minted ${encAmount} e${symbol}`);
     }
   });
