@@ -242,7 +242,7 @@ export class PermitV2 implements PermitV2Interface {
     const domain = {
       name: "Fhenix Permission v2.0.0",
       version: "v2.0.0",
-      chainId,
+      chainId: parseInt(chainId),
       verifyingContract: zeroAddress,
     };
 
