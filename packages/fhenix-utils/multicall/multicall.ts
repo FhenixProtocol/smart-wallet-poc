@@ -61,24 +61,24 @@ import type { ReadContractsQueryFnData, ReadContractsQueryKey } from "@wagmi/cor
 
 // MAP
 
-type FhenixMap<fhenixTransformable extends boolean = false> = {
+type FhenixMap = {
   // Permission
-  "struct PermissionV2": fhenixTransformable extends true ? "populate-fhenix-permission" : FhenixPermissionV2;
+  "struct PermissionV2": "inject-fhenix-permission";
 
   // Input Structs
-  "struct inBool": fhenixTransformable extends true ? EncryptableBool : EncryptedBool;
-  "struct inEuint8": fhenixTransformable extends true ? EncryptableUint8 : EncryptedUint8;
-  "struct inEuint16": fhenixTransformable extends true ? EncryptableUint16 : EncryptedUint16;
-  "struct inEuint32": fhenixTransformable extends true ? EncryptableUint32 : EncryptedUint32;
-  "struct inEuint64": fhenixTransformable extends true ? EncryptableUint64 : EncryptedUint64;
-  "struct inEuint128": fhenixTransformable extends true ? EncryptableUint128 : EncryptedUint128;
-  "struct inEuint256": fhenixTransformable extends true ? EncryptableUint256 : EncryptedUint256;
-  "struct inAddress": fhenixTransformable extends true ? EncryptableAddress : EncryptedAddress;
+  "struct inBool": EncryptableBool;
+  "struct inEuint8": EncryptableUint8;
+  "struct inEuint16": EncryptableUint16;
+  "struct inEuint32": EncryptableUint32;
+  "struct inEuint64": EncryptableUint64;
+  "struct inEuint128": EncryptableUint128;
+  "struct inEuint256": EncryptableUint256;
+  "struct inAddress": EncryptableAddress;
 
   // Output Structs
-  "struct SealedBool": fhenixTransformable extends true ? SealedOutputBool : boolean;
-  "struct SealedUint": fhenixTransformable extends true ? SealedOutputUint : bigint;
-  "struct SealedAddress": fhenixTransformable extends true ? SealedOutputAddress : Address;
+  "struct SealedBool": SealedOutputBool;
+  "struct SealedUint": SealedOutputUint;
+  "struct SealedAddress": SealedOutputAddress;
 
   // Exposed encrypted primitives
   ebool: FHE_ebool;
