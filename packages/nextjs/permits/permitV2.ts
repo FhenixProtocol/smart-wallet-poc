@@ -252,7 +252,6 @@ export class PermitV2 implements PermitV2Interface {
         SignatureTypes.PermissionedV2IssuerSelf,
         this.getPermission(true),
       );
-      console.log("Sign with type", this.type, domain, types, message);
       this.issuerSignature = await signer.signTypedData(domain, types, message);
     }
 

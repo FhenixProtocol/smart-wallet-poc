@@ -2,6 +2,7 @@
 
 import { processUnsealables, Unsealable, Unsealed, UnsealedArray } from "fhenix-utils/encryption/types";
 import React from "react";
+import { usePermitModalOpen } from "~~/services/store/permitV2ModalStore";
 
 type UnsealableDisplayBaseProps = {
   nullish?: boolean;
@@ -26,6 +27,7 @@ export const UnsealableDisplay = <T,>({
   const isNullish = nullish || item == null;
   const unsealable = processUnsealables([item], fn);
   const isUnsealed = unsealable == null || unsealable.unsealed;
+  const { setOpen } = usePermitModalOpen();
 
   return (
     <span
@@ -36,7 +38,7 @@ export const UnsealableDisplay = <T,>({
       ].join(" ")}
       onClick={() => {
         if (isUnsealed) return;
-        console.log("TRIGGER UNSEAL");
+        setOpen(true);
       }}
     >
       {isNullish ? ".".repeat(sealedLength) : !unsealable.unsealed ? "*".repeat(sealedLength) : unsealable.data}

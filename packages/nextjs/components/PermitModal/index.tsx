@@ -3,12 +3,18 @@ import {
   PermitV2CreateType,
   PermitV2Tab,
   usePermitCreateOptions,
+  usePermitCreateOptionsAndActions,
   usePermitModalOpen,
   usePermitModalTab,
 } from "~~/services/store/permitV2ModalStore";
 import { AddressInput, InputBase } from "../scaffold-eth";
-import { getAddress, isAddress } from "viem";
+import { getAddress, isAddress, zeroAddress } from "viem";
 import { PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useChain, useAccount } from "@account-kit/react";
+import { PermitV2 } from "~~/permits/permitV2";
+import { setPermit, setActivePermitHash } from "~~/permits/store";
+import { AbstractSigner } from "~~/permits/types";
+import { notification } from "~~/utils/scaffold-eth";
 
 const PermitV2TabOptions = [PermitV2Tab.Create, PermitV2Tab.Import, PermitV2Tab.Select];
 const PermitV2ModalTabs = () => {
@@ -62,7 +68,7 @@ const PermitV2TabInstructions = () => {
   );
 };
 
-const DeadlineOptions = [
+const expirationOptions = [
   {
     label: "24h",
     offset: 24 * 60 * 60,
@@ -84,30 +90,86 @@ const DeadlineOptions = [
     offset: 365 * 24 * 60 * 60,
   },
 ];
+
+const PermitV2ModalCreateButton: React.FC<{ disabled?: boolean }> = ({ disabled = false }) => {
+  const { chain } = useChain();
+  const { account } = useAccount({ type: "LightAccount" });
+  const createOptions = usePermitCreateOptions();
+  const { setOpen } = usePermitModalOpen();
+  const [creating, setCreating] = useState(false);
+
+  const createPermitV2 = async () => {
+    if (account == null || chain == null) return;
+
+    setCreating(true);
+
+    const abstractSigner: AbstractSigner = {
+      getAddress: async () => account.address,
+      // Should probably add the primaryType to this in the abstract signer to make it easier to interact with via viem
+      signTypedData: (domain, types, value: Record<string, unknown>) =>
+        account.signTypedData({ domain, types, primaryType: Object.keys(types)[0], message: value }),
+    };
+
+    const permit = await PermitV2.createAndSign(
+      {
+        type: createOptions.type === PermitV2CreateType.Using ? "self" : "sharing",
+        issuer: account.address,
+        recipient: createOptions.recipient.length > 0 ? createOptions.recipient : zeroAddress,
+        expiration: Math.floor(Date.now() / 1000) + createOptions.expirationOffset,
+        projects: createOptions.projects,
+        contracts: createOptions.contracts,
+      },
+      chain.id.toString(),
+      abstractSigner,
+    );
+
+    setPermit(account.address, permit);
+    setActivePermitHash(account.address, permit.getHash());
+
+    notification.success("Permit Created Successfully");
+    setCreating(false);
+    setTimeout(() => setOpen(false));
+  };
+
+  return (
+    <button className={`btn btn-primary flex-[3] ${disabled && "btn-disabled"}`} onClick={createPermitV2}>
+      {creating ? "Creating" : "Create"}
+      {creating && <span className="loading loading-spinner loading-sm"></span>}
+    </button>
+  );
+};
+
 const PermitV2ModalCreate = () => {
   const {
     type,
-    deadlineOffset,
+    recipient,
+    expirationOffset,
     contracts,
     projects,
     setType,
-    setDeadlineOffset,
+    setRecipient,
+    setExpirationOffset,
     addContract,
     removeContract,
     addProject,
     removeProject,
     reset,
-  } = usePermitCreateOptions();
+  } = usePermitCreateOptionsAndActions();
 
-  const [addingRecipientAddress, setAddingRecipientAddress] = useState<string>("");
-  const addingRecipientAddressValid = isAddress(addingRecipientAddress);
+  const recipientAddressInvalid =
+    type === PermitV2CreateType.Sharing && (recipient.length === 0 || !isAddress(recipient));
 
   const [addingContractAddress, setAddingContractAddress] = useState<string>("");
-  const addingContractAddressValid =
-    isAddress(addingContractAddress) && !contracts.includes(getAddress(addingContractAddress));
+  const addingContractAddressInvalid =
+    addingContractAddress.length > 0 &&
+    (!isAddress(addingContractAddress) || contracts.includes(getAddress(addingContractAddress)));
 
   const [addingProject, setAddingProject] = useState<string>("");
-  const addingProjectValid = !projects.includes(addingProject);
+  const addingProjectInvalid = addingProject.length > 0 && projects.includes(addingProject);
+
+  const accessInvalid = projects.length === 0 && contracts.length === 0;
+
+  const formInvalid = accessInvalid || recipientAddressInvalid || addingContractAddressInvalid || addingProjectInvalid;
 
   return (
     <>
@@ -132,12 +194,12 @@ const PermitV2ModalCreate = () => {
       {/* (Sharing) Recipient */}
       {type === PermitV2CreateType.Sharing && (
         <div className="flex flex-row items-center justify-start gap-4">
-          <div className="text-sm font-bold">Recipient:</div>
+          <div className={`text-sm font-bold ${recipientAddressInvalid && "text-error"}`}>Recipient:</div>
           <AddressInput
             name="add-recipient"
-            value={addingRecipientAddress}
+            value={recipient}
             placeholder="recipient address"
-            onChange={(value: any) => setAddingRecipientAddress(value)}
+            onChange={(value: any) => setRecipient(value)}
             useENS={false}
             useBlo={false}
           />
@@ -145,36 +207,43 @@ const PermitV2ModalCreate = () => {
         </div>
       )}
 
-      {/* Deadline */}
+      {/* Expiration */}
       <div className="flex flex-row items-center justify-start gap-4">
-        <div className="text-sm font-bold">Deadline:</div>
+        <div className="text-sm font-bold">Expires in:</div>
         <div className="flex flex-row gap-2 items-center">
-          {DeadlineOptions.map((option, index) => (
+          {expirationOptions.map((option, index) => (
             <React.Fragment key={index}>
               <button
-                className={`btn btn-sm ${option.offset === deadlineOffset ? "btn-primary" : "btn-ghost"}`}
-                onClick={() => setDeadlineOffset(option.offset)}
+                className={`btn btn-sm ${option.offset === expirationOffset ? "btn-primary" : "btn-ghost"}`}
+                onClick={() => setExpirationOffset(option.offset)}
               >
                 {option.label}
               </button>
-              {index < DeadlineOptions.length - 1 && "/"}
+              {index < expirationOptions.length - 1 && "/"}
             </React.Fragment>
           ))}
         </div>
       </div>
 
       {/* Access */}
-      <div className="text-sm font-bold">
+      <div className={`text-sm font-bold ${accessInvalid && "text-error"}`}>
         Access
         <span className="italic font-normal">
           {" "}
-          - grant access to individual contracts or full projects, defaults to this dApp's requirements.
+          - grant access to individual contracts or full projects, defaults to this dApp's requirements. Projects and
+          Contracts cannot both be empty.
         </span>
       </div>
 
       {/* Contracts */}
       <div className="flex flex-row items-center justify-start">
-        <div className="text-sm font-bold ml-4 mr-4">Contracts:</div>
+        <div
+          className={`text-sm font-bold ml-4 mr-4 ${
+            addingContractAddress.length > 0 && addingContractAddressInvalid && "text-error"
+          }`}
+        >
+          Contracts:
+        </div>
         <AddressInput
           name="add-contract"
           value={addingContractAddress}
@@ -184,9 +253,11 @@ const PermitV2ModalCreate = () => {
           useBlo={false}
         />
         <button
-          className={`btn btn-sm btn-secondary ${addingContractAddressValid ? "" : "btn-disabled"}`}
+          className={`btn btn-sm btn-secondary ${
+            (addingContractAddressInvalid || addingContractAddress.length === 0) && "btn-disabled"
+          }`}
           onClick={() => {
-            if (!addingContractAddressValid) return;
+            if (addingContractAddressInvalid) return;
             addContract(addingContractAddress);
             setAddingContractAddress("");
           }}
@@ -198,17 +269,25 @@ const PermitV2ModalCreate = () => {
       {/* Projects */}
       <div className="flex flex-col w-full gap-2">
         <div className="flex flex-row items-center justify-start">
-          <div className="text-sm font-bold ml-4 mr-4">Projects:</div>
+          <div
+            className={`text-sm font-bold ml-4 mr-4 ${
+              addingProject.length > 0 && addingProjectInvalid && "text-error"
+            }`}
+          >
+            Projects:
+          </div>
           <InputBase
             name="project-idt"
             value={addingProject}
             placeholder="project id"
-            onChange={(value: any) => setAddingProject(value)}
+            onChange={(value: string) => setAddingProject(value.toUpperCase())}
           />
           <div
-            className={`btn btn-secondary btn-sm ${addingProjectValid ? "" : "btn-disabled"}`}
+            className={`btn btn-secondary btn-sm ${
+              (addingProjectInvalid || addingProject.length === 0) && "btn-disabled"
+            }`}
             onClick={() => {
-              if (!addingProjectValid) return;
+              if (addingProjectInvalid) return;
               addProject(addingProject);
               setAddingProject("");
             }}
@@ -219,7 +298,7 @@ const PermitV2ModalCreate = () => {
         {projects.length > 0 && (
           <div className="flex flex-row gap-2 flex-wrap ml-8">
             {projects.map(project => (
-              <button key={project} className="btn btn-sm btn-primary" onClick={() => removeProject(project)}>
+              <button key={project} className="btn btn-sm btn-accent" onClick={() => removeProject(project)}>
                 {project} <XMarkIcon className="w-4 h-4" />
               </button>
             ))}
@@ -233,7 +312,7 @@ const PermitV2ModalCreate = () => {
         <button className="btn btn-error flex-[1]" onClick={reset}>
           Reset
         </button>
-        <button className="btn btn-primary flex-[3]">Create</button>
+        <PermitV2ModalCreateButton disabled={formInvalid} />
       </div>
     </>
   );

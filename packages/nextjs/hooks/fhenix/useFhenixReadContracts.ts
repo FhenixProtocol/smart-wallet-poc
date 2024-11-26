@@ -20,8 +20,6 @@ export const useFhenixReadContracts = <
   const fhenixClient = useFhenixClient();
   const permit = useFhenixPermit(address);
 
-  console.log("Permit in uFRC", permit);
-
   const transformedContracts = parameters?.contracts?.map((contract: any) => {
     if (contract.args == null) return contract;
     return {
@@ -31,20 +29,10 @@ export const useFhenixReadContracts = <
     };
   });
 
-  console.log({
-    transformedContracts,
-  });
-
-  // const queryDisabled = transformedContracts?.some((contract: any) => {
-  //   if (contract.args == null) return false;
-  //   return contract.args.some((arg: any) => arg == null);
-  // });
-
   return useReadContracts({
     ...(parameters as any),
     contracts: transformedContracts,
     query: {
-      // enabled: !queryDisabled,
       select: data => {
         return data.map(item => {
           if (item.status === "failure") return item;

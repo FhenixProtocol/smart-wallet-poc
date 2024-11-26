@@ -14,7 +14,8 @@ export enum PermitV2CreateType {
 
 type PermitV2CreateOptions = {
   type: PermitV2CreateType;
-  deadlineOffset: number;
+  recipient: string;
+  expirationOffset: number;
   contracts: string[];
   projects: string[];
 };
@@ -43,7 +44,8 @@ type PermitModalState = {
 
 const initialCreateOptions: PermitV2CreateOptions = {
   type: PermitV2CreateType.Using,
-  deadlineOffset: 24 * 60 * 60,
+  recipient: "",
+  expirationOffset: 24 * 60 * 60,
   contracts: [],
   projects: [],
 };
@@ -97,15 +99,21 @@ export const usePermitModalTab = () => {
   return { tab, setTab };
 };
 
-export const usePermitCreateOptions = () => {
+export const usePermitCreateOptions = () => usePermitModalStore(state => state.createOptions);
+
+export const usePermitCreateOptionsAndActions = () => {
   const createOptions = usePermitModalStore(state => state.createOptions);
 
   const setType = useCallback((type: PermitV2CreateType) => {
     usePermitModalStore.setState(state => ({ createOptions: { ...state.createOptions, type } }));
   }, []);
 
-  const setDeadlineOffset = useCallback((deadlineOffset: number) => {
-    usePermitModalStore.setState(state => ({ createOptions: { ...state.createOptions, deadlineOffset } }));
+  const setRecipient = useCallback((recipient: string) => {
+    usePermitModalStore.setState(state => ({ createOptions: { ...state.createOptions, recipient } }));
+  }, []);
+
+  const setExpirationOffset = useCallback((expirationOffset: number) => {
+    usePermitModalStore.setState(state => ({ createOptions: { ...state.createOptions, expirationOffset } }));
   }, []);
 
   const addContract = useCallback((contract: string) => {
@@ -149,7 +157,8 @@ export const usePermitCreateOptions = () => {
   return {
     ...createOptions,
     setType,
-    setDeadlineOffset,
+    setRecipient,
+    setExpirationOffset,
     addContract,
     removeContract,
     addProject,

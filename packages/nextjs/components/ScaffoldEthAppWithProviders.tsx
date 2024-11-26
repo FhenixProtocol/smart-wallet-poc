@@ -53,9 +53,6 @@ export const ScaffoldEthAppWithProviders = ({
   initialState?: AlchemyClientState;
   children: React.ReactNode;
 }) => {
-  console.log({
-    initialState,
-  });
   const { resolvedTheme } = useTheme();
   const isDarkMode = resolvedTheme === "dark";
   const [mounted, setMounted] = useState(false);
