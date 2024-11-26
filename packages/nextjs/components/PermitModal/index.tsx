@@ -123,8 +123,6 @@ const PermitV2ModalCreateButton: React.FC<{ disabled?: boolean }> = ({ disabled 
       abstractSigner,
     );
 
-    console.log({ permit });
-
     setPermit(account.address, permit);
     setActivePermitHash(account.address, permit.getHash());
 
@@ -266,6 +264,15 @@ const PermitV2ModalCreate = () => {
           <PlusIcon className="w-4 h-4" />
         </button>
       </div>
+      {projects.length > 0 && (
+        <div className="flex flex-row gap-2 flex-wrap ml-8">
+          {projects.map(project => (
+            <button key={project} className="btn btn-sm btn-accent" onClick={() => removeProject(project)}>
+              {project} <XMarkIcon className="w-4 h-4" />
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Projects */}
       <div className="flex flex-col w-full gap-2">

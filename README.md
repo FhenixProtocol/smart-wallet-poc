@@ -30,11 +30,17 @@ TODO
 - [x] Sign PermitV2 with smart wallet
 - [x] Deploy Mock FHERC20s with encryption removed on Sepolia
 - [x] Fetch smart wallet data from Sepolia
-- [ ] Pass PermissionV2 from user's permit to fetch mock encrypted balances
+- [x] Pass PermissionV2 from user's permit to fetch mock encrypted balances
   - Current bug: `PermissionInvalid_IssuerSignature`
-- [ ] Minting FHERC20 balance or encBalance
-- [ ] PermitV2 Modal for create / import permit
-  - [ ] Permit explanation and link to docs
-  - [ ] Create permit option (for me / for sharing)
+  - Bug Fixed: viem's `hashTypedData` will only return the correct value if chainId is a number.
+- [ ] Minting FHERC20 balance or encBalance (forces deployment of wallet)
+- [ ] Indicator in permit modal that it is invalid because not deployed
+- [x] PermitV2 Modal for create / import permit
+  - [x] Permit explanation and link to docs
+  - [x] Create permit option (for me / for sharing)
   - [ ] Importing shared permit - sign and populate `recipientSignature`
-- [ ] Hook PermitV2 Modal into UnsealableDisplay
+  - [ ] Selecting permit from list of available permits
+  - [ ] Checking satisfies project requirements
+  - [ ] Add status indicator row to modal
+- [ ] Add status indicator to permit button
+- [x] Hook PermitV2 Modal into UnsealableDisplay
