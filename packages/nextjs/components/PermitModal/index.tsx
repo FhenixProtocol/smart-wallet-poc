@@ -123,6 +123,8 @@ const PermitV2ModalCreateButton: React.FC<{ disabled?: boolean }> = ({ disabled 
       abstractSigner,
     );
 
+    console.log({ permit });
+
     setPermit(account.address, permit);
     setActivePermitHash(account.address, permit.getHash());
 
@@ -203,7 +205,6 @@ const PermitV2ModalCreate = () => {
             useENS={false}
             useBlo={false}
           />
-          {/* TODO: Add validity indicator */}
         </div>
       )}
 
