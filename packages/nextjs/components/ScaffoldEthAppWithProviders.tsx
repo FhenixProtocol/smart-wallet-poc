@@ -17,11 +17,14 @@ import FHERC20s from "~~/contracts/FHERC20s.json";
 import { AlchemyAccountProvider } from "@account-kit/react";
 import { accountKitConfig } from "~~/account-kit.config";
 import { AlchemyClientState } from "@account-kit/core";
+import { PermitV2Modal } from "./PermitModal";
+import { useInitializePermitModalAccessRequirements } from "~~/services/store/permitV2ModalStore";
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   useInitializeNativeCurrencyPrice();
   useInitializeTokenPrices();
   useInitializeTokens(FHERC20s);
+  useInitializePermitModalAccessRequirements({ projects: ["FHERC20"] });
 
   return (
     <>
@@ -29,6 +32,7 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
         <Header />
         <main className="relative flex flex-col flex-1">{children}</main>
       </div>
+      <PermitV2Modal />
       <Toaster />
     </>
   );

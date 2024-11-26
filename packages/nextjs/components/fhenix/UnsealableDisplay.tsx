@@ -10,6 +10,8 @@ type UnsealableDisplayBaseProps = {
   sealedLength?: number;
 };
 
+/// Displays unsealable values, they will be sealed if the connected user does not have a PermitV2 to supply to the contracts
+/// This component acts as a button, and clicking it will open the PermitV2 modal for the user to interact with.
 export const UnsealableDisplay = <T,>({
   item,
   fn = val => `${val}`,
@@ -23,8 +25,20 @@ export const UnsealableDisplay = <T,>({
 } & UnsealableDisplayBaseProps) => {
   const isNullish = nullish || item == null;
   const unsealable = processUnsealables([item], fn);
+  const isUnsealed = unsealable == null || unsealable.unsealed;
+
   return (
-    <span className={[className, unsealable == null || unsealable.unsealed ? "" : sealedClassName].join(" ")}>
+    <span
+      className={[
+        className,
+        isUnsealed ? "" : "hover:underline cursor-pointer",
+        isUnsealed ? "" : sealedClassName,
+      ].join(" ")}
+      onClick={() => {
+        if (isUnsealed) return;
+        console.log("TRIGGER UNSEAL");
+      }}
+    >
       {isNullish ? ".".repeat(sealedLength) : !unsealable.unsealed ? "*".repeat(sealedLength) : unsealable.data}
     </span>
   );

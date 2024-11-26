@@ -11,11 +11,13 @@ import { RenderUserConnectionAvatar } from "~~/components/user-connection-avatar
 // import { getBlockExplorerAddressLink } from "~~/utils/scaffold-eth";
 // import { FhenixPermitV2Dropdown } from "../fhenix/PermitV2/FhenixPermitV2Dropdown";
 import { FaucetButton } from "../FaucetButton";
+import { PermitButton } from "../PermitButton";
 
 export const HeaderButtonsSection = () => {
   return (
     <div className="flex flex-row gap-4">
       <FaucetButton />
+      <PermitButton />
       <RenderUserConnectionAvatar />
     </div>
   );

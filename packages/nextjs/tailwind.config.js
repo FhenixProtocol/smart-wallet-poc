@@ -94,7 +94,7 @@ module.exports = withAccountKitUi(
           mono: ["var(--font-roboto-mono)"],
         },
         colors: {
-          highlight: "#05F7FF",
+          highlight: "#21adb2",
         },
       },
     },

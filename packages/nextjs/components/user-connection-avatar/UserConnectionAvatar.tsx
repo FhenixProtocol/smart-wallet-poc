@@ -38,8 +38,8 @@ const UserConnectionAvatar = ({ showDeploymentStatus = true, deploymentStatus }:
       <div className="relative w-8 h-8">
         <UserAvatar address={SCAUserAddress ?? user.address} />
         {showDeploymentStatus && (
-          <div className={`rounded-full absolute -bottom-0.5 -right-0.5`}>
-            <DeploymentStatusIndicator isDeployed={!!deploymentStatus} showCheckIcon />
+          <div className={`rounded-full absolute -top-0.5 -right-0.5`}>
+            <DeploymentStatusIndicator isDeployed={!!deploymentStatus} />
           </div>
         )}
       </div>
