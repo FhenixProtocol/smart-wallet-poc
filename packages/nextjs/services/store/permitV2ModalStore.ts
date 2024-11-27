@@ -42,7 +42,7 @@ type PermitV2AccessRequirementsParams =
 type PermitModalState = {
   open: boolean;
   tab: PermitV2Tab;
-  focusedPermit: string | undefined;
+  focusedPermitHash: string | undefined;
   createOptions: PermitV2CreateOptions;
   // ----
   accessRequirements: PermitV2AccessRequirements;
@@ -60,7 +60,7 @@ const initialCreateOptions: PermitV2CreateOptions = {
 export const usePermitModalStore = create<PermitModalState>(() => ({
   open: false,
   tab: PermitV2Tab.Create,
-  focusedPermit: undefined,
+  focusedPermitHash: undefined,
   createOptions: initialCreateOptions,
   // ----
   accessRequirements: {
@@ -107,13 +107,13 @@ export const usePermitModalTab = () => {
   return { tab, setTab };
 };
 
-export const usePermitModalFocusedPermit = () => {
-  const focusedPermit = usePermitModalStore(state => state.focusedPermit);
-  const setFocusedPermit = useCallback((focusedPermit: string) => {
-    usePermitModalStore.setState({ focusedPermit, tab: PermitV2Tab.Opened });
+export const usePermitModalFocusedPermitHash = () => {
+  const focusedPermitHash = usePermitModalStore(state => state.focusedPermitHash);
+  const setFocusedPermitHash = useCallback((focusedPermitHash: string) => {
+    usePermitModalStore.setState({ focusedPermitHash, tab: PermitV2Tab.Opened });
   }, []);
 
-  return { focusedPermit, setFocusedPermit };
+  return { focusedPermitHash, setFocusedPermitHash };
 };
 
 export const usePermitCreateOptions = () => usePermitModalStore(state => state.createOptions);
@@ -214,9 +214,11 @@ export const usePermitCreateOptionsAndActions = () => {
   };
 };
 
-export const usePermitSatisfiesRequirements = (permit: PermitV2) => {
+export const usePermitSatisfiesRequirements = (permit: PermitV2 | undefined) => {
   const accessRequirements = usePermitModalStore(state => state.accessRequirements);
   return useMemo(() => {
+    if (permit == null) return false;
+
     // Set to true if requirements includes some contracts
     let contractsSatisfied = accessRequirements.contracts.length > 0;
     for (const contract of accessRequirements.contracts) {

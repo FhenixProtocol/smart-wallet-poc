@@ -4,7 +4,7 @@ import React from "react";
 import { useFhenixActivePermitHash, useFhenixAllPermits } from "~~/permits/hooks";
 import { PermitV2 } from "~~/permits/permitV2";
 import { setActivePermitHash } from "~~/permits/store";
-import { usePermitModalFocusedPermit, usePermitSatisfiesRequirements } from "~~/services/store/permitV2ModalStore";
+import { usePermitModalFocusedPermitHash, usePermitSatisfiesRequirements } from "~~/services/store/permitV2ModalStore";
 import truncateAddress from "~~/utils/truncate-address";
 
 const timeUntilExpiration = (ts: number): string => {
@@ -69,11 +69,11 @@ const PermitRow: React.FC<{ permit: PermitV2; children?: React.ReactNode; classN
 };
 
 const SelectedPermitRow: React.FC<{ permit: PermitV2 }> = ({ permit }) => {
-  const { setFocusedPermit } = usePermitModalFocusedPermit();
+  const { setFocusedPermitHash } = usePermitModalFocusedPermitHash();
 
   return (
     <PermitRow permit={permit} className="bg-base-200">
-      <button className="btn btn-sm btn-secondary btn-ghost" onClick={() => setFocusedPermit(permit.getHash())}>
+      <button className="btn btn-sm btn-secondary btn-ghost" onClick={() => setFocusedPermitHash(permit.getHash())}>
         Open
       </button>
     </PermitRow>
@@ -81,12 +81,12 @@ const SelectedPermitRow: React.FC<{ permit: PermitV2 }> = ({ permit }) => {
 };
 
 const SelectPermitRow: React.FC<{ permit: PermitV2 }> = ({ permit }) => {
-  const { setFocusedPermit } = usePermitModalFocusedPermit();
+  const { setFocusedPermitHash } = usePermitModalFocusedPermitHash();
   const { address } = useAccount({ type: "LightAccount" });
 
   return (
     <PermitRow permit={permit}>
-      <button className="btn btn-sm btn-secondary btn-ghost" onClick={() => setFocusedPermit(permit.getHash())}>
+      <button className="btn btn-sm btn-secondary btn-ghost" onClick={() => setFocusedPermitHash(permit.getHash())}>
         Open
       </button>
       <button

@@ -122,6 +122,10 @@ export class PermitV2 implements PermitV2Interface {
     return permit;
   }
 
+  updateName = (name: string) => {
+    this.name = name;
+  };
+
   /**
    * Creates a `PermitV2` from a serialized permit, hydrating methods and classes
    * NOTE: Does not return a stringified permit

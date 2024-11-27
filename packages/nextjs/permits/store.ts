@@ -60,6 +60,17 @@ export const setPermit = (account: string, permitV2: PermitV2) => {
   );
 };
 
+export const updatePermitName = (account: string | undefined, hash: string | undefined, name: string) => {
+  permitsStore.setState(
+    produce<PermitsStore>(state => {
+      if (account == null || hash == null || state.permits[account]?.[hash] == null) return;
+      const permit = PermitV2.deserialize(state.permits[account][hash]);
+      permit.updateName(name);
+      state.permits[account][hash] = permit.serialize();
+    }),
+  );
+};
+
 export const removePermit = (account: string, hash: string) => {
   permitsStore.setState(
     produce<PermitsStore>(state => {

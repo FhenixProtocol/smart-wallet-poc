@@ -19,6 +19,20 @@ export const useFhenixPermit = () => {
   });
 };
 
+export const useFhenixPermitWithHash = (hash: string | undefined) => {
+  const { address } = useAccount({ type: "LightAccount" });
+
+  return useStore(permitsStore, state => {
+    if (address == null) return undefined;
+    if (hash == null) return undefined;
+
+    const permit = state.permits[address]?.[hash];
+    if (permit == null) return undefined;
+
+    return PermitV2.deserialize(permit);
+  });
+};
+
 export const useFhenixActivePermitHash = () => {
   const { address } = useAccount({ type: "LightAccount" });
 

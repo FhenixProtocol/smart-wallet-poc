@@ -96,27 +96,29 @@ export const AddressInput = ({
       disabled={isEnsAddressLoading || isEnsNameLoading || disabled}
       reFocus={reFocus}
       prefix={
-        ensName && useENS ? (
-          <div className="flex bg-base-300 rounded-l-full items-center">
-            {isEnsAvatarLoading && <div className="skeleton bg-base-200 w-[35px] h-[35px] rounded-sm shrink-0"></div>}
-            {ensAvatar ? (
-              <span className="w-[35px]">
-                {
-                  // eslint-disable-next-line
-                  <img className="w-full rounded-sm" src={ensAvatar} alt={`${ensAddress} avatar`} />
-                }
-              </span>
-            ) : null}
-            <span className="text-accent px-2">{enteredEnsName ?? ensName}</span>
-          </div>
-        ) : (
-          (isEnsNameLoading || isEnsAddressLoading) && (
-            <div className="flex bg-base-300 rounded-l-full items-center gap-2 pr-2">
-              <div className="skeleton bg-base-200 w-[35px] h-[35px] rounded-sm shrink-0"></div>
-              <div className="skeleton bg-base-200 h-3 w-20"></div>
+        useENS ? (
+          ensName ? (
+            <div className="flex bg-base-300 rounded-l-full items-center">
+              {isEnsAvatarLoading && <div className="skeleton bg-base-200 w-[35px] h-[35px] rounded-sm shrink-0"></div>}
+              {ensAvatar ? (
+                <span className="w-[35px]">
+                  {
+                    // eslint-disable-next-line
+                    <img className="w-full rounded-sm" src={ensAvatar} alt={`${ensAddress} avatar`} />
+                  }
+                </span>
+              ) : null}
+              <span className="text-accent px-2">{enteredEnsName ?? ensName}</span>
             </div>
+          ) : (
+            (isEnsNameLoading || isEnsAddressLoading) && (
+              <div className="flex bg-base-300 rounded-l-full items-center gap-2 pr-2">
+                <div className="skeleton bg-base-200 w-[35px] h-[35px] rounded-sm shrink-0"></div>
+                <div className="skeleton bg-base-200 h-3 w-20"></div>
+              </div>
+            )
           )
-        )
+        ) : undefined
       }
       suffix={
         // Don't want to use nextJS Image here (and adding remote patterns for the URL)

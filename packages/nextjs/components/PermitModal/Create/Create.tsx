@@ -12,7 +12,7 @@ import {
   usePermitModalOpen,
   PermitV2CreateType,
   usePermitCreateOptionsAndActions,
-  usePermitModalFocusedPermit,
+  usePermitModalFocusedPermitHash,
 } from "~~/services/store/permitV2ModalStore";
 import { notification } from "~~/utils/scaffold-eth";
 import truncateAddress from "~~/utils/truncate-address";
@@ -46,7 +46,7 @@ const PermitV2ModalCreateButton: React.FC<{ disabled?: boolean }> = ({ disabled 
   const createOptions = usePermitCreateOptions();
   const { setOpen } = usePermitModalOpen();
   const [creating, setCreating] = useState(false);
-  const { setFocusedPermit } = usePermitModalFocusedPermit();
+  const { setFocusedPermitHash: setFocusedPermit } = usePermitModalFocusedPermitHash();
 
   let cta = createOptions.type === PermitV2CreateType.Using ? "Create" : "Sign and Open";
   if (creating) {
