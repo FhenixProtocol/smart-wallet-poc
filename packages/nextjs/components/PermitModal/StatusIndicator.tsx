@@ -10,7 +10,7 @@ const useFhenixPermitStatus = () => {
   return "active";
 };
 
-const PermitV2StatusIndicator = () => {
+export const PermitV2StatusIndicator = () => {
   const status = useFhenixPermitStatus();
   const bgColor =
     status === "active"

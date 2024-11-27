@@ -44,3 +44,7 @@ TODO
   - [x] Add status indicator row to modal
 - [ ] Add status indicator to permit button
 - [x] Hook PermitV2 Modal into UnsealableDisplay
+- [ ] Focused Permit Display
+  - [ ] Update name
+  - [ ] Copy permit data
+  - [ ] See full info of permit
