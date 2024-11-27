@@ -1,5 +1,5 @@
 import { useChain, useAccount } from "@account-kit/react";
-import { PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ArrowDownTrayIcon, ArrowUpTrayIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import { useState } from "react";
 import { zeroAddress, isAddress, getAddress } from "viem";
@@ -60,6 +60,7 @@ const PermitV2ModalCreateButton: React.FC<{ disabled?: boolean }> = ({ disabled 
 
     const permit = await PermitV2.createAndSign(
       {
+        name: createOptions.name.length > 0 ? createOptions.name : "Unnamed Permit",
         type: createOptions.type === PermitV2CreateType.Using ? "self" : "sharing",
         issuer: account.address,
         recipient: createOptions.recipient.length > 0 ? createOptions.recipient : zeroAddress,
@@ -131,19 +132,19 @@ export const PermitV2ModalCreate = () => {
     <>
       {/* Type */}
       <div className="flex flex-row items-center justify-start gap-4">
-        <div className="text-sm font-bold">Type:</div>
+        <div className="text-sm font-bold">Purpose:</div>
         <button
           className={`btn btn-sm ${type === PermitV2CreateType.Using ? "btn-primary" : "btn-ghost"}`}
           onClick={() => setType(PermitV2CreateType.Using)}
         >
-          For Using
+          For Using <ArrowDownTrayIcon className="w-4 h-4" />
         </button>
         /
         <button
           className={`btn btn-sm ${type === PermitV2CreateType.Sharing ? "btn-primary" : "btn-ghost"}`}
           onClick={() => setType(PermitV2CreateType.Sharing)}
         >
-          For Sharing
+          For Sharing <ArrowUpTrayIcon className="w-4 h-4 rotate-90" />
         </button>
       </div>
 

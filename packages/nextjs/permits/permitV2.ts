@@ -219,6 +219,7 @@ export class PermitV2 implements PermitV2Interface {
         JSON.stringify({
           type: this.type,
           issuer: this.issuer,
+          expiration: this.expiration,
           contracts: this.contracts,
           projects: this.projects,
           recipient: this.recipient,

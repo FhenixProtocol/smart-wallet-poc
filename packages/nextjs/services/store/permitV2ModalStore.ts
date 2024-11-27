@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { create } from "zustand";
+import { PermitV2 } from "~~/permits/permitV2";
 
 export enum PermitV2Tab {
   Create = "Create",
@@ -198,4 +199,30 @@ export const usePermitCreateOptionsAndActions = () => {
     removeProject,
     reset,
   };
+};
+
+export const usePermitSatisfiesRequirements = (permit: PermitV2) => {
+  const accessRequirements = usePermitModalStore(state => state.accessRequirements);
+  return useMemo(() => {
+    // Set to true if requirements includes some contracts
+    let contractsSatisfied = accessRequirements.contracts.length > 0;
+    for (const contract of accessRequirements.contracts) {
+      if (!permit.contracts.includes(contract)) {
+        contractsSatisfied = false;
+      }
+    }
+
+    // Set to true if requirements includes some projects
+    let projectsSatisfied = accessRequirements.projects.length > 0;
+    for (const project of accessRequirements.projects) {
+      if (!permit.projects.includes(project)) {
+        projectsSatisfied = false;
+      }
+    }
+
+    // Only need to satisfy one of the options to satisfy the requirements
+    if (contractsSatisfied || projectsSatisfied) return true;
+
+    return false;
+  }, [permit, accessRequirements]);
 };
