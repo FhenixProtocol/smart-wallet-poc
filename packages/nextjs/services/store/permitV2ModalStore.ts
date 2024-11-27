@@ -13,6 +13,7 @@ export enum PermitV2CreateType {
 }
 
 type PermitV2CreateOptions = {
+  name: string;
   type: PermitV2CreateType;
   recipient: string;
   expirationOffset: number;
@@ -44,6 +45,7 @@ type PermitModalState = {
 };
 
 const initialCreateOptions: PermitV2CreateOptions = {
+  name: "",
   type: PermitV2CreateType.Using,
   recipient: "",
   expirationOffset: 24 * 60 * 60,
@@ -117,24 +119,21 @@ export const usePermitCreateOptionsAndActions = () => {
 
     // Set to true if requirements includes some projects
     let projectsSatisfied = accessRequirements.projects.length > 0;
-    console.log("init p s", projectsSatisfied, accessRequirements, createOptions);
     for (const project of accessRequirements.projects) {
-      console.log("checking requirement", project, "included?", createOptions.projects.includes(project));
       if (!createOptions.projects.includes(project)) {
         projectsSatisfied = false;
       }
     }
-
-    console.log({
-      contractsSatisfied,
-      projectsSatisfied,
-    });
 
     // Only need to satisfy one of the options to satisfy the requirements
     if (contractsSatisfied || projectsSatisfied) return true;
 
     return false;
   }, [createOptions, accessRequirements]);
+
+  const setName = useCallback((name: string) => {
+    usePermitModalStore.setState(state => ({ createOptions: { ...state.createOptions, name } }));
+  }, []);
 
   const setType = useCallback((type: PermitV2CreateType) => {
     usePermitModalStore.setState(state => ({ createOptions: { ...state.createOptions, type } }));
@@ -189,6 +188,7 @@ export const usePermitCreateOptionsAndActions = () => {
   return {
     ...createOptions,
     accessSatisfiesRequirements,
+    setName,
     setType,
     setRecipient,
     setExpirationOffset,

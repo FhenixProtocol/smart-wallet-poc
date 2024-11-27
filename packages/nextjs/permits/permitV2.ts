@@ -18,6 +18,10 @@ import { getSignatureTypesAndMessage, SignatureTypes } from "./generate";
 
 export class PermitV2 implements PermitV2Interface {
   /**
+   * Optional name for this permit, only for organization and UX
+   */
+  public name?: string;
+  /**
    * The type of the PermitV2 (self / sharing)
    * (self) Permit that will be signed and used by the issuer
    * (sharing) Permit that is signed by the issuer, but intended to be shared with recipient
@@ -75,7 +79,8 @@ export class PermitV2 implements PermitV2Interface {
    */
   public recipientSignature: string;
 
-  public constructor(options: PermitV2Interface) {
+  public constructor(options: PermitV2Interface & { name?: string }) {
+    this.name = options.name;
     this.type = options.type;
     this.issuer = options.issuer;
     this.expiration = options.expiration;
@@ -89,7 +94,7 @@ export class PermitV2 implements PermitV2Interface {
     this.recipientSignature = options.recipientSignature;
   }
 
-  static async create(options: PermitV2Options) {
+  static async create(options: PermitV2Options & { name?: string }) {
     const { success, data: parsed, error } = PermitV2ParamsValidator.safeParse(options);
 
     if (!success) {
@@ -102,13 +107,14 @@ export class PermitV2 implements PermitV2Interface {
         : await GenerateSealingKey();
 
     return new PermitV2({
+      name: options.name,
       ...parsed,
       sealingPair,
     });
   }
 
   static async createAndSign(
-    options: PermitV2Options,
+    options: PermitV2Options & { name?: string },
     chainId: string | undefined,
     signer: AbstractSigner | undefined,
   ) {
@@ -139,8 +145,9 @@ export class PermitV2 implements PermitV2Interface {
    * Utility to extract the public data from a permit.
    * Used in `serialize`, `getPermission`, `getHash` etc
    */
-  getInterface = (): PermitV2Interface => {
+  getInterface = (): PermitV2Interface & { name?: string } => {
     return {
+      name: this.name,
       type: this.type,
       issuer: this.issuer,
       expiration: this.expiration,
