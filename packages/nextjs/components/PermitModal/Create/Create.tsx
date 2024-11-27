@@ -147,6 +147,17 @@ export const PermitV2ModalCreate = () => {
         </button>
       </div>
 
+      {/* Name */}
+      <div className="flex flex-row items-center justify-start gap-4">
+        <div className="text-sm font-bold">Name:</div>
+        <InputBase
+          name="permit-name"
+          value={name}
+          placeholder="Unnamed Permit"
+          onChange={(value: string) => setName(value)}
+        />
+      </div>
+
       {/* (Sharing) Recipient */}
       {type === PermitV2CreateType.Sharing && (
         <div className="flex flex-row items-center justify-start gap-4">
@@ -161,12 +172,6 @@ export const PermitV2ModalCreate = () => {
           />
         </div>
       )}
-
-      {/* Name */}
-      <div className="flex flex-row items-center justify-start gap-4">
-        <div className="text-sm font-bold">Name (optional):</div>
-        <InputBase name="permit-name" value={name} placeholder="name" onChange={(value: string) => setName(value)} />
-      </div>
 
       {/* Expiration */}
       <div className="flex flex-row items-center justify-start gap-4">

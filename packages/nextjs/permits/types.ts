@@ -256,6 +256,10 @@ export interface AbstractSigner {
  */
 export type PermitV2Interface = {
   /**
+   * Name for this permit, only for organization and UX
+   */
+  name: string;
+  /**
    * The type of the PermitV2 (self / sharing)
    * (self) Permit that will be signed and used by the issuer
    * (sharing) Permit that is signed by the issuer, but intended to be shared with recipient
@@ -363,7 +367,7 @@ export type SerializedPermitV2 = Omit<PermitV2Interface, "sealingPair"> & {
  * A type representing the PermissionV2 struct that is passed to PermissionedV2.sol to grant encrypted data access.
  */
 export type PermissionV2 = Expand<
-  Omit<PermitV2Interface, "type" | "sealingPair"> & {
+  Omit<PermitV2Interface, "name" | "type" | "sealingPair"> & {
     sealingKey: string;
   }
 >;

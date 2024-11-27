@@ -18,9 +18,9 @@ import { getSignatureTypesAndMessage, SignatureTypes } from "./generate";
 
 export class PermitV2 implements PermitV2Interface {
   /**
-   * Optional name for this permit, only for organization and UX
+   * Name for this permit, only for organization and UX
    */
-  public name?: string;
+  public name: string;
   /**
    * The type of the PermitV2 (self / sharing)
    * (self) Permit that will be signed and used by the issuer
@@ -79,7 +79,7 @@ export class PermitV2 implements PermitV2Interface {
    */
   public recipientSignature: string;
 
-  public constructor(options: PermitV2Interface & { name?: string }) {
+  public constructor(options: PermitV2Interface) {
     this.name = options.name;
     this.type = options.type;
     this.issuer = options.issuer;
@@ -94,7 +94,7 @@ export class PermitV2 implements PermitV2Interface {
     this.recipientSignature = options.recipientSignature;
   }
 
-  static async create(options: PermitV2Options & { name?: string }) {
+  static async create(options: PermitV2Options) {
     const { success, data: parsed, error } = PermitV2ParamsValidator.safeParse(options);
 
     if (!success) {
@@ -107,14 +107,13 @@ export class PermitV2 implements PermitV2Interface {
         : await GenerateSealingKey();
 
     return new PermitV2({
-      name: options.name,
       ...parsed,
       sealingPair,
     });
   }
 
   static async createAndSign(
-    options: PermitV2Options & { name?: string },
+    options: PermitV2Options,
     chainId: string | undefined,
     signer: AbstractSigner | undefined,
   ) {
@@ -145,7 +144,7 @@ export class PermitV2 implements PermitV2Interface {
    * Utility to extract the public data from a permit.
    * Used in `serialize`, `getPermission`, `getHash` etc
    */
-  getInterface = (): PermitV2Interface & { name?: string } => {
+  getInterface = (): PermitV2Interface => {
     return {
       name: this.name,
       type: this.type,
@@ -203,7 +202,7 @@ export class PermitV2 implements PermitV2Interface {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { type, sealingPair, ...permit } = permitData;
+    const { name, type, sealingPair, ...permit } = permitData;
     return {
       ...permit,
       sealingKey: `0x${sealingPair.publicKey}`,

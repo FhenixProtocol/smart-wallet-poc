@@ -7,6 +7,7 @@ const SerializedSealingPair = z.object({
 });
 
 const zPermitV2WithDefaults = z.object({
+  name: z.string().optional().default("Unnamed Permit"),
   type: z.enum(["self", "sharing", "recipient"]),
   issuer: z.string().refine(val => val !== zeroAddress, {
     message: "PermitV2 issuer :: must not be zeroAddress",
