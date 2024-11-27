@@ -15,6 +15,8 @@ import { PermitV2 } from "~~/permits/permitV2";
 import { setPermit, setActivePermitHash } from "~~/permits/store";
 import { AbstractSigner } from "~~/permits/types";
 import { notification } from "~~/utils/scaffold-eth";
+import truncateAddress from "~~/utils/truncate-address";
+import { PermitV2ActivePermitStatus } from "./PermitV2Status";
 
 const PermitV2TabOptions = [PermitV2Tab.Create, PermitV2Tab.Import, PermitV2Tab.Select];
 const PermitV2ModalTabs = () => {
@@ -146,6 +148,7 @@ const PermitV2ModalCreate = () => {
     expirationOffset,
     contracts,
     projects,
+    accessSatisfiesRequirements,
     setType,
     setRecipient,
     setExpirationOffset,
@@ -169,7 +172,12 @@ const PermitV2ModalCreate = () => {
 
   const accessInvalid = projects.length === 0 && contracts.length === 0;
 
-  const formInvalid = accessInvalid || recipientAddressInvalid || addingContractAddressInvalid || addingProjectInvalid;
+  const formInvalid =
+    !accessSatisfiesRequirements ||
+    accessInvalid ||
+    recipientAddressInvalid ||
+    addingContractAddressInvalid ||
+    addingProjectInvalid;
 
   return (
     <>
@@ -229,50 +237,52 @@ const PermitV2ModalCreate = () => {
         Access
         <span className="italic font-normal">
           {" "}
-          - grant access to individual contracts or full projects, defaults to this dApp's requirements. Projects and
-          Contracts cannot both be empty.
+          - grant access to individual contracts or full projects, defaults to this dApp{"'"}s requirements. Projects
+          and Contracts cannot both be empty.
         </span>
       </div>
 
       {/* Contracts */}
-      <div className="flex flex-row items-center justify-start">
-        <div
-          className={`text-sm font-bold ml-4 mr-4 ${
-            addingContractAddress.length > 0 && addingContractAddressInvalid && "text-error"
-          }`}
-        >
-          Contracts:
+      <div className="flex flex-col w-full gap-2">
+        <div className="flex flex-row items-center justify-start">
+          <div
+            className={`text-sm font-bold ml-4 mr-4 ${
+              addingContractAddress.length > 0 && addingContractAddressInvalid && "text-error"
+            }`}
+          >
+            Contracts:
+          </div>
+          <AddressInput
+            name="add-contract"
+            value={addingContractAddress}
+            placeholder="add contract"
+            onChange={(value: any) => setAddingContractAddress(value)}
+            useENS={false}
+            useBlo={false}
+          />
+          <button
+            className={`btn btn-sm btn-secondary ${
+              (addingContractAddressInvalid || addingContractAddress.length === 0) && "btn-disabled"
+            }`}
+            onClick={() => {
+              if (addingContractAddressInvalid) return;
+              addContract(addingContractAddress);
+              setAddingContractAddress("");
+            }}
+          >
+            <PlusIcon className="w-4 h-4" />
+          </button>
         </div>
-        <AddressInput
-          name="add-contract"
-          value={addingContractAddress}
-          placeholder="add contract"
-          onChange={(value: any) => setAddingContractAddress(value)}
-          useENS={false}
-          useBlo={false}
-        />
-        <button
-          className={`btn btn-sm btn-secondary ${
-            (addingContractAddressInvalid || addingContractAddress.length === 0) && "btn-disabled"
-          }`}
-          onClick={() => {
-            if (addingContractAddressInvalid) return;
-            addContract(addingContractAddress);
-            setAddingContractAddress("");
-          }}
-        >
-          <PlusIcon className="w-4 h-4" />
-        </button>
+        {contracts.length > 0 && (
+          <div className="flex flex-row gap-2 flex-wrap ml-8">
+            {contracts.map(contract => (
+              <button key={contract} className="btn btn-sm btn-accent" onClick={() => removeContract(contract)}>
+                {truncateAddress(contract)} <XMarkIcon className="w-4 h-4" />
+              </button>
+            ))}
+          </div>
+        )}
       </div>
-      {projects.length > 0 && (
-        <div className="flex flex-row gap-2 flex-wrap ml-8">
-          {projects.map(project => (
-            <button key={project} className="btn btn-sm btn-accent" onClick={() => removeProject(project)}>
-              {project} <XMarkIcon className="w-4 h-4" />
-            </button>
-          ))}
-        </div>
-      )}
 
       {/* Projects */}
       <div className="flex flex-col w-full gap-2">
@@ -314,6 +324,11 @@ const PermitV2ModalCreate = () => {
         )}
       </div>
 
+      {/* Access requirements not satisfied */}
+      {!accessSatisfiesRequirements && (
+        <div className="italic text-sm text-error">! dApp{"'"}s access requirements not met !</div>
+      )}
+
       {/* Create Button */}
       <div className="divider -my-1" />
       <div className="flex flex-row gap-4">
@@ -325,6 +340,7 @@ const PermitV2ModalCreate = () => {
     </>
   );
 };
+
 const PermitV2ModalImport = () => {
   return <div>PERMIT V2 MODAL IMPORT CONTENT</div>;
 };
@@ -360,7 +376,7 @@ export const PermitV2Modal = () => {
           <button className="btn btn-sm btn-link !shadow-none p-0">in the Docs</button>.
         </div>
 
-        {/* TODO: Status row, Green - permit exists and valid, Yellow - expired, Red - doesn't exist */}
+        <PermitV2ActivePermitStatus />
 
         <div className="divider -my-1" />
 
