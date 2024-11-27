@@ -39,8 +39,8 @@ TODO
   - [x] Permit explanation and link to docs
   - [x] Create permit option (for me / for sharing)
   - [ ] Importing shared permit - sign and populate `recipientSignature`
-  - [ ] Selecting permit from list of available permits
-  - [ ] Checking satisfies project requirements
-  - [ ] Add status indicator row to modal
+  - [x] Selecting permit from list of available permits
+  - [x] Checking satisfies project requirements
+  - [x] Add status indicator row to modal
 - [ ] Add status indicator to permit button
 - [x] Hook PermitV2 Modal into UnsealableDisplay

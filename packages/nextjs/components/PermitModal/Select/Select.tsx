@@ -3,6 +3,7 @@ import React from "react";
 import { useFhenixActivePermitHash, useFhenixAllPermits } from "~~/permits/hooks";
 import { PermitV2 } from "~~/permits/permitV2";
 import { usePermitSatisfiesRequirements } from "~~/services/store/permitV2ModalStore";
+import truncateAddress from "~~/utils/truncate-address";
 
 const timeUntilExpiration = (ts: number): string => {
   const now = Math.floor(Date.now() / 1000);
@@ -39,7 +40,11 @@ const PermitRow: React.FC<{ permit: PermitV2; children?: React.ReactNode; classN
 
   return (
     <tr className={`${className}`}>
-      <td className="p-2 text-sm">{permit.name != null && permit.name.length > 0 ? permit.name : "Unnamed Permit"}</td>
+      <td className="p-2 text-sm">
+        {permit.name != null && permit.name.length > 0 ? permit.name : "Unnamed Permit"}
+        <br />
+        <span className="text-xs font-bold">{truncateAddress(permit.issuer)}</span>
+      </td>
       <td className="p-2 text-sm place-items-center">
         {permit.type === "self" && <ArrowDownTrayIcon className="w-4 h-4" />}
         {permit.type === "sharing" && <ArrowUpTrayIcon className="w-4 h-4 rotate-90" />}
@@ -92,7 +97,7 @@ export const PermitV2ModalSelect = () => {
       <table className="table">
         <thead>
           <tr>
-            <th className="p-2">Name</th>
+            <th className="p-2">Name/Issuer</th>
             <th className="p-2 text-center">Type</th>
             <th className="p-2 text-center">Exp.</th>
             <th className="p-2 text-center">Access</th>
