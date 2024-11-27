@@ -12,6 +12,7 @@ import {
   usePermitModalOpen,
   PermitV2CreateType,
   usePermitCreateOptionsAndActions,
+  usePermitModalFocusedPermit,
 } from "~~/services/store/permitV2ModalStore";
 import { notification } from "~~/utils/scaffold-eth";
 import truncateAddress from "~~/utils/truncate-address";
@@ -45,6 +46,12 @@ const PermitV2ModalCreateButton: React.FC<{ disabled?: boolean }> = ({ disabled 
   const createOptions = usePermitCreateOptions();
   const { setOpen } = usePermitModalOpen();
   const [creating, setCreating] = useState(false);
+  const { setFocusedPermit } = usePermitModalFocusedPermit();
+
+  let cta = createOptions.type === PermitV2CreateType.Using ? "Create" : "Sign and Open";
+  if (creating) {
+    cta = createOptions.type === PermitV2CreateType.Using ? "Creating" : "Signing";
+  }
 
   const createPermitV2 = async () => {
     if (account == null || chain == null) return;
@@ -73,16 +80,20 @@ const PermitV2ModalCreateButton: React.FC<{ disabled?: boolean }> = ({ disabled 
     );
 
     setPermit(account.address, permit);
-    setActivePermitHash(account.address, permit.getHash());
-
-    notification.success("Permit Created Successfully");
     setCreating(false);
-    setTimeout(() => setOpen(false));
+    notification.success("Permit Created Successfully");
+
+    if (createOptions.type === PermitV2CreateType.Using) {
+      setActivePermitHash(account.address, permit.getHash());
+      setTimeout(() => setOpen(false));
+    } else {
+      setFocusedPermit(permit.getHash());
+    }
   };
 
   return (
     <button className={`btn btn-primary flex-[3] ${disabled && "btn-disabled"}`} onClick={createPermitV2}>
-      {creating ? "Creating" : "Create"}
+      {cta}
       {creating && <span className="loading loading-spinner loading-sm"></span>}
     </button>
   );

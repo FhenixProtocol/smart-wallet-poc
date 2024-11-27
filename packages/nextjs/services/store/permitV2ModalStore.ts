@@ -3,9 +3,11 @@ import { create } from "zustand";
 import { PermitV2 } from "~~/permits/permitV2";
 
 export enum PermitV2Tab {
+  About = "About",
   Create = "Create",
   Import = "Import",
   Select = "Select",
+  Opened = "Opened",
 }
 
 export enum PermitV2CreateType {
@@ -40,6 +42,7 @@ type PermitV2AccessRequirementsParams =
 type PermitModalState = {
   open: boolean;
   tab: PermitV2Tab;
+  focusedPermit: string | undefined;
   createOptions: PermitV2CreateOptions;
   // ----
   accessRequirements: PermitV2AccessRequirements;
@@ -57,6 +60,7 @@ const initialCreateOptions: PermitV2CreateOptions = {
 export const usePermitModalStore = create<PermitModalState>(() => ({
   open: false,
   tab: PermitV2Tab.Create,
+  focusedPermit: undefined,
   createOptions: initialCreateOptions,
   // ----
   accessRequirements: {
@@ -101,6 +105,15 @@ export const usePermitModalTab = () => {
   }, []);
 
   return { tab, setTab };
+};
+
+export const usePermitModalFocusedPermit = () => {
+  const focusedPermit = usePermitModalStore(state => state.focusedPermit);
+  const setFocusedPermit = useCallback((focusedPermit: string) => {
+    usePermitModalStore.setState({ focusedPermit, tab: PermitV2Tab.Opened });
+  }, []);
+
+  return { focusedPermit, setFocusedPermit };
 };
 
 export const usePermitCreateOptions = () => usePermitModalStore(state => state.createOptions);

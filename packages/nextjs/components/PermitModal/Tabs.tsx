@@ -17,6 +17,12 @@ export const PermitV2ModalTabs = () => {
           {i < PermitV2TabOptions.length - 1 && "/"}
         </React.Fragment>
       ))}
+      {tab === PermitV2Tab.Opened && (
+        <>
+          {"/"}
+          <button className="btn btn-sm btn-primary">{tab}</button>
+        </>
+      )}
     </div>
   );
 };

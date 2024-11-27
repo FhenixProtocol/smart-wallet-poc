@@ -28,6 +28,7 @@ export const PermitV2TabInstructions = () => {
         </>
       )}
       {tab === PermitV2Tab.Select && <>Select an existing Permit from your list of available Permits below:</>}
+      {tab === PermitV2Tab.Opened && <>Opened Permit Data: (TODO: Populate This)</>}
     </div>
   );
 };
