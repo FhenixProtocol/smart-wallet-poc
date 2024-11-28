@@ -1,115 +1,36 @@
-import { useChain, useAccount } from "@account-kit/react";
-import { ArrowDownTrayIcon, ArrowUpTrayIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useAccount } from "@account-kit/react";
 import React from "react";
 import { useState } from "react";
-import { zeroAddress, isAddress, getAddress } from "viem";
-import { AddressInput, InputBase } from "~~/components/scaffold-eth";
 import { PermitV2 } from "~~/permits/permitV2";
-import { setPermit, setActivePermitHash } from "~~/permits/store";
-import { AbstractSigner, PermitV2Options } from "~~/permits/types";
-import {
-  usePermitCreateOptions,
-  usePermitModalOpen,
-  PermitV2CreateType,
-  usePermitCreateOptionsAndActions,
-  usePermitModalFocusedPermitHash,
-  usePermitModalImporting,
-} from "~~/services/store/permitV2ModalStore";
-import { notification } from "~~/utils/scaffold-eth";
-import truncateAddress from "~~/utils/truncate-address";
+import { PermitV2Options } from "~~/permits/types";
+import { usePermitModalImporting, usePermitModalUpdateImportingPermitName } from "~~/services/store/permitV2ModalStore";
 import { TextArea } from "../scaffold-eth/Input/TextArea";
-import { getTimestamp, stringToJSON } from "./utils";
+import { stringToJSON } from "./utils";
 import { PermitV2ParamsValidator } from "~~/permits/permitV2.z";
+import {
+  PermitTypeDisplayRow,
+  PermitNameEditableDisplayRow,
+  PermitRecipientDisplayRow,
+  PermitExpirationDisplayRow,
+  PermitAccessDisplayRow,
+  PermitIssuerSignatureDisplayRow,
+  PermitRecipientSignatureDisplayRow,
+  SignatureValidityIndicator,
+  ValidityIndicator,
+} from "./DisplayRows";
+import { PermitCopyDataButton } from "./PermitCopyDataButton";
+import { PermitUseButton } from "./PermitUseButton";
+import { PermitImportButton } from "./PermitImportButton";
 
-const expirationOptions = [
-  {
-    label: "24h",
-    offset: 24 * 60 * 60,
-  },
-  {
-    label: "48h",
-    offset: 48 * 60 * 60,
-  },
-  {
-    label: "1w",
-    offset: 7 * 24 * 60 * 60,
-  },
-  {
-    label: "1m",
-    offset: 30 * 24 * 60 * 60,
-  },
-  {
-    label: "Inf",
-    offset: 365 * 24 * 60 * 60,
-  },
-];
-
-const PermitV2ModalCreateButton: React.FC<{ disabled?: boolean }> = ({ disabled = false }) => {
-  const { chain } = useChain();
-  const { account } = useAccount({ type: "LightAccount" });
-  const createOptions = usePermitCreateOptions();
-  const { setOpen } = usePermitModalOpen();
-  const [creating, setCreating] = useState(false);
-  const { setFocusedPermitHash: setFocusedPermit } = usePermitModalFocusedPermitHash();
-
-  let cta = createOptions.type === PermitV2CreateType.Using ? "Create" : "Sign and Open";
-  if (creating) {
-    cta = createOptions.type === PermitV2CreateType.Using ? "Creating" : "Signing";
-  }
-
-  const createPermitV2 = async () => {
-    if (account == null || chain == null) return;
-
-    setCreating(true);
-
-    const abstractSigner: AbstractSigner = {
-      getAddress: async () => account.address,
-      // Should probably add the primaryType to this in the abstract signer to make it easier to interact with via viem
-      signTypedData: (domain, types, value: Record<string, unknown>) =>
-        account.signTypedData({ domain, types, primaryType: Object.keys(types)[0], message: value }),
-    };
-
-    const permit = await PermitV2.createAndSign(
-      {
-        name: createOptions.name.length > 0 ? createOptions.name : "Unnamed Permit",
-        type: createOptions.type === PermitV2CreateType.Using ? "self" : "sharing",
-        issuer: account.address,
-        recipient: createOptions.recipient.length > 0 ? createOptions.recipient : zeroAddress,
-        expiration: getTimestamp() + createOptions.expirationOffset,
-        projects: createOptions.projects,
-        contracts: createOptions.contracts,
-      },
-      chain.id.toString(),
-      abstractSigner,
-    );
-
-    setPermit(account.address, permit);
-    setCreating(false);
-    notification.success("Permit Created Successfully");
-
-    if (createOptions.type === PermitV2CreateType.Using) {
-      setActivePermitHash(account.address, permit.getHash());
-      setTimeout(() => setOpen(false));
-    } else {
-      setFocusedPermit(permit.getHash());
-    }
-  };
-
-  return (
-    <button className={`btn btn-primary flex-[3] ${disabled && "btn-disabled"}`} onClick={createPermitV2}>
-      {cta}
-      {creating && <span className="loading loading-spinner loading-sm"></span>}
-    </button>
-  );
-};
-
-export const PermitV2ModalImport = () => {
+const PermitV2ModalImportEntry = () => {
   const { address } = useAccount({ type: "LightAccount" });
   const { setImportingPermit } = usePermitModalImporting();
   const [imported, setImported] = useState("");
 
   const importPermitData = async (value: string) => {
     // TODO: validate permit data
+    // TODO: Validation: cannot import permit with signingKey
+    // TODO: Validation: cannot import permit with signature unless recipient
     setImported(value);
 
     const { success: jsonParseSuccess, data: jsonParseData, error: jsonParseError } = stringToJSON.safeParse(value);
@@ -152,215 +73,66 @@ export const PermitV2ModalImport = () => {
   );
 };
 
-export const PermitV2ModalImportStep2 = () => {
-  const {
-    name,
-    type,
-    recipient,
-    expirationOffset,
-    contracts,
-    projects,
-    accessSatisfiesRequirements,
-    setName,
-    setType,
-    setRecipient,
-    setExpirationOffset,
-    addContract,
-    removeContract,
-    addProject,
-    removeProject,
-    reset,
-  } = usePermitCreateOptionsAndActions();
+const PermitImportClearButton = () => {
+  const { setImportingPermit } = usePermitModalImporting();
 
-  const recipientAddressInvalid =
-    type === PermitV2CreateType.Sharing && (recipient.length === 0 || !isAddress(recipient));
+  return (
+    <button className="btn btn-secondary" onClick={() => setImportingPermit(undefined)}>
+      Clear
+    </button>
+  );
+};
 
-  const [addingContractAddress, setAddingContractAddress] = useState<string>("");
-  const addingContractAddressInvalid =
-    addingContractAddress.length > 0 &&
-    (!isAddress(addingContractAddress) || contracts.includes(getAddress(addingContractAddress)));
+const NameRow: React.FC<{ permit: PermitV2 }> = ({ permit }) => {
+  const onUpdateName = usePermitModalUpdateImportingPermitName();
+  return <PermitNameEditableDisplayRow name={permit.name} onUpdateName={onUpdateName} />;
+};
 
-  const [addingProject, setAddingProject] = useState<string>("");
-  const addingProjectInvalid = addingProject.length > 0 && projects.includes(addingProject);
+export const IssuerSignatureRow: React.FC<{ permit: PermitV2 }> = ({ permit }) => {
+  if (permit.type !== "recipient") return;
 
-  const accessInvalid = projects.length === 0 && contracts.length === 0;
+  const validity = permit.issuerSignature !== "0x" ? "success" : "error";
 
-  const formInvalid =
-    !accessSatisfiesRequirements ||
-    accessInvalid ||
-    recipientAddressInvalid ||
-    addingContractAddressInvalid ||
-    addingProjectInvalid;
+  return (
+    <div className="flex flex-row items-center justify-between gap-4">
+      <div className="text-sm font-bold">{permit.type === "recipient" && "Issuer "}Signature:</div>
+      <ValidityIndicator validity={validity} validLabel="Signed by Issuer" invalidLabel="Not Signed By Issuer" />
+    </div>
+  );
+};
+
+const PermitV2ModalImportConfirm = () => {
+  const { importingPermit: permit } = usePermitModalImporting();
+
+  if (permit == null) {
+    return <div>PERMIT NOT FOUND</div>;
+  }
 
   return (
     <>
-      {/* Type */}
-      <div className="flex flex-row items-center justify-start gap-4">
-        <div className="text-sm font-bold">Purpose:</div>
-        <button
-          className={`btn btn-sm ${type === PermitV2CreateType.Using ? "btn-primary" : "btn-ghost"}`}
-          onClick={() => setType(PermitV2CreateType.Using)}
-        >
-          For Using <ArrowDownTrayIcon className="w-4 h-4" />
-        </button>
-        /
-        <button
-          className={`btn btn-sm ${type === PermitV2CreateType.Sharing ? "btn-primary" : "btn-ghost"}`}
-          onClick={() => setType(PermitV2CreateType.Sharing)}
-        >
-          For Sharing <ArrowUpTrayIcon className="w-4 h-4 rotate-90" />
-        </button>
-      </div>
+      <div className="text-sm font-bold">Confirm the imported Permit data below:</div>
+      <div className="text-sm italic">You can change the Permit's name to better match its usage.</div>
 
-      {/* Name */}
-      <div className="flex flex-row items-center justify-start gap-4">
-        <div className="text-sm font-bold">Name:</div>
-        <InputBase
-          name="permit-name"
-          value={name}
-          placeholder="Unnamed Permit"
-          onChange={(value: string) => setName(value)}
-        />
-      </div>
-
-      {/* (Sharing) Recipient */}
-      {type === PermitV2CreateType.Sharing && (
-        <div className="flex flex-row items-center justify-start gap-4">
-          <div className={`text-sm font-bold ${recipientAddressInvalid && "text-error"}`}>Recipient:</div>
-          <AddressInput
-            name="add-recipient"
-            value={recipient}
-            placeholder="recipient address"
-            onChange={(value: any) => setRecipient(value)}
-            useENS={false}
-            useBlo={false}
-          />
-        </div>
-      )}
-
-      {/* Expiration */}
-      <div className="flex flex-row items-center justify-start gap-4">
-        <div className="text-sm font-bold">Expires in:</div>
-        <div className="flex flex-row gap-2 items-center">
-          {expirationOptions.map((option, index) => (
-            <React.Fragment key={index}>
-              <button
-                className={`btn btn-sm ${option.offset === expirationOffset ? "btn-primary" : "btn-ghost"}`}
-                onClick={() => setExpirationOffset(option.offset)}
-              >
-                {option.label}
-              </button>
-              {index < expirationOptions.length - 1 && "/"}
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
-
-      {/* Access */}
-      <div className={`text-sm font-bold ${accessInvalid && "text-error"}`}>
-        Access
-        <span className="italic font-normal">
-          {" "}
-          - grant access to individual contracts or full projects, defaults to this dApp{"'"}s requirements. Projects
-          and Contracts cannot both be empty.
-        </span>
-      </div>
-
-      {/* Contracts */}
-      <div className="flex flex-col w-full gap-2">
-        <div className="flex flex-row items-center justify-start">
-          <div
-            className={`text-sm font-bold ml-4 mr-4 ${
-              addingContractAddress.length > 0 && addingContractAddressInvalid && "text-error"
-            }`}
-          >
-            Contracts:
-          </div>
-          <AddressInput
-            name="add-contract"
-            value={addingContractAddress}
-            placeholder="add contract"
-            onChange={(value: any) => setAddingContractAddress(value)}
-            useENS={false}
-            useBlo={false}
-          />
-          <button
-            className={`btn btn-sm btn-secondary ${
-              (addingContractAddressInvalid || addingContractAddress.length === 0) && "btn-disabled"
-            }`}
-            onClick={() => {
-              if (addingContractAddressInvalid) return;
-              addContract(addingContractAddress);
-              setAddingContractAddress("");
-            }}
-          >
-            <PlusIcon className="w-4 h-4" />
-          </button>
-        </div>
-        {contracts.length > 0 && (
-          <div className="flex flex-row gap-2 flex-wrap ml-8">
-            {contracts.map(contract => (
-              <button key={contract} className="btn btn-sm btn-accent" onClick={() => removeContract(contract)}>
-                {truncateAddress(contract)} <XMarkIcon className="w-4 h-4" />
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Projects */}
-      <div className="flex flex-col w-full gap-2">
-        <div className="flex flex-row items-center justify-start">
-          <div
-            className={`text-sm font-bold ml-4 mr-4 ${
-              addingProject.length > 0 && addingProjectInvalid && "text-error"
-            }`}
-          >
-            Projects:
-          </div>
-          <InputBase
-            name="project-idt"
-            value={addingProject}
-            placeholder="project id"
-            onChange={(value: string) => setAddingProject(value.toUpperCase())}
-          />
-          <div
-            className={`btn btn-secondary btn-sm ${
-              (addingProjectInvalid || addingProject.length === 0) && "btn-disabled"
-            }`}
-            onClick={() => {
-              if (addingProjectInvalid) return;
-              addProject(addingProject);
-              setAddingProject("");
-            }}
-          >
-            <PlusIcon className="w-4 h-4" />
-          </div>
-        </div>
-        {projects.length > 0 && (
-          <div className="flex flex-row gap-2 flex-wrap ml-8">
-            {projects.map(project => (
-              <button key={project} className="btn btn-sm btn-accent" onClick={() => removeProject(project)}>
-                {project} <XMarkIcon className="w-4 h-4" />
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Access requirements not satisfied */}
-      {!accessSatisfiesRequirements && (
-        <div className="italic text-sm text-error">! dApp{"'"}s access requirements not met !</div>
-      )}
+      <PermitTypeDisplayRow permit={permit} />
+      <NameRow permit={permit} />
+      <PermitRecipientDisplayRow permit={permit} />
+      <PermitExpirationDisplayRow permit={permit} />
+      <PermitAccessDisplayRow permit={permit} />
+      <IssuerSignatureRow permit={permit} />
 
       {/* Create Button */}
       <div className="divider -my-1" />
       <div className="flex flex-row gap-4">
-        <button className="btn btn-error flex-[1]" onClick={reset}>
-          Reset
-        </button>
-        <PermitV2ModalCreateButton disabled={formInvalid} />
+        <PermitImportClearButton />
+        <PermitImportButton permit={permit} className="flex-[1]" />
       </div>
     </>
   );
+};
+
+export const PermitV2ModalImport = () => {
+  const { importingPermit } = usePermitModalImporting();
+
+  if (importingPermit == null) return <PermitV2ModalImportEntry />;
+  return <PermitV2ModalImportConfirm />;
 };

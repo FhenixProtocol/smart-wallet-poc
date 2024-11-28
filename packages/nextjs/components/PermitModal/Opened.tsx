@@ -1,17 +1,31 @@
 import React from "react";
-import { useFhenixPermitWithHash } from "~~/permits/hooks";
+import { useFhenixActivePermitHash, useFhenixPermitWithHash } from "~~/permits/hooks";
 import { usePermitModalFocusedPermitHash } from "~~/services/store/permitV2ModalStore";
 import {
   PermitAccessDisplayRow,
   PermitExpirationDisplayRow,
   PermitIssuerSignatureDisplayRow,
-  PermitNameDisplayRow,
+  PermitNameEditableDisplayRow,
   PermitRecipientDisplayRow,
   PermitRecipientSignatureDisplayRow,
   PermitTypeDisplayRow,
 } from "./DisplayRows";
 import { PermitCopyDataButton } from "./PermitCopyDataButton";
 import { PermitUseButton } from "./PermitUseButton";
+import { useAccount } from "@account-kit/react";
+import { PermitV2 } from "~~/permits/permitV2";
+import { updatePermitName } from "~~/permits/store";
+
+const NameRow: React.FC<{ permit: PermitV2 }> = ({ permit }) => {
+  const { address } = useAccount({ type: "LightAccount" });
+
+  return (
+    <PermitNameEditableDisplayRow
+      name={permit.name}
+      onUpdateName={(value: string) => updatePermitName(address, permit.getHash(), value)}
+    />
+  );
+};
 
 export const PermitV2ModalOpened = () => {
   const { focusedPermitHash } = usePermitModalFocusedPermitHash();
@@ -24,7 +38,7 @@ export const PermitV2ModalOpened = () => {
   return (
     <>
       <PermitTypeDisplayRow permit={permit} />
-      <PermitNameDisplayRow permit={permit} />
+      <NameRow permit={permit} />
       <PermitRecipientDisplayRow permit={permit} />
       <PermitExpirationDisplayRow permit={permit} />
       <PermitAccessDisplayRow permit={permit} />

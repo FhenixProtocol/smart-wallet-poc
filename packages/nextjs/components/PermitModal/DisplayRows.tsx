@@ -1,21 +1,23 @@
-import { updatePermitName } from "~~/permits/store";
 import { InputBase } from "../scaffold-eth";
 import { PermitTypeIcon, PermitTypeText } from "./PermitTypeComponents";
 import { PermitV2 } from "~~/permits/permitV2";
-import { useAccount } from "@account-kit/react";
 import truncateAddress from "~~/utils/truncate-address";
 import { usePermitSatisfiesRequirements } from "~~/services/store/permitV2ModalStore";
 import { formattedTimestamp, getTimestamp, timeUntilTimestamp } from "./utils";
 
-const ValidityIndicator: React.FC<{ valid: boolean; validLabel?: string; invalidLabel?: string }> = ({
-  valid,
-  validLabel,
-  invalidLabel,
-}) => {
+export type ValidityState = "error" | "warning" | "success";
+export const ValidityIndicator: React.FC<{
+  validity: ValidityState;
+  validLabel?: string;
+  warningLabel?: string;
+  invalidLabel?: string;
+}> = ({ validity, validLabel, warningLabel, invalidLabel }) => {
   return (
     <div className="flex flex-row gap-2 items-center justify-center text-sm">
-      <div className={`w-3 h-3 rounded-full ${valid ? "bg-bg-surface-success" : "bg-bg-surface-error"}`} />
-      {valid ? validLabel : invalidLabel}
+      <div className={`w-3 h-3 rounded-full ${validity ? "bg-bg-surface-success" : "bg-bg-surface-error"}`} />
+      {validity === "success" && validLabel}
+      {validity === "warning" && warningLabel}
+      {validity === "error" && invalidLabel}
     </div>
   );
 };
@@ -32,17 +34,18 @@ export const PermitTypeDisplayRow: React.FC<{ permit: PermitV2 }> = ({ permit })
   );
 };
 
-export const PermitNameDisplayRow: React.FC<{ permit: PermitV2 }> = ({ permit }) => {
-  const { address } = useAccount({ type: "LightAccount" });
-
+export const PermitNameEditableDisplayRow: React.FC<{
+  name: string;
+  onUpdateName: (name: string) => void;
+}> = ({ name, onUpdateName }) => {
   return (
     <div className="flex flex-row items-center justify-start gap-4">
       <div className="text-sm font-bold">Name: (editable)</div>
       <InputBase
-        name="permit-name"
-        value={permit.name}
+        name="permit-editable-display-name"
+        value={name}
         placeholder="Unnamed Permit"
-        onChange={(value: string) => updatePermitName(address, permit.getHash(), value)}
+        onChange={onUpdateName} // (value: string) => updatePermitName(address, permit.getHash(), value)}
         inputClassName="text-right"
       />
     </div>
@@ -68,7 +71,7 @@ export const PermitExpirationDisplayRow: React.FC<{ permit: PermitV2 }> = ({ per
     <div className="flex flex-row items-center justify-between gap-4">
       <div className="text-sm font-bold">Expiration:</div>
       <ValidityIndicator
-        valid={!expired}
+        validity={expired ? "error" : "success"}
         validLabel={`${formattedTimestamp(permit.expiration)} (in ${timeUntilTimestamp(permit.expiration)})`}
         invalidLabel={`Expired on ${formattedTimestamp(permit.expiration)}`}
       />
@@ -122,15 +125,15 @@ export const PermitAccessDisplayRow: React.FC<{ permit: PermitV2 }> = ({ permit 
   );
 };
 
-const SignatureValidityIndicator: React.FC<{ valid: boolean }> = ({ valid }) => {
-  return <ValidityIndicator valid={valid} validLabel="Valid" invalidLabel="Missing" />;
+export const SignatureValidityIndicator: React.FC<{ validity: ValidityState }> = ({ validity }) => {
+  return <ValidityIndicator validity={validity} validLabel="Valid" invalidLabel="Missing" />;
 };
 
 export const PermitIssuerSignatureDisplayRow: React.FC<{ permit: PermitV2 }> = ({ permit }) => {
   return (
     <div className="flex flex-row items-center justify-between gap-4">
       <div className="text-sm font-bold">{permit.type === "recipient" && "Issuer "}Signature:</div>
-      <SignatureValidityIndicator valid={permit.issuerSignature !== "0x"} />
+      <SignatureValidityIndicator validity={permit.issuerSignature !== "0x" ? "success" : "error"} />
     </div>
   );
 };
@@ -141,7 +144,7 @@ export const PermitRecipientSignatureDisplayRow: React.FC<{ permit: PermitV2 }> 
   return (
     <div className="flex flex-row items-center justify-between gap-4">
       <div className="text-sm font-bold">Recipient Signature:</div>
-      <SignatureValidityIndicator valid={permit.recipientSignature !== "0x"} />
+      <SignatureValidityIndicator validity={permit.recipientSignature !== "0x" ? "success" : "error"} />
     </div>
   );
 };

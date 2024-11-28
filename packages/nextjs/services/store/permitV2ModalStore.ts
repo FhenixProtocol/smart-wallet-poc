@@ -104,7 +104,7 @@ export const usePermitModalOpen = () => {
 export const usePermitModalTab = () => {
   const tab = usePermitModalStore(state => state.tab);
   const setTab = useCallback((tab: PermitV2Tab) => {
-    usePermitModalStore.setState({ tab });
+    usePermitModalStore.setState({ tab, importingPermit: undefined });
   }, []);
 
   return { tab, setTab };
@@ -255,4 +255,15 @@ export const usePermitModalImporting = () => {
   }, []);
 
   return { importingPermit, setImportingPermit };
+};
+
+export const usePermitModalUpdateImportingPermitName = () => {
+  return useCallback((name: string) => {
+    usePermitModalStore.setState(state => {
+      if (state.importingPermit == null) return {};
+      const permit = PermitV2.deserialize(state.importingPermit);
+      permit.updateName(name);
+      return { importingPermit: permit.serialize() };
+    });
+  }, []);
 };

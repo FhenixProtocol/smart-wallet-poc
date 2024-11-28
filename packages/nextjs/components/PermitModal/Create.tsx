@@ -47,7 +47,7 @@ const PermitV2ModalCreateButton: React.FC<{ disabled?: boolean }> = ({ disabled 
   const createOptions = usePermitCreateOptions();
   const { setOpen } = usePermitModalOpen();
   const [creating, setCreating] = useState(false);
-  const { setFocusedPermitHash: setFocusedPermit } = usePermitModalFocusedPermitHash();
+  const { setFocusedPermitHash } = usePermitModalFocusedPermitHash();
 
   let cta = createOptions.type === PermitV2CreateType.Using ? "Create" : "Sign and Open";
   if (creating) {
@@ -88,7 +88,7 @@ const PermitV2ModalCreateButton: React.FC<{ disabled?: boolean }> = ({ disabled 
       setActivePermitHash(account.address, permit.getHash());
       setTimeout(() => setOpen(false));
     } else {
-      setFocusedPermit(permit.getHash());
+      setFocusedPermitHash(permit.getHash());
     }
   };
 

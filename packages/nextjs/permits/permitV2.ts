@@ -186,8 +186,7 @@ export class PermitV2 implements PermitV2Interface {
     if (this.recipient !== zeroAddress) cleanedPermit.recipient = this.recipient;
     if (this.validatorId !== 0) cleanedPermit.validatorId = this.validatorId;
     if (this.validatorContract !== zeroAddress) cleanedPermit.validatorContract = this.validatorContract;
-    if (this.issuerSignature !== "0x") cleanedPermit.issuerSignature = this.issuerSignature;
-    if (this.recipientSignature !== "0x") cleanedPermit.recipientSignature = this.recipientSignature;
+    if (this.type === "sharing" && this.issuerSignature !== "0x") cleanedPermit.issuerSignature = this.issuerSignature;
 
     return JSON.stringify(cleanedPermit, undefined, 2);
   };
