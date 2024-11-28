@@ -1,8 +1,9 @@
 import { useFhenixPermit } from "~~/permits/hooks";
+import { getTimestamp } from "./utils";
 
 const useFhenixPermitStatus = () => {
   const permit = useFhenixPermit();
-  const currentTimestamp = Math.floor(Date.now() / 1000);
+  const currentTimestamp = getTimestamp();
   const isExpired = permit == null ? false : permit.expiration <= currentTimestamp;
 
   if (permit == null) return "missing";

@@ -16,6 +16,7 @@ import {
 } from "~~/services/store/permitV2ModalStore";
 import { notification } from "~~/utils/scaffold-eth";
 import truncateAddress from "~~/utils/truncate-address";
+import { getTimestamp } from "./utils";
 
 const expirationOptions = [
   {
@@ -71,7 +72,7 @@ const PermitV2ModalCreateButton: React.FC<{ disabled?: boolean }> = ({ disabled 
         type: createOptions.type === PermitV2CreateType.Using ? "self" : "sharing",
         issuer: account.address,
         recipient: createOptions.recipient.length > 0 ? createOptions.recipient : zeroAddress,
-        expiration: Math.floor(Date.now() / 1000) + createOptions.expirationOffset,
+        expiration: getTimestamp() + createOptions.expirationOffset,
         projects: createOptions.projects,
         contracts: createOptions.contracts,
       },

@@ -1,43 +1,19 @@
-import { useAccount } from "@account-kit/react";
 import { ArrowDownTrayIcon, ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import { useFhenixActivePermitHash, useFhenixAllPermits } from "~~/permits/hooks";
 import { PermitV2 } from "~~/permits/permitV2";
-import { setActivePermitHash } from "~~/permits/store";
 import { usePermitModalFocusedPermitHash, usePermitSatisfiesRequirements } from "~~/services/store/permitV2ModalStore";
 import truncateAddress from "~~/utils/truncate-address";
-
-const timeUntilExpiration = (ts: number): string => {
-  const now = Math.floor(Date.now() / 1000);
-  let diff = Math.max(0, ts - now);
-
-  const units = [
-    { label: "y", value: 365 * 24 * 60 * 60 }, // Years
-    { label: "m", value: 30 * 24 * 60 * 60 }, // Months (approx)
-    { label: "w", value: 7 * 24 * 60 * 60 }, // Weeks
-    { label: "d", value: 24 * 60 * 60 }, // Days
-    { label: "h", value: 60 * 60 }, // Hours
-    { label: "m", value: 60 }, // Minutes
-  ];
-
-  if (diff > units[0].value) return ">1y";
-
-  for (const unit of units) {
-    const unitCount = Math.floor(diff / unit.value);
-    if (unitCount > 0) {
-      return `${unitCount}${unit.label}`;
-    }
-  }
-
-  return "0m";
-};
+import { PermitUseButton } from "./PermitUseButton";
+import { PermitOpenButton } from "./PermitOpenButton";
+import { getTimestamp, timeUntilTimestamp } from "./utils";
 
 const PermitRow: React.FC<{ permit: PermitV2; children?: React.ReactNode; className?: string }> = ({
   permit,
   children,
   className,
 }) => {
-  const timestamp = Math.floor(Date.now() / 1000);
+  const timestamp = getTimestamp();
   const satisfies = usePermitSatisfiesRequirements(permit);
 
   return (
@@ -53,7 +29,7 @@ const PermitRow: React.FC<{ permit: PermitV2; children?: React.ReactNode; classN
         {permit.type === "recipient" && <ArrowDownTrayIcon className="w-4 h-4 rotate-90" />}
       </td>
       <td className="p-2 text-sm place-items-center text-center">
-        {permit.expiration > timestamp && timeUntilExpiration(permit.expiration)}
+        {permit.expiration > timestamp && timeUntilTimestamp(permit.expiration)}
         {permit.expiration <= timestamp && <div className="w-[12px] h-[12px] rounded-full bg-bg-surface-error" />}
       </td>
       <td className="p-2 text-sm place-items-center">
@@ -81,23 +57,10 @@ const SelectedPermitRow: React.FC<{ permit: PermitV2 }> = ({ permit }) => {
 };
 
 const SelectPermitRow: React.FC<{ permit: PermitV2 }> = ({ permit }) => {
-  const { setFocusedPermitHash } = usePermitModalFocusedPermitHash();
-  const { address } = useAccount({ type: "LightAccount" });
-
   return (
     <PermitRow permit={permit}>
-      <button className="btn btn-sm btn-secondary btn-ghost" onClick={() => setFocusedPermitHash(permit.getHash())}>
-        Open
-      </button>
-      <button
-        className="btn btn-sm btn-primary"
-        onClick={() => {
-          if (address == null) return;
-          setActivePermitHash(address, permit.getHash());
-        }}
-      >
-        Use
-      </button>
+      <PermitOpenButton permit={permit} />
+      <PermitUseButton permit={permit} className="btn-sm" />
     </PermitRow>
   );
 };

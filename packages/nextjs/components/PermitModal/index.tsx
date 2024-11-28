@@ -3,9 +3,9 @@ import { PermitV2Tab, usePermitModalOpen, usePermitModalTab } from "~~/services/
 import { PermitV2ActivePermitStatus } from "./StatusIndicator";
 import { PermitV2ModalTabs } from "./Tabs";
 import { PermitV2TabInstructions } from "./TabInstructions";
-import { PermitV2ModalCreate } from "./Create/Create";
-import { PermitV2ModalSelect } from "./Select/Select";
-import { PermitV2ModalOpened } from "./Opened/Opened";
+import { PermitV2ModalCreate } from "./Create";
+import { PermitV2ModalSelect } from "./Select";
+import { PermitV2ModalOpened } from "./Opened";
 import { PermitV2ModalImport } from "./Import";
 
 const PermitV2Content = () => {
