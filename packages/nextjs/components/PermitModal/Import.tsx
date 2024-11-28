@@ -104,10 +104,16 @@ const PermitV2ModalCreateButton: React.FC<{ disabled?: boolean }> = ({ disabled 
 export const PermitV2ModalImport = () => {
   const [imported, setImported] = useState("");
 
-  const importPermitData = (value: string) => {
+  const importPermitData = async (value: string) => {
     // TODO: validate permit data
     setImported(value);
+    // TODO: if type is sharing | recipient, set the type based on whether the user's account matches the issuer (sharing) or recipient (recipient)
+    // If it doesn't match either, indicate as an error
+    const parsed = JSON.parse(value);
+    const permit = await PermitV2.create(parsed);
+    console.log({ permit });
   };
+
   return (
     <>
       <div className="text-sm font-bold">Paste the permit data below to import it:</div>

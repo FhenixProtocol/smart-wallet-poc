@@ -13,8 +13,13 @@ import {
 } from "./types";
 import { FullyFormedPermitV2Validator, PermitV2ParamsValidator } from "./permitV2.z";
 import { GenerateSealingKey, SealingKey } from "fhenixjs";
-import { getAddress, keccak256, toHex, zeroAddress } from "viem";
-import { getSignatureTypesAndMessage, SignatureTypes } from "./generate";
+import { getAddress, keccak256, toHex, zeroAddress, recoverPublicKey, hashTypedData, Hex, verifyTypedData } from "viem";
+import {
+  getSignatureDomain,
+  getSignatureTypesAndMessage,
+  PermitV2SignaturePrimaryType,
+  SignatureTypes,
+} from "./generate";
 
 export class PermitV2 implements PermitV2Interface {
   /**
@@ -256,6 +261,17 @@ export class PermitV2 implements PermitV2Interface {
     );
 
   /**
+   * Returns the domain, types, primaryType, and message fields required to request the user's signature
+   * Primary type is returned to allow viem clients to more easily connect
+   */
+  getSignatureParams = (chainId: string, primaryType: PermitV2SignaturePrimaryType) => {
+    return {
+      domain: getSignatureDomain(chainId),
+      ...getSignatureTypesAndMessage(primaryType, SignatureTypes[primaryType], this.getPermission(true)),
+    };
+  };
+
+  /**
    * Determines the required signature type.
    * Creates the EIP712 types and message.
    * Prompts the user for their signature.
@@ -272,38 +288,19 @@ export class PermitV2 implements PermitV2Interface {
         "PermitV2 :: sign - signer undefined, you must pass in a `signer` for the connected user to create a permitV2 signature",
       );
 
-    const domain = {
-      name: "Fhenix Permission v2.0.0",
-      version: "v2.0.0",
-      chainId: parseInt(chainId),
-      verifyingContract: zeroAddress,
-    };
+    let primaryType: PermitV2SignaturePrimaryType = "PermissionedV2IssuerSelf";
+    if (this.type === "self") primaryType = "PermissionedV2IssuerSelf";
+    if (this.type === "sharing") primaryType = "PermissionedV2IssuerShared";
+    if (this.type === "recipient") primaryType = "PermissionedV2Receiver";
 
-    if (this.type === "self") {
-      const { types, message } = getSignatureTypesAndMessage(
-        "PermissionedV2IssuerSelf",
-        SignatureTypes.PermissionedV2IssuerSelf,
-        this.getPermission(true),
-      );
-      this.issuerSignature = await signer.signTypedData(domain, types, message);
+    const { domain, types, message } = this.getSignatureParams(chainId, primaryType);
+    const signature = await signer.signTypedData(domain, types, message);
+
+    if (this.type === "self" || this.type === "sharing") {
+      this.issuerSignature = signature;
     }
-
-    if (this.type === "sharing") {
-      const { types, message } = getSignatureTypesAndMessage(
-        "PermissionedV2IssuerShared",
-        SignatureTypes.PermissionedV2IssuerShared,
-        this.getPermission(true),
-      );
-      this.issuerSignature = await signer.signTypedData(domain, types, message);
-    }
-
     if (this.type === "recipient") {
-      const { types, message } = getSignatureTypesAndMessage(
-        "PermissionedV2Receiver",
-        SignatureTypes["PermissionedV2Receiver"],
-        this.getPermission(true),
-      );
-      this.recipientSignature = await signer.signTypedData(domain, types, message);
+      this.recipientSignature = signature;
     }
   };
 
