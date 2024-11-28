@@ -6,10 +6,7 @@ import { PermitV2TabInstructions } from "./TabInstructions";
 import { PermitV2ModalCreate } from "./Create/Create";
 import { PermitV2ModalSelect } from "./Select/Select";
 import { PermitV2ModalOpened } from "./Opened/Opened";
-
-const PermitV2ModalImport = () => {
-  return <div>PERMIT V2 MODAL IMPORT CONTENT</div>;
-};
+import { PermitV2ModalImport } from "./Import";
 
 const PermitV2Content = () => {
   const { tab } = usePermitModalTab();
@@ -38,7 +35,13 @@ export const PermitV2Modal = () => {
         <h3 className="font-bold text-lg">Fhenix Permits</h3>
         <div className="text-sm">
           Fhenix Permits grant private access to your encrypted on-chain data. Read more about Permits{" "}
-          <button className="btn btn-sm btn-link !shadow-none p-0">in the Docs</button>.
+          <a
+            className="btn btn-sm btn-link !shadow-none p-0"
+            href="https://docs.fhenix.zone/docs/devdocs/FhenixJS/Permits"
+          >
+            in the Docs
+          </a>
+          .
         </div>
 
         <PermitV2ActivePermitStatus />

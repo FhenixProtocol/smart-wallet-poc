@@ -1,15 +1,16 @@
 import { ChangeEvent, FocusEvent, ReactNode, useCallback, useEffect, useRef } from "react";
 import { CommonInputProps } from "~~/components/scaffold-eth";
 
-type InputBaseProps<T> = CommonInputProps<T> & {
+type TextAreaProps<T> = CommonInputProps<T> & {
   error?: boolean;
   prefix?: ReactNode;
   suffix?: ReactNode;
   reFocus?: boolean;
   inputClassName?: string;
+  rows?: number;
 };
 
-export const InputBase = <T extends { toString: () => string } | undefined = string>({
+export const TextArea = <T extends { toString: () => string } | undefined = string>({
   name,
   value,
   onChange,
@@ -20,8 +21,9 @@ export const InputBase = <T extends { toString: () => string } | undefined = str
   suffix,
   reFocus,
   inputClassName = "",
-}: InputBaseProps<T>) => {
-  const inputReft = useRef<HTMLInputElement>(null);
+  rows = 8,
+}: TextAreaProps<T>) => {
+  const inputReft = useRef<HTMLTextAreaElement>(null);
 
   let modifier = "";
   if (error) {
@@ -31,7 +33,7 @@ export const InputBase = <T extends { toString: () => string } | undefined = str
   }
 
   const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
+    (e: ChangeEvent<HTMLTextAreaElement>) => {
       onChange(e.target.value as unknown as T);
     },
     [onChange],
@@ -39,7 +41,7 @@ export const InputBase = <T extends { toString: () => string } | undefined = str
 
   // Runs only when reFocus prop is passed, useful for setting the cursor
   // at the end of the input. Example AddressInput
-  const onFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
+  const onFocus = (e: FocusEvent<HTMLTextAreaElement, Element>) => {
     if (reFocus !== undefined) {
       e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length);
     }
@@ -51,8 +53,8 @@ export const InputBase = <T extends { toString: () => string } | undefined = str
   return (
     <div className={`flex flex-1 border-none border-transparent bg-base-200 rounded-sm text-accent ${modifier}`}>
       {prefix}
-      <input
-        className={`input input-ghost focus-within:border-transparent focus:outline-none focus:bg-transparent focus:text-gray-400 h-[2rem] min-h-[2rem] px-4 border-none w-full font-medium placeholder:text-accent/50 text-gray-400 ${inputClassName}`}
+      <textarea
+        className={`textarea textarea-ghost text-xs focus-within:border-transparent focus:outline-none focus:bg-transparent focus:text-gray-400 px-4 border-none w-full font-medium placeholder:text-accent/50 text-gray-400 ${inputClassName}`}
         placeholder={placeholder}
         name={name}
         value={value?.toString()}
@@ -61,6 +63,7 @@ export const InputBase = <T extends { toString: () => string } | undefined = str
         autoComplete="off"
         ref={inputReft}
         onFocus={onFocus}
+        rows={rows}
       />
       {suffix}
     </div>

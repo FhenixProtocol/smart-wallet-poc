@@ -34,7 +34,7 @@ TODO
   - Current bug: `PermissionInvalid_IssuerSignature`
   - Bug Fixed: viem's `hashTypedData` will only return the correct value if chainId is a number.
 - [ ] Minting FHERC20 balance or encBalance (forces deployment of wallet)
-- [ ] Indicator in permit modal that it is invalid because not deployed
+- [x] Indicator in permit modal that it is invalid because not deployed
 - [x] PermitV2 Modal for create / import permit
   - [x] Permit explanation and link to docs
   - [x] Create permit option (for me / for sharing)
@@ -42,9 +42,14 @@ TODO
   - [x] Selecting permit from list of available permits
   - [x] Checking satisfies project requirements
   - [x] Add status indicator row to modal
-- [ ] Add status indicator to permit button
+- [x] Add status indicator to permit button
 - [x] Hook PermitV2 Modal into UnsealableDisplay
-- [ ] Focused Permit Display
-  - [ ] Update name
-  - [ ] Copy permit data
-  - [ ] See full info of permit
+- [x] Focused Permit Display
+  - [x] Update name
+  - [x] Copy permit data
+    - [x] Button
+    - [ ] Copy only relevant data in JSON format
+  - [x] See full info of permit
+- [ ] Import permit blob
+  - [ ] Validate (check issuer / recipient matches user address)
+  - [ ] Sign if necessary (recipientSignature)
