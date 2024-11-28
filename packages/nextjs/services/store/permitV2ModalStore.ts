@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { create } from "zustand";
 import { PermitV2 } from "~~/permits/permitV2";
+import { SerializedPermitV2 } from "~~/permits/types";
 
 export enum PermitV2Tab {
   About = "About",
@@ -44,6 +45,7 @@ type PermitModalState = {
   tab: PermitV2Tab;
   focusedPermitHash: string | undefined;
   createOptions: PermitV2CreateOptions;
+  importingPermit: SerializedPermitV2 | undefined;
   // ----
   accessRequirements: PermitV2AccessRequirements;
 };
@@ -62,6 +64,7 @@ export const usePermitModalStore = create<PermitModalState>(() => ({
   tab: PermitV2Tab.Create,
   focusedPermitHash: undefined,
   createOptions: initialCreateOptions,
+  importingPermit: undefined,
   // ----
   accessRequirements: {
     contracts: [],
@@ -240,4 +243,16 @@ export const usePermitSatisfiesRequirements = (permit: PermitV2 | undefined) => 
 
     return false;
   }, [permit, accessRequirements]);
+};
+
+export const usePermitModalImporting = () => {
+  const importingPermit = usePermitModalStore(state => {
+    if (state.importingPermit == null) return undefined;
+    return PermitV2.deserialize(state.importingPermit);
+  });
+  const setImportingPermit = useCallback((importingPermit: PermitV2 | undefined) => {
+    usePermitModalStore.setState({ importingPermit: importingPermit?.serialize() });
+  }, []);
+
+  return { importingPermit, setImportingPermit };
 };

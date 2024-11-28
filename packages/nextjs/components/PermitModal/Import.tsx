@@ -6,18 +6,20 @@ import { zeroAddress, isAddress, getAddress } from "viem";
 import { AddressInput, InputBase } from "~~/components/scaffold-eth";
 import { PermitV2 } from "~~/permits/permitV2";
 import { setPermit, setActivePermitHash } from "~~/permits/store";
-import { AbstractSigner } from "~~/permits/types";
+import { AbstractSigner, PermitV2Options } from "~~/permits/types";
 import {
   usePermitCreateOptions,
   usePermitModalOpen,
   PermitV2CreateType,
   usePermitCreateOptionsAndActions,
   usePermitModalFocusedPermitHash,
+  usePermitModalImporting,
 } from "~~/services/store/permitV2ModalStore";
 import { notification } from "~~/utils/scaffold-eth";
 import truncateAddress from "~~/utils/truncate-address";
 import { TextArea } from "../scaffold-eth/Input/TextArea";
-import { getTimestamp } from "./utils";
+import { getTimestamp, stringToJSON } from "./utils";
+import { PermitV2ParamsValidator } from "~~/permits/permitV2.z";
 
 const expirationOptions = [
   {
@@ -102,16 +104,36 @@ const PermitV2ModalCreateButton: React.FC<{ disabled?: boolean }> = ({ disabled 
 };
 
 export const PermitV2ModalImport = () => {
+  const { address } = useAccount({ type: "LightAccount" });
+  const { setImportingPermit } = usePermitModalImporting();
   const [imported, setImported] = useState("");
 
   const importPermitData = async (value: string) => {
     // TODO: validate permit data
     setImported(value);
+
+    const { success: jsonParseSuccess, data: jsonParseData, error: jsonParseError } = stringToJSON.safeParse(value);
+    if (!jsonParseSuccess) {
+      console.log("invalid json value", jsonParseError);
+      return;
+    }
+
     // TODO: if type is sharing | recipient, set the type based on whether the user's account matches the issuer (sharing) or recipient (recipient)
     // If it doesn't match either, indicate as an error
-    const parsed = JSON.parse(value);
-    const permit = await PermitV2.create(parsed);
-    console.log({ permit });
+    const { success, data: parsed, error } = PermitV2ParamsValidator.safeParse(jsonParseData);
+    if (!success) {
+      console.log("invalid permit", error);
+      return;
+    }
+    if (parsed.type !== "self") {
+      if (parsed.issuer === address) parsed.type = "sharing";
+      else if (parsed.recipient === address) parsed.type = "recipient";
+      else {
+        console.log(`invalid permit, connected address ${address} is not issuer or recipient`);
+      }
+    }
+    const permit = await PermitV2.create(parsed as PermitV2Options);
+    setImportingPermit(permit);
   };
 
   return (
