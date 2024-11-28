@@ -166,6 +166,28 @@ export class PermitV2 implements PermitV2Interface {
   };
 
   /**
+   * Export the necessary permit data to share a permit with another user
+   */
+  export = () => {
+    const cleanedPermit: Record<string, unknown> = {
+      name: this.name,
+      type: this.type,
+      issuer: this.issuer,
+      expiration: this.expiration,
+    };
+
+    if (this.contracts.length > 0) cleanedPermit.contracts = this.contracts;
+    if (this.projects.length > 0) cleanedPermit.projects = this.projects;
+    if (this.recipient !== zeroAddress) cleanedPermit.recipient = this.recipient;
+    if (this.validatorId !== 0) cleanedPermit.validatorId = this.validatorId;
+    if (this.validatorContract !== zeroAddress) cleanedPermit.validatorContract = this.validatorContract;
+    if (this.issuerSignature !== "0x") cleanedPermit.issuerSignature = this.issuerSignature;
+    if (this.recipientSignature !== "0x") cleanedPermit.recipientSignature = this.recipientSignature;
+
+    return JSON.stringify(cleanedPermit, undefined, 2);
+  };
+
+  /**
    * Returns a serializable permit instance, removing classes and methods.
    * NOTE: Does not return a stringified permit
    */

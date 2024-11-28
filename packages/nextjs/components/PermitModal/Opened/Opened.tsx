@@ -6,11 +6,24 @@ import {
   ClipboardDocumentListIcon,
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
+import { useCopyToClipboard } from "usehooks-ts";
 import { InputBase } from "~~/components/scaffold-eth";
 import { useFhenixPermitWithHash } from "~~/permits/hooks";
+import { PermitV2 } from "~~/permits/permitV2";
 import { updatePermitName } from "~~/permits/store";
 import { usePermitModalFocusedPermitHash, usePermitSatisfiesRequirements } from "~~/services/store/permitV2ModalStore";
 import truncateAddress from "~~/utils/truncate-address";
+
+const PurposeIcon: React.FC<{ type: PermitV2["type"] }> = ({ type }) => {
+  switch (type) {
+    case "self":
+      return <ArrowDownTrayIcon className="w-4 h-4" />;
+    case "sharing":
+      return <ArrowUpTrayIcon className="w-4 h-4 rotate-90" />;
+    case "recipient":
+      return <ArrowDownTrayIcon className="w-4 h-4 rotate-90" />;
+  }
+};
 
 export const PermitV2ModalOpened = () => {
   const { address } = useAccount({ type: "LightAccount" });
@@ -19,9 +32,17 @@ export const PermitV2ModalOpened = () => {
   const satisfies = usePermitSatisfiesRequirements(permit);
   const [copied, setCopied] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, copyToClipboard] = useCopyToClipboard();
+
   if (permit == null) {
     return <div>PERMIT NOT FOUND</div>;
   }
+
+  const copyPermitData = () => {
+    setCopied(true);
+    copyToClipboard(permit.export());
+  };
 
   const { type, name, recipient, expiration, projects, contracts, issuerSignature, recipientSignature } = permit;
 
@@ -29,26 +50,12 @@ export const PermitV2ModalOpened = () => {
     <>
       {/* Type */}
       <div className="flex flex-row items-center justify-between gap-4">
-        <div className="text-sm font-bold">Type:</div>
-        <div className="flex flex-row items-center justify-center gap-2">
-          {type === "self" && (
-            <>
-              <div className="text-sm">Self Usage</div>
-              <ArrowDownTrayIcon className="w-4 h-4" />
-            </>
-          )}
-          {type === "sharing" && (
-            <>
-              <div className="text-sm">To Share</div>
-              <ArrowUpTrayIcon className="w-4 h-4 rotate-90" />
-            </>
-          )}
-          {type === "recipient" && (
-            <>
-              <div className="text-sm">Shared with You</div>
-              <ArrowDownTrayIcon className="w-4 h-4 rotate-90" />
-            </>
-          )}
+        <div className="text-sm font-bold">Purpose:</div>
+        <div className="flex flex-row items-center justify-center gap-2 text-sm">
+          <PurposeIcon type={type} />
+          {type === "self" && "Self Usage"}
+          {type === "sharing" && "To Share"}
+          {type === "recipient" && "Shared with You"}
         </div>
       </div>
 
@@ -60,6 +67,7 @@ export const PermitV2ModalOpened = () => {
           value={name}
           placeholder="Unnamed Permit"
           onChange={(value: string) => updatePermitName(address, permit.getHash(), value)}
+          inputClassName="text-right"
         />
       </div>
 
@@ -112,30 +120,36 @@ export const PermitV2ModalOpened = () => {
       {/* Issuer Signature */}
       <div className="flex flex-row items-center justify-between gap-4">
         <div className="text-sm font-bold">{type === "recipient" && "Issuer "}Signature:</div>
-        <div
-          className={`w-3 h-3 rounded-full ${
-            issuerSignature !== "0x" ? "bg-bg-surface-success" : "bg-bg-surface-error"
-          }`}
-        />
+        <div className="flex flex-row gap-2 items-center justify-center text-sm">
+          <div
+            className={`w-3 h-3 rounded-full ${
+              issuerSignature !== "0x" ? "bg-bg-surface-success" : "bg-bg-surface-error"
+            }`}
+          />
+          {issuerSignature !== "0x" ? "Valid" : "Missing"}
+        </div>
       </div>
 
       {/* Recipient Signature */}
       {type === "recipient" && (
         <div className="flex flex-row items-center justify-between gap-4">
           <div className="text-sm font-bold">Recipient Signature:</div>
-          <div
-            className={`w-3 h-3 rounded-full ${
-              recipientSignature !== "0x" ? "bg-bg-surface-success" : "bg-bg-surface-error"
-            }`}
-          />
+          <div className="flex flex-row gap-2 items-center justify-center text-sm">
+            <div
+              className={`w-3 h-3 rounded-full ${
+                recipientSignature !== "0x" ? "bg-bg-surface-success" : "bg-bg-surface-error"
+              }`}
+            />
+            {issuerSignature !== "0x" ? "Valid" : "Missing"}
+          </div>
         </div>
       )}
 
       {/* Create Button */}
       <div className="divider -my-1" />
       <div className="flex flex-row gap-4">
-        <button className="btn btn-secondary" onClick={() => setCopied(true)}>
-          Copy Permit Data{" "}
+        <button className="btn btn-secondary" onClick={copyPermitData}>
+          {copied ? "Copied " : "Copy Permit Data "}
           {copied ? (
             <ClipboardDocumentCheckIcon className="w-4 h-4" />
           ) : (
