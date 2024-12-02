@@ -248,7 +248,12 @@ export interface AbstractProvider {
 
 export interface AbstractSigner {
   getAddress(): Promise<string>;
-  signTypedData(domain: object, types: Record<string, Array<object>>, value: object): Promise<string>;
+  signTypedData(
+    domain: object,
+    types: Record<string, Array<object>>,
+    primaryType: string,
+    value: object,
+  ): Promise<string>;
 }
 
 /**

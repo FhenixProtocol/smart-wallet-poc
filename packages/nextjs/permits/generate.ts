@@ -36,7 +36,7 @@ export const SignatureTypes = {
     "validatorId",
     "validatorContract",
   ] satisfies PermitV2SignatureFieldOption[],
-  PermissionedV2Receiver: ["sealingKey", "issuerSignature"] satisfies PermitV2SignatureFieldOption[],
+  PermissionedV2Recipient: ["sealingKey", "issuerSignature"] satisfies PermitV2SignatureFieldOption[],
 } as const;
 export type PermitV2SignaturePrimaryType = keyof typeof SignatureTypes;
 

@@ -13,7 +13,7 @@ import {
 } from "./types";
 import { FullyFormedPermitV2Validator, PermitV2ParamsValidator } from "./permitV2.z";
 import { GenerateSealingKey, SealingKey } from "fhenixjs";
-import { getAddress, keccak256, toHex, zeroAddress, recoverPublicKey, hashTypedData, Hex, verifyTypedData } from "viem";
+import { getAddress, keccak256, toHex, zeroAddress } from "viem";
 import {
   getSignatureDomain,
   getSignatureTypesAndMessage,
@@ -290,10 +290,10 @@ export class PermitV2 implements PermitV2Interface {
     let primaryType: PermitV2SignaturePrimaryType = "PermissionedV2IssuerSelf";
     if (this.type === "self") primaryType = "PermissionedV2IssuerSelf";
     if (this.type === "sharing") primaryType = "PermissionedV2IssuerShared";
-    if (this.type === "recipient") primaryType = "PermissionedV2Receiver";
+    if (this.type === "recipient") primaryType = "PermissionedV2Recipient";
 
     const { domain, types, message } = this.getSignatureParams(chainId, primaryType);
-    const signature = await signer.signTypedData(domain, types, message);
+    const signature = await signer.signTypedData(domain, types, primaryType, message);
 
     if (this.type === "self" || this.type === "sharing") {
       this.issuerSignature = signature;
