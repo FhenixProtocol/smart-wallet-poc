@@ -36,6 +36,7 @@ export const PermitTypeDisplayRow: React.FC<{ permit: PermitV2 }> = ({ permit })
 
 export const PermitNameEditableDisplayRow: React.FC<{
   name: string;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onUpdateName: (name: string) => void;
 }> = ({ name, onUpdateName }) => {
   return (
@@ -48,6 +49,17 @@ export const PermitNameEditableDisplayRow: React.FC<{
         onChange={onUpdateName} // (value: string) => updatePermitName(address, permit.getHash(), value)}
         inputClassName="text-right"
       />
+    </div>
+  );
+};
+
+export const PermitIssuerDisplayRow: React.FC<{ permit: PermitV2 }> = ({ permit }) => {
+  if (permit.type !== "recipient") return;
+
+  return (
+    <div className="flex flex-row items-center justify-start gap-4">
+      <div className={`text-sm font-bold`}>Issuer:</div>
+      <div className="text-sm">{truncateAddress(permit.issuer)}</div>
     </div>
   );
 };

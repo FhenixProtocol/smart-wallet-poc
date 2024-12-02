@@ -13,13 +13,8 @@ import {
   PermitRecipientDisplayRow,
   PermitExpirationDisplayRow,
   PermitAccessDisplayRow,
-  PermitIssuerSignatureDisplayRow,
-  PermitRecipientSignatureDisplayRow,
-  SignatureValidityIndicator,
   ValidityIndicator,
 } from "./DisplayRows";
-import { PermitCopyDataButton } from "./PermitCopyDataButton";
-import { PermitUseButton } from "./PermitUseButton";
 import { PermitImportButton } from "./PermitImportButton";
 
 const PermitV2ModalImportEntry = () => {
@@ -110,8 +105,7 @@ const PermitV2ModalImportConfirm = () => {
 
   return (
     <>
-      <div className="text-sm font-bold">Confirm the imported Permit data below:</div>
-      <div className="text-sm italic">You can change the Permit's name to better match its usage.</div>
+      <div className="text-sm italic">Confirm the imported Permit data:</div>
 
       <PermitTypeDisplayRow permit={permit} />
       <NameRow permit={permit} />

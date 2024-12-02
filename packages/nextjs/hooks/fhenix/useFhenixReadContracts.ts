@@ -18,7 +18,7 @@ export const useFhenixReadContracts = <
 ): UseFhenixReadContractsReturnType<contracts, allowFailure, selectData> => {
   const { address } = useAccount({ type: "LightAccount" });
   const fhenixClient = useFhenixClient();
-  const permit = useFhenixPermit(address);
+  const permit = useFhenixPermit();
 
   const transformedContracts = parameters?.contracts?.map((contract: any) => {
     if (contract.args == null) return contract;

@@ -8,6 +8,10 @@ export const PermitUseButton: React.FC<{ permit: PermitV2; className?: string }>
   const activePermitHash = useFhenixActivePermitHash();
   const hash = permit.getHash();
 
+  const isAlreadyInUse = hash == activePermitHash;
+  const isUsable = permit.type === "self" || permit.type === "recipient";
+  const disabled = isAlreadyInUse || !isUsable;
+
   const onUsePermit = () => {
     if (hash == activePermitHash) return;
     if (address == null) return;
@@ -15,8 +19,9 @@ export const PermitUseButton: React.FC<{ permit: PermitV2; className?: string }>
   };
 
   return (
-    <button className={`btn btn-primary ${className}`} disabled={hash == activePermitHash} onClick={onUsePermit}>
-      {hash == activePermitHash ? "Already Active Permit" : "Use"}
+    <button className={`btn btn-primary ${className}`} disabled={disabled} onClick={onUsePermit}>
+      {(!disabled || !isUsable) && "Use"}
+      {isAlreadyInUse && "Already Active Permit"}
     </button>
   );
 };

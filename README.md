@@ -53,3 +53,6 @@ TODO
 - [ ] Import permit blob
   - [ ] Validate (check issuer / recipient matches user address)
   - [ ] Sign if necessary (recipientSignature)
+
+Sharing permits can't be used
+Recipient Permit needs issuer field

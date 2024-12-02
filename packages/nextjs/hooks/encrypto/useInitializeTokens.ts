@@ -14,12 +14,12 @@ export const useInitializeTokens = (fherc20Adds: string[]) => {
   const setTokens = useEncryptoState(state => state.setTokens);
   const refetchKey = useEncryptoState(state => state.refetchKey);
   const { address } = useAccount({ type: "LightAccount" });
-  const permit = useFhenixPermit(address);
+  const permit = useFhenixPermit();
 
   const { data: fherc20Contract } = useDeployedContractInfo("FHERC20");
   const fherc20Abi = fherc20Contract?.abi as NonNullable<typeof fherc20Contract>["abi"];
 
-  const { data, isLoading, refetch } = useFhenixReadContracts({
+  const { data, isLoading, refetch, error } = useFhenixReadContracts({
     contracts: fherc20Adds.flatMap(add => [
       {
         abi: fherc20Abi,
@@ -35,7 +35,7 @@ export const useInitializeTokens = (fherc20Adds: string[]) => {
         abi: fherc20Abi,
         address: add,
         functionName: "balanceOf",
-        args: address == null ? undefined : [address],
+        args: permit != null ? [permit.issuer] : address != null ? [address] : undefined,
       },
       {
         abi: fherc20Abi,
@@ -44,6 +44,11 @@ export const useInitializeTokens = (fherc20Adds: string[]) => {
         args: ["populate-fhenix-permission"],
       },
     ]),
+  });
+
+  console.log({
+    data,
+    error,
   });
 
   useEffect(() => {
