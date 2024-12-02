@@ -9,7 +9,7 @@ import { UserConnectButton } from "./UserConnectButton";
 type RenderAvatarMenuProps = {
   deploymentStatus: boolean;
 };
-export const RenderUserConnectionAvatar = () => {
+export const AccountKitUserConnectionAvatar = () => {
   const { account } = useAccount({
     type: "LightAccount",
   });
@@ -23,10 +23,10 @@ export const RenderUserConnectionAvatar = () => {
     enabled: !!account,
   });
 
-  return <RenderPopoverMenu deploymentStatus={deploymentStatus} />;
+  return <AccountKitDropdown deploymentStatus={deploymentStatus} />;
 };
 
-const RenderPopoverMenu = ({ deploymentStatus }: RenderAvatarMenuProps) => {
+const AccountKitDropdown = ({ deploymentStatus }: RenderAvatarMenuProps) => {
   const user = useUser();
   const dropdownRef = useRef<HTMLDetailsElement>(null);
   const closeDropdown = () => {

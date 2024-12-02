@@ -1,6 +1,6 @@
 "use client";
 
-import { RenderUserConnectionAvatar } from "~~/components/user-connection-avatar/RenderUserConnectionAvatar";
+import { AccountKitUserConnectionAvatar } from "~~/components/account-kit-connect/AccountKitConnectionAvatar";
 // @refresh reset
 // import { Balance } from "../Balance";
 // import { AddressInfoDropdown } from "./AddressInfoDropdown";
@@ -18,7 +18,7 @@ export const HeaderButtonsSection = () => {
     <div className="flex flex-row gap-4">
       <FaucetButton />
       <PermitModalButton />
-      <RenderUserConnectionAvatar />
+      <AccountKitUserConnectionAvatar />
     </div>
   );
 };
