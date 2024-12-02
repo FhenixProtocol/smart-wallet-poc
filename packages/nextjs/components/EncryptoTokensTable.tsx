@@ -36,6 +36,7 @@ export const EncryptoTokensTable = () => {
           <th>Encrypted Ratio</th>
           <th>Portfolio %</th>
           <th>Price (24h)</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <TokensTableBody />

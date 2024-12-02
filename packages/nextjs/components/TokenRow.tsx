@@ -72,8 +72,10 @@ export const TokenRow: React.FC<{
       <td>
         <div className="flex flex-col items-center w-min">
           <span className="font-bold text-secondary-content">${token.price?.toFixed(2)}</span>
-          {/* <span className="text-xs text-highlight">(+2.7%)</span> */}
         </div>
+      </td>
+      <td>
+        <button className="btn btn-sm">Mint</button>
       </td>
     </tr>
   );
