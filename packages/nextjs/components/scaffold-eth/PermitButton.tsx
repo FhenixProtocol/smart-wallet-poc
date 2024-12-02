@@ -9,7 +9,7 @@ export const PermitModalButton = () => {
   const user = useUser();
   const { setOpen } = usePermitModalOpen();
 
-  // if (user == null) return null;
+  if (user == null) return null;
 
   return (
     <button className="btn aspect-square p-0" onClick={() => setOpen(true)}>

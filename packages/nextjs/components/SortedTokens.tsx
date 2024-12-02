@@ -7,10 +7,15 @@ export const SortedTokens = () => {
   const { totalValue: portfolioValue } = usePortfolioSummaryData();
   const derivedFherc20s = useDerivedTokens();
 
-  if (derivedFherc20s == null)
+  if (derivedFherc20s == null || derivedFherc20s.length === 0)
     return (
       <tr>
-        <th>loading....</th>
+        <th colSpan={5}>
+          <div className="w-full flex flex-col gap-8 items-center justify-center my-32">
+            Loading FHERC20 Tokens...
+            <span className="loading loading-spinner loading-xs"></span>
+          </div>
+        </th>
       </tr>
     );
   return (

@@ -31,7 +31,7 @@ export const TokenRow: React.FC<{
     <tr className="hover:bg-slate-200 hover:bg-opacity-10 cursor-pointer bg-opacity-10 rounded-md transition-all">
       <th>{token.symbol}</th>
       <td>
-        <div className="flex flex-col items-center w-min">
+        <div className="flex flex-col items-start">
           <UnsealableDisplay item={totalBalanceDisplay} className="font-bold" sealedLength={5} />
           <UnsealableDisplay item={totalValueDisplay} className="text-xs" sealedLength={5} />
         </div>

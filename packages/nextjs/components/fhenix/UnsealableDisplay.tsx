@@ -1,5 +1,6 @@
 "use client";
 
+import { useAccount } from "@account-kit/react";
 import { processUnsealables, Unsealable, Unsealed, UnsealedArray } from "fhenix-utils/encryption/types";
 import React from "react";
 import { usePermitModalOpen } from "~~/services/store/permitV2ModalStore";
@@ -24,24 +25,30 @@ export const UnsealableDisplay = <T,>({
   item: Unsealable<T> | T | undefined;
   fn?: (item: NonNullable<T> | Unsealed<T>) => string;
 } & UnsealableDisplayBaseProps) => {
+  const { address } = useAccount({ type: "LightAccount" });
   const isNullish = nullish || item == null;
   const unsealable = processUnsealables([item], fn);
   const isUnsealed = unsealable == null || unsealable.unsealed;
+  const isUnsealable = address != null && unsealable != null && !unsealable.unsealed;
   const { setOpen } = usePermitModalOpen();
 
   return (
     <span
       className={[
         className,
-        isUnsealed ? "" : "hover:underline cursor-pointer",
+        isUnsealable ? "hover:underline cursor-pointer" : "",
         isUnsealed ? "" : sealedClassName,
       ].join(" ")}
       onClick={() => {
-        if (isUnsealed) return;
+        if (!isUnsealable) return;
         setOpen(true);
       }}
     >
-      {isNullish ? ".".repeat(sealedLength) : !unsealable.unsealed ? "*".repeat(sealedLength) : unsealable.data}
+      {address == null || isNullish
+        ? "-".repeat(sealedLength)
+        : !unsealable.unsealed
+        ? "*".repeat(sealedLength)
+        : unsealable.data}
     </span>
   );
 };

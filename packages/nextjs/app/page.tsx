@@ -1,6 +1,6 @@
 "use client";
 
-import { useAccount, useSendUserOperation, useSmartAccountClient } from "@account-kit/react";
+import { useAccount, useAuthModal, useSendUserOperation, useSmartAccountClient } from "@account-kit/react";
 import type { NextPage } from "next";
 import { encodeFunctionData } from "viem";
 import { ConfidentialityRatioHeader } from "~~/components/ConfidentialityRatioHeader";
@@ -69,6 +69,29 @@ const ConnectedAccount = () => {
   );
 };
 
+const TokensTableConnectButton = () => {
+  const { openAuthModal } = useAuthModal();
+
+  return (
+    <div className="absolute inset-0 -top-10 bg-base-100 bg-opacity-50 flex items-center justify-center pointer-events-auto">
+      <button onClick={openAuthModal} className="btn btn-primary">
+        CONNECT WALLET
+      </button>
+    </div>
+  );
+};
+
+const TokensTableBody = () => {
+  const { address } = useAccount({ type: "LightAccount" });
+
+  return (
+    <tbody className={`relative ${address == null && "pointer-events-none"}`}>
+      <SortedTokens />
+      {address == null && <TokensTableConnectButton />}
+    </tbody>
+  );
+};
+
 const Home: NextPage = () => {
   return (
     <div className="flex flex-col max-w-[975px] gap-12 mx-auto p-8 pt-12 w-full">
@@ -84,7 +107,7 @@ const Home: NextPage = () => {
 
       <div className="flex flex-col w-full text-start gap-4">
         <div className="text-2xl font-bold">Tokens</div>
-        <div className="overflow-x-auto rounded-xl bg-base-300 bg-opacity-30">
+        <div className="bg-base-300 bg-opacity-30">
           <table className="table">
             <thead>
               <tr className="border-b-base-content">
@@ -95,9 +118,7 @@ const Home: NextPage = () => {
                 <th>Price (24h)</th>
               </tr>
             </thead>
-            <tbody>
-              <SortedTokens />
-            </tbody>
+            <TokensTableBody />
           </table>
         </div>
       </div>

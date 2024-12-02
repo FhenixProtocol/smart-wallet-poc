@@ -64,12 +64,7 @@ export const useInitializeTokens = (fherc20Adds: string[]) => {
     if (data == null) return;
 
     const tokensData = chunk(data, 4).flatMap((tokenChunk, i) => {
-      if (
-        tokenChunk[0].status !== "success" ||
-        tokenChunk[1].status !== "success" ||
-        tokenChunk[2].status !== "success"
-      )
-        return [];
+      if (tokenChunk[0].status !== "success" || tokenChunk[1].status !== "success") return [];
 
       const encBalance = processUnsealables([permit, tokenChunk[3].result], (permit, encBal) => permit.unseal(encBal));
 
