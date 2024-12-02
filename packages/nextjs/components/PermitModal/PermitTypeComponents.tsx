@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowDownTrayIcon, ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import { PermitV2 } from "~~/permits/permitV2";
 

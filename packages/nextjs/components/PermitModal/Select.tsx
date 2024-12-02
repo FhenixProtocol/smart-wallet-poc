@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowDownTrayIcon, ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import { useFhenixActivePermitHash, useFhenixAllPermits } from "~~/permits/hooks";

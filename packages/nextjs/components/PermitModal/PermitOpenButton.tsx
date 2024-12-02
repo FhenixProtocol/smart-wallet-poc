@@ -1,3 +1,5 @@
+"use client";
+
 import { PermitV2 } from "~~/permits/permitV2";
 import { usePermitModalFocusedPermitHash } from "~~/services/store/permitV2ModalStore";
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { useAccount } from "@account-kit/react";
 import React from "react";
 import { useState } from "react";

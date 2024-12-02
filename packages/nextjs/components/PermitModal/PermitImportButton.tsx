@@ -1,3 +1,5 @@
+"use client";
+
 import { useAccount, useChain } from "@account-kit/react";
 import { useState } from "react";
 import { PermitV2 } from "~~/permits/permitV2";

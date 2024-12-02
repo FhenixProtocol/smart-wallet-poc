@@ -1,3 +1,5 @@
+"use client";
+
 import { useAccount } from "@account-kit/react";
 import { useFhenixActivePermitHash } from "~~/permits/hooks";
 import { PermitV2 } from "~~/permits/permitV2";

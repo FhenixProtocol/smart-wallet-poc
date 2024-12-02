@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { PermitV2Tab, usePermitModalTab } from "~~/services/store/permitV2ModalStore";
 

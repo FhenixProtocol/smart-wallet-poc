@@ -1,3 +1,5 @@
+"use client";
+
 import { InputBase } from "../scaffold-eth";
 import { PermitTypeIcon, PermitTypeText } from "./PermitTypeComponents";
 import { PermitV2 } from "~~/permits/permitV2";

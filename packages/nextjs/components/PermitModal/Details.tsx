@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { useFhenixPermitWithHash } from "~~/permits/hooks";
 import { usePermitModalFocusedPermitHash } from "~~/services/store/permitV2ModalStore";

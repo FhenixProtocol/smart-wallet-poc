@@ -1,3 +1,5 @@
+"use client";
+
 import { useFhenixPermit } from "~~/permits/hooks";
 import { getTimestamp } from "./utils";
 
