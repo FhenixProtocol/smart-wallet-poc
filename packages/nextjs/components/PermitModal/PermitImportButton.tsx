@@ -24,8 +24,8 @@ export const PermitImportButton: React.FC<{ permit: PermitV2; className?: string
     const abstractSigner: AbstractSigner = {
       getAddress: async () => account.address,
       // Should probably add the primaryType to this in the abstract signer to make it easier to interact with via viem
-      signTypedData: (domain, types, value: Record<string, unknown>) =>
-        account.signTypedData({ domain, types, primaryType: Object.keys(types)[0], message: value }),
+      signTypedData: (domain, types, primaryType, value: Record<string, unknown>) =>
+        account.signTypedData({ domain, types, primaryType, message: value }),
     };
 
     await importingPermit.sign(chain.id.toString(), abstractSigner);
