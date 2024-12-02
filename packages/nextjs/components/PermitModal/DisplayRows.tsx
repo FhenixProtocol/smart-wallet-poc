@@ -14,7 +14,15 @@ export const ValidityIndicator: React.FC<{
 }> = ({ validity, validLabel, warningLabel, invalidLabel }) => {
   return (
     <div className="flex flex-row gap-2 items-center justify-center text-sm">
-      <div className={`w-3 h-3 rounded-full ${validity ? "bg-bg-surface-success" : "bg-bg-surface-error"}`} />
+      <div
+        className={`w-3 h-3 rounded-full ${
+          validity === "success"
+            ? "bg-bg-surface-success"
+            : validity === "warning"
+            ? "bg-bg-surface-warning"
+            : "bg-bg-surface-error"
+        }`}
+      />
       {validity === "success" && validLabel}
       {validity === "warning" && warningLabel}
       {validity === "error" && invalidLabel}
@@ -40,7 +48,7 @@ export const PermitNameEditableDisplayRow: React.FC<{
   onUpdateName: (name: string) => void;
 }> = ({ name, onUpdateName }) => {
   return (
-    <div className="flex flex-row items-center justify-start gap-4">
+    <div className="flex flex-row items-center justify-between gap-4">
       <div className="text-sm font-bold">Name: (editable)</div>
       <InputBase
         name="permit-editable-display-name"
@@ -57,7 +65,7 @@ export const PermitIssuerDisplayRow: React.FC<{ permit: PermitV2 }> = ({ permit 
   if (permit.type !== "recipient") return;
 
   return (
-    <div className="flex flex-row items-center justify-start gap-4">
+    <div className="flex flex-row items-center justify-between gap-4">
       <div className={`text-sm font-bold`}>Issuer:</div>
       <div className="text-sm">{truncateAddress(permit.issuer)}</div>
     </div>
@@ -68,7 +76,7 @@ export const PermitRecipientDisplayRow: React.FC<{ permit: PermitV2 }> = ({ perm
   if (permit.type === "self") return;
 
   return (
-    <div className="flex flex-row items-center justify-start gap-4">
+    <div className="flex flex-row items-center justify-between gap-4">
       <div className={`text-sm font-bold`}>Recipient:</div>
       <div className="text-sm">{truncateAddress(permit.recipient)}</div>
     </div>

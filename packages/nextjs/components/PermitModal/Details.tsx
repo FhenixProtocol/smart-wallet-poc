@@ -29,7 +29,7 @@ const NameRow: React.FC<{ permit: PermitV2 }> = ({ permit }) => {
   );
 };
 
-export const PermitV2ModalOpened = () => {
+export const PermitV2ModalDetails = () => {
   const { focusedPermitHash } = usePermitModalFocusedPermitHash();
   const permit = useFhenixPermitWithHash(focusedPermitHash);
 
@@ -39,8 +39,8 @@ export const PermitV2ModalOpened = () => {
 
   return (
     <>
-      <PermitTypeDisplayRow permit={permit} />
       <NameRow permit={permit} />
+      <PermitTypeDisplayRow permit={permit} />
       <PermitIssuerDisplayRow permit={permit} />
       <PermitRecipientDisplayRow permit={permit} />
       <PermitExpirationDisplayRow permit={permit} />

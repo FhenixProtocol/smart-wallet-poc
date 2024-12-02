@@ -142,6 +142,17 @@ export const PermitV2ModalCreate = () => {
 
   return (
     <>
+      {/* Name */}
+      <div className="flex flex-row items-center justify-start gap-4">
+        <div className="text-sm font-bold">Name:</div>
+        <InputBase
+          name="permit-name"
+          value={name}
+          placeholder="Unnamed Permit"
+          onChange={(value: string) => setName(value)}
+        />
+      </div>
+
       {/* Type */}
       <div className="flex flex-row items-center justify-start gap-4">
         <div className="text-sm font-bold">Purpose:</div>
@@ -158,17 +169,6 @@ export const PermitV2ModalCreate = () => {
         >
           For Sharing <ArrowUpTrayIcon className="w-4 h-4 rotate-90" />
         </button>
-      </div>
-
-      {/* Name */}
-      <div className="flex flex-row items-center justify-start gap-4">
-        <div className="text-sm font-bold">Name:</div>
-        <InputBase
-          name="permit-name"
-          value={name}
-          placeholder="Unnamed Permit"
-          onChange={(value: string) => setName(value)}
-        />
       </div>
 
       {/* (Sharing) Recipient */}

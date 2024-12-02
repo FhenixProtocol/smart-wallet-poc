@@ -5,7 +5,7 @@ import { PermitV2ModalTabs } from "./Tabs";
 import { PermitV2TabInstructions } from "./TabInstructions";
 import { PermitV2ModalCreate } from "./Create";
 import { PermitV2ModalSelect } from "./Select";
-import { PermitV2ModalOpened } from "./Opened";
+import { PermitV2ModalDetails } from "./Details";
 import { PermitV2ModalImport } from "./Import";
 
 const PermitV2Content = () => {
@@ -18,8 +18,8 @@ const PermitV2Content = () => {
       return <PermitV2ModalImport />;
     case PermitV2Tab.Select:
       return <PermitV2ModalSelect />;
-    case PermitV2Tab.Opened:
-      return <PermitV2ModalOpened />;
+    case PermitV2Tab.Details:
+      return <PermitV2ModalDetails />;
   }
 };
 

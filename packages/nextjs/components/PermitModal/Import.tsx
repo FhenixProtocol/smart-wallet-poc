@@ -107,8 +107,8 @@ const PermitV2ModalImportConfirm = () => {
     <>
       <div className="text-sm italic">Confirm the imported Permit data:</div>
 
-      <PermitTypeDisplayRow permit={permit} />
       <NameRow permit={permit} />
+      <PermitTypeDisplayRow permit={permit} />
       <PermitRecipientDisplayRow permit={permit} />
       <PermitExpirationDisplayRow permit={permit} />
       <PermitAccessDisplayRow permit={permit} />
