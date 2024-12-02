@@ -94,8 +94,19 @@ export const useInitializePermitModalAccessRequirements = (accessRequirements: P
 
 export const usePermitModalOpen = () => {
   const open = usePermitModalStore(state => state.open);
-  const setOpen = useCallback((open: boolean) => {
-    usePermitModalStore.setState({ open });
+  const setOpen = useCallback((open: boolean, tab: PermitV2Tab = PermitV2Tab.Select) => {
+    if (open) {
+      usePermitModalStore.setState({ open, tab });
+    } else {
+      // Close and clear much of the state
+      usePermitModalStore.setState({
+        open,
+        tab,
+        focusedPermitHash: undefined,
+        importingPermit: undefined,
+        createOptions: initialCreateOptions,
+      });
+    }
   }, []);
 
   return { open, setOpen };
