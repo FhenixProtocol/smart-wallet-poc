@@ -8,7 +8,7 @@ export const ConnectedAccountAndPermitHeader = () => {
   const permit = useFhenixPermit();
   const isOverriddenByPermit = permit != null && permit.issuer !== address;
   return (
-    <div className="flex flex-col mb-24">
+    <div className="flex flex-col mb-16">
       <div className={`flex flex-row gap-4 ${isOverriddenByPermit ? "opacity-50" : "font-bold"}`}>
         <div>Account:</div>
         <div>{address ?? "Not Connected"}</div>

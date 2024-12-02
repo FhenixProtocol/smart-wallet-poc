@@ -7,11 +7,13 @@ const TokensTableConnectButton = () => {
   const { openAuthModal } = useAuthModal();
 
   return (
-    <div className="absolute inset-0 -top-10 bg-base-100 bg-opacity-50 flex items-center justify-center pointer-events-auto">
-      <button onClick={openAuthModal} className="btn btn-primary">
-        CONNECT WALLET
-      </button>
-    </div>
+    <tr className="absolute inset-0 -top-10 bg-base-100 bg-opacity-50 pointer-events-auto place-items-center pt-24">
+      <th>
+        <button onClick={openAuthModal} className="btn btn-primary">
+          CONNECT WALLET
+        </button>
+      </th>
+    </tr>
   );
 };
 

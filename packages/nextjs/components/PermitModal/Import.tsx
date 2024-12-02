@@ -23,35 +23,37 @@ const PermitV2ModalImportEntry = () => {
   const { address } = useAccount({ type: "LightAccount" });
   const { setImportingPermit } = usePermitModalImporting();
   const [imported, setImported] = useState("");
+  const [error, setError] = useState("");
 
   const importPermitData = async (value: string) => {
-    // TODO: validate permit data
-    // TODO: Validation: cannot import permit with signingKey
-    // TODO: Validation: cannot import permit with signature unless recipient
     setImported(value);
 
     const { success: jsonParseSuccess, data: jsonParseData, error: jsonParseError } = stringToJSON.safeParse(value);
     if (!jsonParseSuccess) {
-      console.log("invalid json value", jsonParseError);
+      setError(`Json Parsing Failed: ${jsonParseError.format()._errors}`);
       return;
     }
 
-    // TODO: if type is sharing | recipient, set the type based on whether the user's account matches the issuer (sharing) or recipient (recipient)
-    // If it doesn't match either, indicate as an error
-    const { success, data: parsed, error } = PermitV2ParamsValidator.safeParse(jsonParseData);
+    const { success, data: parsedPermit, error: permitParsingError } = PermitV2ParamsValidator.safeParse(jsonParseData);
     if (!success) {
-      console.log("invalid permit", error);
+      const errorString = Object.entries(permitParsingError.flatten().fieldErrors)
+        .map(([field, err]) => `- ${field}: ${err}`)
+        .join("\n");
+      console.log();
+      setError(`Invalid Permit Data:\n${errorString}`);
       return;
     }
-    if (parsed.type !== "self") {
-      if (parsed.issuer === address) parsed.type = "sharing";
-      else if (parsed.recipient === address) parsed.type = "recipient";
+    if (parsedPermit.type !== "self") {
+      if (parsedPermit.issuer === address) parsedPermit.type = "sharing";
+      else if (parsedPermit.recipient === address) parsedPermit.type = "recipient";
       else {
-        console.log(`invalid permit, connected address ${address} is not issuer or recipient`);
+        setError(`Invalid Permit: connected address ${address} is not issuer or recipient`);
+        return;
       }
     }
-    const permit = await PermitV2.create(parsed as PermitV2Options);
+    const permit = await PermitV2.create(parsedPermit as PermitV2Options);
     setImportingPermit(permit);
+    setError("");
   };
 
   return (
@@ -66,6 +68,15 @@ const PermitV2ModalImportEntry = () => {
         placeholder="Paste Permit Data Here"
         onChange={importPermitData}
       />
+      {error.length > 0 && (
+        <div className="flex flex-col">
+          {error.split("\n").map((err, index) => (
+            <span key={index} className="italic text-sm text-error">
+              {err}
+            </span>
+          ))}
+        </div>
+      )}
     </>
   );
 };

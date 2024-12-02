@@ -89,25 +89,31 @@ export const PermitV2ModalSelect = () => {
           </tr>
         </thead>
         <tbody>
-          {/* <div className="flex w-full flex-col items-start justify-start">
-            <div className="text-sm font-bold">Selected:</div> */}
-
-          <div className="text-xs font-bold mt-4">Selected:</div>
+          <tr>
+            <th className="pb-2">
+              <div className="text-xs font-bold">Selected:</div>
+            </th>
+          </tr>
           {activePermitHash != null && permits[activePermitHash] != null && (
             <SelectedPermitRow permit={permits[activePermitHash]} />
           )}
-          {/* </div>
-          <div className="flex flex-col w-full gap-0.5">
-            <div className="text-sm font-bold">Available:</div> */}
 
-          <div className="text-xs font-bold mt-4">Available:</div>
+          <tr>
+            <th className="pb-2">
+              <div className="text-xs font-bold">Available:</div>
+            </th>
+          </tr>
           {Object.entries(permits)
             .filter(([hash, permit]) => hash !== activePermitHash && permit.type === "self")
             .map(([hash, permit]) => {
               return <SelectPermitRow key={hash} permit={permit} />;
             })}
 
-          <div className="text-xs font-bold mt-4">Sharing:</div>
+          <tr>
+            <th className="pb-2">
+              <div className="text-xs font-bold">Sharing:</div>
+            </th>
+          </tr>
           {Object.entries(permits)
             .filter(([hash, permit]) => hash !== activePermitHash && permit.type !== "self")
             .map(([hash, permit]) => {
