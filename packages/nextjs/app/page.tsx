@@ -1,13 +1,13 @@
 "use client";
 
-import { useAccount, useAuthModal, useSendUserOperation, useSmartAccountClient } from "@account-kit/react";
+import { useSendUserOperation, useSmartAccountClient } from "@account-kit/react";
 import type { NextPage } from "next";
 import { encodeFunctionData } from "viem";
 import { ConfidentialityRatioHeader } from "~~/components/ConfidentialityRatioHeader";
+import { ConnectedAccountAndPermitHeader } from "~~/components/ConnectedAccountAndPermitHeader";
+import { EncryptoTokensTable } from "~~/components/EncryptoTokensTable";
 import { PortfolioTotalHeader } from "~~/components/PortfolioTotalHeader";
-import { SortedTokens } from "~~/components/SortedTokens";
 import { useDeployedContractInfo } from "~~/hooks/scaffold-eth";
-import { useFhenixPermit } from "~~/permits/hooks";
 
 // If the lightAccount isn't deployed, send 0.01 ETH to itself to force a deployment
 const DeployLightAccountButton = () => {
@@ -47,55 +47,10 @@ const DeployLightAccountButton = () => {
   );
 };
 
-// 0xD8F06f1Ad272D19483000785f1F04FC54445E2E5
-
-const ConnectedAccount = () => {
-  const { address } = useAccount({ type: "LightAccount" });
-  const permit = useFhenixPermit();
-  const isOverriddenByPermit = permit != null && permit.issuer !== address;
-  return (
-    <div className="flex flex-col mb-24">
-      <div className={`flex flex-row gap-4 ${isOverriddenByPermit ? "opacity-50" : "font-bold"}`}>
-        <div>Account:</div>
-        <div>{address ?? "Not Connected"}</div>
-      </div>
-      {isOverriddenByPermit && (
-        <div className="flex flex-row gap-4 font-bold">
-          <div>Permit Issuer:</div>
-          <div>{permit.issuer}</div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-const TokensTableConnectButton = () => {
-  const { openAuthModal } = useAuthModal();
-
-  return (
-    <div className="absolute inset-0 -top-10 bg-base-100 bg-opacity-50 flex items-center justify-center pointer-events-auto">
-      <button onClick={openAuthModal} className="btn btn-primary">
-        CONNECT WALLET
-      </button>
-    </div>
-  );
-};
-
-const TokensTableBody = () => {
-  const { address } = useAccount({ type: "LightAccount" });
-
-  return (
-    <tbody className={`relative ${address == null && "pointer-events-none"}`}>
-      <SortedTokens />
-      {address == null && <TokensTableConnectButton />}
-    </tbody>
-  );
-};
-
 const Home: NextPage = () => {
   return (
     <div className="flex flex-col max-w-[975px] gap-12 mx-auto p-8 pt-12 w-full">
-      <ConnectedAccount />
+      <ConnectedAccountAndPermitHeader />
 
       {/* <DeployLightAccountButton /> */}
       <div className="flex flex-col gap-6 justify-center items-center">
@@ -108,18 +63,7 @@ const Home: NextPage = () => {
       <div className="flex flex-col w-full text-start gap-4">
         <div className="text-2xl font-bold">Tokens</div>
         <div className="bg-base-300 bg-opacity-30">
-          <table className="table">
-            <thead>
-              <tr className="border-b-base-content">
-                <th>Token</th>
-                <th>Balance</th>
-                <th>Encrypted Ratio</th>
-                <th>Portfolio %</th>
-                <th>Price (24h)</th>
-              </tr>
-            </thead>
-            <TokensTableBody />
-          </table>
+          <EncryptoTokensTable />
         </div>
       </div>
     </div>
