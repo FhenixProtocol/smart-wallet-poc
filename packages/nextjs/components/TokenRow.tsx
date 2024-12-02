@@ -6,6 +6,7 @@ import React from "react";
 import { UnsealableDisplay, UnsealablesDisplay } from "~~/components/fhenix/UnsealableDisplay";
 import { DerivedTokenData } from "~~/services/store/encryptoStore";
 import { bigintFixed } from "~~/utils/scaffold-eth/bigint";
+import { MockTokenMintModal } from "./MockTokenMintModal";
 
 export const TokenRow: React.FC<{
   token: DerivedTokenData;
@@ -28,7 +29,7 @@ export const TokenRow: React.FC<{
   const shareOfPortfolioDisplay = processUnsealables([shareOfPortfolio], share => `${share.toFixed(2)}%`);
 
   return (
-    <tr className="hover:bg-slate-200 hover:bg-opacity-10 cursor-pointer bg-opacity-10 rounded-md transition-all">
+    <tr className="bg-opacity-10">
       <th>{token.symbol}</th>
       <td>
         <div className="flex flex-col items-start">
@@ -75,7 +76,7 @@ export const TokenRow: React.FC<{
         </div>
       </td>
       <td>
-        <button className="btn btn-sm">Mint</button>
+        <MockTokenMintModal token={token} />
       </td>
     </tr>
   );

@@ -19,7 +19,7 @@ export const useInitializeTokens = (fherc20Adds: string[]) => {
   const { data: fherc20Contract } = useDeployedContractInfo("FHERC20");
   const fherc20Abi = fherc20Contract?.abi as NonNullable<typeof fherc20Contract>["abi"];
 
-  const { data, isLoading, refetch, error } = useFhenixReadContracts({
+  const { data, isLoading, refetch } = useFhenixReadContracts({
     contracts: fherc20Adds.flatMap(add => [
       {
         abi: fherc20Abi,
@@ -44,11 +44,6 @@ export const useInitializeTokens = (fherc20Adds: string[]) => {
         args: ["populate-fhenix-permission"],
       },
     ]),
-  });
-
-  console.log({
-    data,
-    error,
   });
 
   useEffect(() => {

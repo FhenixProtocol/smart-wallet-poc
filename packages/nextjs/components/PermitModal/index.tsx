@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { PermitV2Tab, usePermitModalOpen, usePermitModalTab } from "~~/services/store/permitV2ModalStore";
 import { PermitV2ActivePermitStatus } from "./StatusIndicator";
@@ -25,6 +27,8 @@ const PermitV2Content = () => {
 
 export const PermitV2Modal = () => {
   const { open, setOpen } = usePermitModalOpen();
+
+  if (!open) return null;
 
   return (
     <dialog className="modal" open={open}>

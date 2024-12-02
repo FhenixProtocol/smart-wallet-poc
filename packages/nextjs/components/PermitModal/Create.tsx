@@ -1,3 +1,5 @@
+"use client";
+
 import { useChain, useAccount } from "@account-kit/react";
 import { ArrowDownTrayIcon, ArrowUpTrayIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import React from "react";
