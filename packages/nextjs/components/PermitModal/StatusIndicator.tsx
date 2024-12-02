@@ -38,7 +38,7 @@ const PermitV2StatusText = () => {
 export const PermitV2ActivePermitStatus = () => {
   return (
     <div className="flex flex-row items-center justify-between">
-      <div className="text-sm font-bold">Permit Status:</div>
+      <div className="text-sm font-bold">Current Permit Status:</div>
       <div className="flex flex-row items-center justify-center gap-2">
         <PermitV2StatusIndicator />
         <PermitV2StatusText />

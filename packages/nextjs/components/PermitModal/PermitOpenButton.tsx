@@ -10,7 +10,7 @@ export const PermitOpenButton: React.FC<{ permit: PermitV2; className?: string }
 
   return (
     <button className={`btn btn-sm btn-secondary btn-ghost ${className}`} onClick={onOpenPermit}>
-      Open
+      View
     </button>
   );
 };

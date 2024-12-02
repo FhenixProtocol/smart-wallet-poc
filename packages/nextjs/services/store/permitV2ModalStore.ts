@@ -8,7 +8,7 @@ export enum PermitV2Tab {
   Create = "Create",
   Import = "Import",
   Select = "Select",
-  Opened = "Opened",
+  Details = "Details",
 }
 
 export enum PermitV2CreateType {
@@ -124,7 +124,7 @@ export const usePermitModalTab = () => {
 export const usePermitModalFocusedPermitHash = () => {
   const focusedPermitHash = usePermitModalStore(state => state.focusedPermitHash);
   const setFocusedPermitHash = useCallback((focusedPermitHash: string) => {
-    usePermitModalStore.setState({ focusedPermitHash, tab: PermitV2Tab.Opened });
+    usePermitModalStore.setState({ focusedPermitHash, tab: PermitV2Tab.Details });
   }, []);
 
   return { focusedPermitHash, setFocusedPermitHash };

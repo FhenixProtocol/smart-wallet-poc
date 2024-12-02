@@ -50,7 +50,7 @@ const SelectedPermitRow: React.FC<{ permit: PermitV2 }> = ({ permit }) => {
   return (
     <PermitRow permit={permit} className="bg-base-200">
       <button className="btn btn-sm btn-secondary btn-ghost" onClick={() => setFocusedPermitHash(permit.getHash())}>
-        Open
+        View
       </button>
     </PermitRow>
   );
@@ -60,7 +60,7 @@ const SelectPermitRow: React.FC<{ permit: PermitV2 }> = ({ permit }) => {
   return (
     <PermitRow permit={permit}>
       <PermitOpenButton permit={permit} />
-      <PermitUseButton permit={permit} className="btn-sm" />
+      {permit.type !== "sharing" && <PermitUseButton permit={permit} className="btn-sm" />}
     </PermitRow>
   );
 };
@@ -100,11 +100,17 @@ export const PermitV2ModalSelect = () => {
 
           <div className="text-xs font-bold mt-4">Available:</div>
           {Object.entries(permits)
-            .filter(([hash]) => hash !== activePermitHash)
+            .filter(([hash, permit]) => hash !== activePermitHash && permit.type === "self")
             .map(([hash, permit]) => {
               return <SelectPermitRow key={hash} permit={permit} />;
             })}
-          {/* </div> */}
+
+          <div className="text-xs font-bold mt-4">Sharing:</div>
+          {Object.entries(permits)
+            .filter(([hash, permit]) => hash !== activePermitHash && permit.type !== "self")
+            .map(([hash, permit]) => {
+              return <SelectPermitRow key={hash} permit={permit} />;
+            })}
         </tbody>
       </table>
     </>
