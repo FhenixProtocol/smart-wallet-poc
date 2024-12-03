@@ -39,7 +39,6 @@ const PermitV2ModalImportEntry = () => {
       const errorString = Object.entries(permitParsingError.flatten().fieldErrors)
         .map(([field, err]) => `- ${field}: ${err}`)
         .join("\n");
-      console.log();
       setError(`Invalid Permit Data:\n${errorString}`);
       return;
     }

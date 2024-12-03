@@ -23,7 +23,7 @@ export const MockTokenMintModal: React.FC<{ token: DerivedTokenData }> = ({ toke
     client,
     waitForTxn: true,
     onSuccess: ({ hash, request }) => {
-      console.log("Success deploying smart wallet", hash, request);
+      console.log("Mint success", hash, request);
       notification.success(`Minted ${amountAndTokenString}`);
       useTokensStore.getState().refetchTokens();
     },
