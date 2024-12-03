@@ -20,75 +20,57 @@ import {
   ReadContractErrorType,
   UnionEvaluate,
   UnionToTuple,
-  UnionWiden,
-  Widen,
 } from "viem";
-import {
-  EncryptableAddress,
-  EncryptableBool,
-  EncryptableUint128,
-  EncryptableUint16,
-  EncryptableUint256,
-  EncryptableUint32,
-  EncryptableUint64,
-  EncryptableUint8,
-  FHE_eaddress,
-  FHE_ebool,
-  FHE_euint128,
-  FHE_euint16,
-  FHE_euint256,
-  FHE_euint32,
-  FHE_euint64,
-  FHE_euint8,
-  SealedOutputAddress,
-  SealedOutputBool,
-  SealedOutputUint,
-} from "../encryption/types";
-import { FhenixPermissionV2 } from "../permitV2";
-import {
-  EncryptedAddress,
-  EncryptedBool,
-  EncryptedUint128,
-  EncryptedUint16,
-  EncryptedUint256,
-  EncryptedUint32,
-  EncryptedUint64,
-  EncryptedUint8,
-} from "fhenixjs";
 import type { DefaultError, QueryKey, UseQueryOptions, UseQueryResult } from "@tanstack/react-query";
 import type { Config, ReadContractsErrorType } from "@wagmi/core";
 import type { ReadContractsQueryFnData, ReadContractsQueryKey } from "@wagmi/core/query";
+import { PermissionV2 } from "~~/permits/types";
 
 // MAP
 
+const TFHE_EUINT8 = 0;
+const TFHE_EUINT16 = 1;
+const TFHE_EUINT32 = 2;
+const TFHE_EUINT64 = 3;
+const TFHE_EUINT128 = 4;
+const TFHE_EUINT256 = 5;
+const TFHE_EADDRESS = 12;
+const TFHE_EBOOL = 13;
+
+export const TFHE_UTYPE = {
+  EUINT8: TFHE_EUINT8,
+  EUINT16: TFHE_EUINT16,
+  EUINT32: TFHE_EUINT32,
+  EUINT64: TFHE_EUINT64,
+  EUINT128: TFHE_EUINT128,
+  EUINT256: TFHE_EUINT256,
+  EADDRESS: TFHE_EADDRESS,
+  EBOOL: TFHE_EBOOL,
+  EUINT: [TFHE_EUINT8, TFHE_EUINT16, TFHE_EUINT32, TFHE_EUINT64, TFHE_EUINT128, TFHE_EUINT256],
+  ALL: [TFHE_EBOOL, TFHE_EUINT8, TFHE_EUINT16, TFHE_EUINT32, TFHE_EUINT64, TFHE_EUINT128, TFHE_EUINT256, TFHE_EADDRESS],
+} as const;
+
+export type SealedOutputBool = {
+  data: string;
+  _utype: typeof TFHE_UTYPE.EBOOL;
+};
+export type SealedOutputUint = {
+  data: string;
+  _utype: (typeof TFHE_UTYPE.EUINT)[number];
+};
+export type SealedOutputAddress = {
+  data: string;
+  _utype: typeof TFHE_UTYPE.EADDRESS;
+};
+
 type FhenixMap<fhenixTransformable extends boolean = false> = {
   // Permission
-  "struct PermissionV2": fhenixTransformable extends true ? "populate-fhenix-permission" : FhenixPermissionV2;
-
-  // Input Structs
-  "struct inBool": fhenixTransformable extends true ? EncryptableBool : EncryptedBool;
-  "struct inEuint8": fhenixTransformable extends true ? EncryptableUint8 : EncryptedUint8;
-  "struct inEuint16": fhenixTransformable extends true ? EncryptableUint16 : EncryptedUint16;
-  "struct inEuint32": fhenixTransformable extends true ? EncryptableUint32 : EncryptedUint32;
-  "struct inEuint64": fhenixTransformable extends true ? EncryptableUint64 : EncryptedUint64;
-  "struct inEuint128": fhenixTransformable extends true ? EncryptableUint128 : EncryptedUint128;
-  "struct inEuint256": fhenixTransformable extends true ? EncryptableUint256 : EncryptedUint256;
-  "struct inAddress": fhenixTransformable extends true ? EncryptableAddress : EncryptedAddress;
+  "struct PermissionV2": fhenixTransformable extends true ? "populate-fhenix-permission" : PermissionV2;
 
   // Output Structs
   "struct SealedBool": fhenixTransformable extends true ? SealedOutputBool : boolean;
   "struct SealedUint": fhenixTransformable extends true ? SealedOutputUint : bigint;
   "struct SealedAddress": fhenixTransformable extends true ? SealedOutputAddress : Address;
-
-  // Exposed encrypted primitives
-  ebool: FHE_ebool;
-  euint8: FHE_euint8;
-  euint16: FHE_euint16;
-  euint32: FHE_euint32;
-  euint64: FHE_euint64;
-  euint128: FHE_euint128;
-  euint256: FHE_euint256;
-  eaddress: FHE_eaddress;
 };
 export type FhenixMapUnion = keyof FhenixMap;
 

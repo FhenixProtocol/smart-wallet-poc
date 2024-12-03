@@ -1,4 +1,4 @@
-import { processUnsealables, Unsealable } from "fhenix-utils/encryption/types";
+import { processUnsealables, Unsealable } from "~~/utils/fhenix/unsealable";
 import { create } from "zustand";
 import { bigintToFloat } from "~~/utils/scaffold-eth/bigint";
 

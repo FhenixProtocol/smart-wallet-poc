@@ -1,7 +1,7 @@
 "use client";
 
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import { processUnsealables, Unsealable } from "fhenix-utils/encryption/types";
+import { processUnsealables, Unsealable } from "~~/utils/fhenix/unsealable";
 import React from "react";
 import { UnsealableDisplay, UnsealablesDisplay } from "~~/components/fhenix/UnsealableDisplay";
 import { DerivedTokenData } from "~~/services/store/tokensStore";

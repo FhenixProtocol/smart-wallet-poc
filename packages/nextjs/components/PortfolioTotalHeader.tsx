@@ -1,6 +1,6 @@
 "use client";
 
-import { processUnsealables } from "fhenix-utils/encryption/types";
+import { processUnsealables } from "~~/utils/fhenix/unsealable";
 import { UnsealableDisplay } from "~~/components/fhenix/UnsealableDisplay";
 import { usePortfolioSummaryData } from "~~/services/store/tokensStore";
 

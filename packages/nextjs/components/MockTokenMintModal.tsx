@@ -92,7 +92,7 @@ export const MockTokenMintModal: React.FC<{ token: DerivedTokenData }> = ({ toke
             </div>
           </div>
 
-          <button className="btn btn-primary w-full" onClick={mintToken}>
+          <button className="btn btn-primary w-full" onClick={mintToken} disabled={isSendingUserOperation}>
             {isSendingUserOperation ? "Minting" : "Mint"} {amountAndTokenString}
             {isSendingUserOperation && <span className="loading loading-spinner loading-xs"></span>}
           </button>

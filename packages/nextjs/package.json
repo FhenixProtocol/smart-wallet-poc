@@ -26,7 +26,6 @@
     "boring-avatars": "^1.11.2",
     "burner-connector": "^0.0.8",
     "daisyui": "4.12.10",
-    "fhenix-utils": "workspace:*",
     "fhenixjs": "0.4.0",
     "immer": "^10.1.1",
     "next": "^14.2.11",

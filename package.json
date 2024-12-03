@@ -5,7 +5,6 @@
 	"workspaces": {
 		"packages": [
 			"packages/hardhat",
-			"packages/fhenix-utils",
 			"packages/nextjs"
 		]
 	},

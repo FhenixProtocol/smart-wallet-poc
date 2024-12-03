@@ -4,7 +4,7 @@ import {
   FhenixMulticallReturnType,
   UseFhenixReadContractsParameters,
   UseFhenixReadContractsReturnType,
-} from "fhenix-utils/multicall/multicall";
+} from "~~/utils/fhenix/multicall";
 import { useAccount } from "@account-kit/react";
 import { useFhenixPermit } from "~~/permits/hooks";
 import { Abi, ContractFunctionName } from "viem";

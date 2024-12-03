@@ -1,6 +1,5 @@
 import "abitype";
 import "~~/node_modules/viem/node_modules/abitype";
-import "fhenix-utils/abi";
 
 type AddressType = string;
 

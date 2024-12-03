@@ -1,9 +1,9 @@
 "use client";
 
 import { useAccount } from "@account-kit/react";
-import { processUnsealables, Unsealable, Unsealed, UnsealedArray } from "fhenix-utils/encryption/types";
 import React from "react";
 import { usePermitModalOpen } from "~~/services/store/permitModalStore";
+import { processUnsealables, Unsealable, Unsealed, UnsealedArray } from "~~/utils/fhenix/unsealable";
 
 type UnsealableDisplayBaseProps = {
   nullish?: boolean;
