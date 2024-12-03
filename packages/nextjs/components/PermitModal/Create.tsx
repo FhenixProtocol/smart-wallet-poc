@@ -15,7 +15,7 @@ import {
   PermitV2CreateType,
   usePermitCreateOptionsAndActions,
   usePermitModalFocusedPermitHash,
-} from "~~/services/store/permitV2ModalStore";
+} from "~~/services/store/permitModalStore";
 import { notification } from "~~/utils/scaffold-eth";
 import truncateAddress from "~~/utils/truncate-address";
 import { getTimestamp } from "./utils";

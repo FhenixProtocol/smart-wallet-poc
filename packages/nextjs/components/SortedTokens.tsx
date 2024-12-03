@@ -1,6 +1,6 @@
 "use client";
 
-import { usePortfolioSummaryData, useDerivedTokens } from "~~/services/store/encryptoStore";
+import { usePortfolioSummaryData, useDerivedTokens } from "~~/services/store/tokensStore";
 import { TokenRow } from "./TokenRow";
 
 export const SortedTokens = () => {

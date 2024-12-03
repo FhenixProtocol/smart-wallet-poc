@@ -9,8 +9,8 @@ import { accountKitConfig } from "~~/account-kit.config";
 import { headers } from "next/headers";
 
 export const metadata = getMetadata({
-  title: "Encrypto",
-  description: "Fhenix bridge and encryption portal",
+  title: "Smart Wallet POC",
+  description: "Fhenix confidential data using AA",
 });
 
 const robotoMono = Roboto_Mono({

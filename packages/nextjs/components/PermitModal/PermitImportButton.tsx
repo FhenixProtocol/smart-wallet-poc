@@ -5,7 +5,7 @@ import { useState } from "react";
 import { PermitV2 } from "~~/permits/permitV2";
 import { setActivePermitHash, setPermit } from "~~/permits/store";
 import { AbstractSigner } from "~~/permits/types";
-import { usePermitModalFocusedPermitHash, usePermitModalImporting } from "~~/services/store/permitV2ModalStore";
+import { usePermitModalFocusedPermitHash, usePermitModalImporting } from "~~/services/store/permitModalStore";
 import { notification } from "~~/utils/scaffold-eth";
 
 export const PermitImportButton: React.FC<{ permit: PermitV2; className?: string }> = ({

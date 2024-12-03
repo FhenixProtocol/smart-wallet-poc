@@ -4,7 +4,7 @@ import { useSendUserOperation, useSmartAccountClient } from "@account-kit/react"
 import { Fragment, useState } from "react";
 import { encodeFunctionData } from "viem";
 import { useDeployedContractInfo } from "~~/hooks/scaffold-eth";
-import { DerivedTokenData, useEncryptoState } from "~~/services/store/encryptoStore";
+import { DerivedTokenData, useTokensStore } from "~~/services/store/tokensStore";
 import { notification } from "~~/utils/scaffold-eth";
 import { bigintFromStringWithDec } from "~~/utils/scaffold-eth/bigint";
 
@@ -25,7 +25,7 @@ export const MockTokenMintModal: React.FC<{ token: DerivedTokenData }> = ({ toke
     onSuccess: ({ hash, request }) => {
       console.log("Success deploying smart wallet", hash, request);
       notification.success(`Minted ${amountAndTokenString}`);
-      useEncryptoState.getState().refetchTokens();
+      useTokensStore.getState().refetchTokens();
     },
     onError: error => {
       console.error(`Error ${amountAndTokenString}`, error);

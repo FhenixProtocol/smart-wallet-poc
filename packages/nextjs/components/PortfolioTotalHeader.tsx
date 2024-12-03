@@ -2,7 +2,7 @@
 
 import { processUnsealables } from "fhenix-utils/encryption/types";
 import { UnsealableDisplay } from "~~/components/fhenix/UnsealableDisplay";
-import { usePortfolioSummaryData } from "~~/services/store/encryptoStore";
+import { usePortfolioSummaryData } from "~~/services/store/tokensStore";
 
 export const PortfolioTotalHeader = () => {
   const { totalValue } = usePortfolioSummaryData();

@@ -4,7 +4,7 @@ import { ArrowDownTrayIcon, ArrowUpTrayIcon } from "@heroicons/react/24/outline"
 import React from "react";
 import { useFhenixActivePermitHash, useFhenixAllPermits } from "~~/permits/hooks";
 import { PermitV2 } from "~~/permits/permitV2";
-import { usePermitModalFocusedPermitHash, usePermitSatisfiesRequirements } from "~~/services/store/permitV2ModalStore";
+import { usePermitModalFocusedPermitHash, usePermitSatisfiesRequirements } from "~~/services/store/permitModalStore";
 import truncateAddress from "~~/utils/truncate-address";
 import { PermitUseButton } from "./PermitUseButton";
 import { PermitOpenButton } from "./PermitOpenButton";

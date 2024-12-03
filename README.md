@@ -17,7 +17,7 @@ Questions for Alchemy
 - What infrastructure needs to be deployed on Nitrogen to enable the smart wallet sdk
 - How can we add nitrogen to the account-kit sdk chains
 
-TODO
+Task List
 
 - [x] Remove standard wallet connection
 - [x] Add Alchemy's `account-kit` sdk
@@ -33,7 +33,7 @@ TODO
 - [x] Pass PermissionV2 from user's permit to fetch mock encrypted balances
   - Current bug: `PermissionInvalid_IssuerSignature`
   - Bug Fixed: viem's `hashTypedData` will only return the correct value if chainId is a number.
-- [ ] Minting FHERC20 balance or encBalance (forces deployment of wallet)
+- [x] Minting FHERC20 balance or encBalance (forces deployment of wallet)
 - [x] Indicator in permit modal that it is invalid because not deployed
 - [x] PermitV2 Modal for create / import permit
   - [x] Permit explanation and link to docs
@@ -48,11 +48,8 @@ TODO
   - [x] Update name
   - [x] Copy permit data
     - [x] Button
-    - [ ] Copy only relevant data in JSON format
+    - [x] Copy only relevant data in JSON format
   - [x] See full info of permit
-- [ ] Import permit blob
-  - [ ] Validate (check issuer / recipient matches user address)
-  - [ ] Sign if necessary (recipientSignature)
-
-Sharing permits can't be used
-Recipient Permit needs issuer field
+- [x] Import permit blob
+  - [x] Validate (check issuer / recipient matches user address)
+  - [x] Sign if necessary (recipientSignature)

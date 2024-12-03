@@ -19,22 +19,7 @@ export type DerivedTokenData = TokenData & {
   encPerc: Unsealable<number> | undefined;
 };
 
-type EncryptState = {
-  tokenAddress: string | undefined;
-  inputPriority: "amount" | "perc";
-  amount: string | undefined;
-  perc: number | undefined;
-};
-
-export type BridgeDirection = "to-fhenix" | "to-eth";
-type BridgeState = {
-  tokenAddress: string | undefined;
-  useEncBalance: boolean;
-  direction: BridgeDirection;
-  amount: string;
-};
-
-type EncryptoState = {
+type TokensState = {
   refetchKey: number;
   refetchTokens: () => void;
 
@@ -49,24 +34,9 @@ type EncryptoState = {
 
   tokens: TokenData[];
   setTokens: (tokens: TokenData[]) => void;
-
-  // Encrypt
-  encryptState: EncryptState;
-  resetEncryptState: () => void;
-  setEncryptToken: (tokenAddress: string) => void;
-  setEncryptAmountText: (amount: string) => void;
-  setEncryptAmountPerc: (perc: number) => void;
-
-  // Bridge
-  bridgeState: BridgeState;
-  resetBridgeState: () => void;
-  setBridgeToken: (tokenAddress: string) => void;
-  setBridgeUseEncBalance: (useEncBalance: boolean) => void;
-  setBridgeDirection: (direction: BridgeDirection) => void;
-  setBridgeAmount: (amount: string) => void;
 };
 
-export const useEncryptoState = create<EncryptoState>(set => ({
+export const useTokensStore = create<TokensState>(set => ({
   refetchKey: 0,
   refetchTokens: () => set(state => ({ refetchKey: state.refetchKey + 1 })),
 
@@ -81,63 +51,6 @@ export const useEncryptoState = create<EncryptoState>(set => ({
 
   tokens: [],
   setTokens: tokens => set({ tokens, tokensLoading: false }),
-
-  encryptState: { tokenAddress: undefined, inputPriority: "amount" as const, amount: undefined, perc: undefined },
-  resetEncryptState: () => {
-    set(state => ({
-      encryptState: { ...state.encryptState, inputPriority: "amount", amount: undefined, perc: undefined },
-    }));
-  },
-  setEncryptToken: tokenAddress =>
-    set({
-      encryptState: {
-        tokenAddress,
-        inputPriority: "amount",
-        amount: "0",
-        perc: undefined,
-      },
-    }),
-  setEncryptAmountText: amount =>
-    set(state => ({
-      encryptState: {
-        ...state.encryptState,
-        inputPriority: "amount",
-        amount,
-        perc: undefined,
-      },
-    })),
-  setEncryptAmountPerc: perc =>
-    set(state => ({
-      encryptState: {
-        ...state.encryptState,
-        inputPriority: "perc",
-        amount: undefined,
-        perc,
-      },
-    })),
-
-  // Bridge
-  bridgeState: {
-    tokenAddress: undefined,
-    useEncBalance: false,
-    direction: "to-fhenix" as const,
-    amount: "0",
-  },
-  resetBridgeState: () => {
-    set({ bridgeState: { tokenAddress: undefined, useEncBalance: false, direction: "to-fhenix", amount: "0" } });
-  },
-  setBridgeToken: tokenAddress => {
-    set({ bridgeState: { tokenAddress, useEncBalance: false, direction: "to-fhenix", amount: "0" } });
-  },
-  setBridgeUseEncBalance: useEncBalance => {
-    set(state => ({ bridgeState: { ...state.bridgeState, useEncBalance } }));
-  },
-  setBridgeDirection: direction => {
-    set(state => ({ bridgeState: { ...state.bridgeState, direction } }));
-  },
-  setBridgeAmount: amount => {
-    set(state => ({ bridgeState: { ...state.bridgeState, amount } }));
-  },
 }));
 
 export const deriveTokenData = (token: TokenData, price: number): DerivedTokenData => {
@@ -172,24 +85,11 @@ export const deriveTokenData = (token: TokenData, price: number): DerivedTokenDa
 };
 
 export const useDerivedTokens = () => {
-  return useEncryptoState(state => {
+  return useTokensStore(state => {
     return state.tokens.map((token): DerivedTokenData => {
       const price = state.tokenPrices[token.symbol];
       return deriveTokenData(token, price);
     });
-  });
-};
-
-export const useEncryptSelectedTokenData = () => {
-  return useEncryptoState(state => {
-    const selectedTokenAddress = state.encryptState.tokenAddress;
-    if (selectedTokenAddress == null) return;
-
-    const token = state.tokens.find(token => token.address === selectedTokenAddress);
-    if (token == null) return;
-
-    const price = state.tokenPrices[token.symbol];
-    return deriveTokenData(token, price);
   });
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { usePermitModalTab, PermitV2Tab } from "~~/services/store/permitV2ModalStore";
+import { usePermitModalTab, PermitV2Tab } from "~~/services/store/permitModalStore";
 
 export const PermitV2TabInstructions = () => {
   const { tab } = usePermitModalTab();

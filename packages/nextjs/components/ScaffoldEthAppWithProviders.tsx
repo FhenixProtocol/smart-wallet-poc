@@ -11,14 +11,14 @@ import { BlockieAvatar } from "~~/components/scaffold-eth";
 import { ProgressBar } from "~~/components/scaffold-eth/ProgressBar";
 import { useInitializeNativeCurrencyPrice } from "~~/hooks/scaffold-eth";
 import { wagmiConfig } from "~~/services/web3/wagmiConfig";
-import { useInitializeTokenPrices } from "~~/hooks/encrypto/useInitializeTokenPrices";
-import { useInitializeTokens } from "~~/hooks/encrypto/useInitializeTokens";
+import { useInitializeTokenPrices } from "~~/hooks/fhenix/useInitializeTokenPrices";
+import { useInitializeTokens } from "~~/hooks/fhenix/useInitializeTokens";
 import FHERC20s from "~~/contracts/FHERC20s.json";
 import { AlchemyAccountProvider } from "@account-kit/react";
 import { accountKitConfig } from "~~/account-kit.config";
 import { AlchemyClientState } from "@account-kit/core";
 import { PermitV2Modal } from "./PermitModal";
-import { useInitializePermitModalAccessRequirements } from "~~/services/store/permitV2ModalStore";
+import { useInitializePermitModalAccessRequirements } from "~~/services/store/permitModalStore";
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   useInitializeNativeCurrencyPrice();

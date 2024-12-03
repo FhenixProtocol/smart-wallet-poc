@@ -5,7 +5,7 @@ import React from "react";
 import { useState } from "react";
 import { PermitV2 } from "~~/permits/permitV2";
 import { PermitV2Options } from "~~/permits/types";
-import { usePermitModalImporting, usePermitModalUpdateImportingPermitName } from "~~/services/store/permitV2ModalStore";
+import { usePermitModalImporting, usePermitModalUpdateImportingPermitName } from "~~/services/store/permitModalStore";
 import { TextArea } from "../scaffold-eth/Input/TextArea";
 import { stringToJSON } from "./utils";
 import { PermitV2ParamsValidator } from "~~/permits/permitV2.z";

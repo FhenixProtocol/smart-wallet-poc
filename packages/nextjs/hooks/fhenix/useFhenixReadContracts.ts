@@ -1,13 +1,27 @@
 import { useReadContracts } from "wagmi";
-import { useFhenixClient } from "./store";
-import { transformFhenixInputArgs } from "./utils";
 import {
+  FhenixContractFunctionArgs,
   FhenixMulticallReturnType,
   UseFhenixReadContractsParameters,
   UseFhenixReadContractsReturnType,
 } from "fhenix-utils/multicall/multicall";
 import { useAccount } from "@account-kit/react";
 import { useFhenixPermit } from "~~/permits/hooks";
+import { Abi, ContractFunctionName } from "viem";
+import { PermissionV2 } from "~~/permits/types";
+
+export const injectPermission = <
+  abi extends Abi | readonly unknown[],
+  functionName extends ContractFunctionName<abi>,
+  argsIn = FhenixContractFunctionArgs<abi, "pure" | "view", functionName, true>,
+  argsOut = FhenixContractFunctionArgs<abi, "pure" | "view", functionName, false>,
+>(
+  args: argsIn | unknown | undefined,
+  permission: PermissionV2 | undefined,
+): argsOut | undefined => {
+  if (args == null) return undefined;
+  return (args as any[]).map((arg: any) => (arg === "populate-fhenix-permission" ? permission : arg)) as argsOut;
+};
 
 export const useFhenixReadContracts = <
   const contracts extends readonly unknown[],
@@ -17,14 +31,13 @@ export const useFhenixReadContracts = <
   parameters: UseFhenixReadContractsParameters<contracts, allowFailure, true>,
 ): UseFhenixReadContractsReturnType<contracts, allowFailure, selectData> => {
   const { address } = useAccount({ type: "LightAccount" });
-  const fhenixClient = useFhenixClient();
   const permit = useFhenixPermit();
 
   const transformedContracts = parameters?.contracts?.map((contract: any) => {
     if (contract.args == null) return contract;
     return {
       ...contract,
-      args: transformFhenixInputArgs(contract.args, fhenixClient, permit?.getPermission()),
+      args: injectPermission(contract.args, permit?.getPermission()),
       account: address,
     };
   });

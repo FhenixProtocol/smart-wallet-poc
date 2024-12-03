@@ -1,11 +1,11 @@
 import { useCallback, useEffect } from "react";
 import { MainnetFherc20s } from "~~/contracts/mainnetFherc20s";
-import { useEncryptoState } from "~~/services/store/encryptoStore";
-import { fetchTokenPrice } from "~~/utils/encrypto/fetchTokenPrice";
+import { useTokensStore } from "~~/services/store/tokensStore";
+import { fetchTokenPrice } from "~~/utils/fhenix/fetchTokenPrice";
 
 export const useInitializeTokenPrices = () => {
-  const setTokenPrices = useEncryptoState(state => state.setTokenPrices);
-  const setLoadingPrices = useEncryptoState(state => state.setLoadingPrices);
+  const setTokenPrices = useTokensStore(state => state.setTokenPrices);
+  const setLoadingPrices = useTokensStore(state => state.setLoadingPrices);
 
   const fetchPrices = useCallback(async () => {
     setLoadingPrices(true);

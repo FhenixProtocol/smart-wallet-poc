@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { PermitV2Tab, usePermitModalOpen, usePermitModalTab } from "~~/services/store/permitV2ModalStore";
+import { PermitV2Tab, usePermitModalOpen, usePermitModalTab } from "~~/services/store/permitModalStore";
 import { PermitV2ActivePermitStatus } from "./StatusIndicator";
 import { PermitV2ModalTabs } from "./Tabs";
 import { PermitV2TabInstructions } from "./TabInstructions";

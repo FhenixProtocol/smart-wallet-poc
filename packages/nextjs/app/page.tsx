@@ -3,7 +3,7 @@
 import type { NextPage } from "next";
 import { ConfidentialityRatioHeader } from "~~/components/ConfidentialityRatioHeader";
 import { ConnectedAccountAndPermitHeader } from "~~/components/ConnectedAccountAndPermitHeader";
-import { EncryptoTokensTable } from "~~/components/EncryptoTokensTable";
+import { PortfolioTokensTable } from "~~/components/PortfolioTokensTable";
 import { PortfolioTotalHeader } from "~~/components/PortfolioTotalHeader";
 
 const Home: NextPage = () => {
@@ -22,7 +22,7 @@ const Home: NextPage = () => {
       <div className="flex flex-col w-full text-start gap-4">
         <div className="text-2xl font-bold">Tokens</div>
         <div className="bg-base-300 bg-opacity-30">
-          <EncryptoTokensTable />
+          <PortfolioTokensTable />
         </div>
       </div>
     </div>

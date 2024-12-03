@@ -28,7 +28,7 @@ const TokensTableBody = () => {
   );
 };
 
-export const EncryptoTokensTable = () => {
+export const PortfolioTokensTable = () => {
   return (
     <table className="table">
       <thead>

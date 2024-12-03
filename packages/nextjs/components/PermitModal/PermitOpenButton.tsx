@@ -1,7 +1,7 @@
 "use client";
 
 import { PermitV2 } from "~~/permits/permitV2";
-import { usePermitModalFocusedPermitHash } from "~~/services/store/permitV2ModalStore";
+import { usePermitModalFocusedPermitHash } from "~~/services/store/permitModalStore";
 
 export const PermitOpenButton: React.FC<{ permit: PermitV2; className?: string }> = ({ permit, className }) => {
   const { setFocusedPermitHash } = usePermitModalFocusedPermitHash();

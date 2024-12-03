@@ -3,7 +3,7 @@
 
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import React from "react";
-import { TokenData } from "~~/services/store/encryptoStore";
+import { TokenData } from "~~/services/store/tokensStore";
 
 export const TokenSelectRow: React.FC<{
   token: TokenData | undefined;

@@ -2,7 +2,7 @@
 
 import { useUser } from "@account-kit/react";
 import { WalletIcon } from "@heroicons/react/24/outline";
-import { usePermitModalOpen } from "~~/services/store/permitV2ModalStore";
+import { usePermitModalOpen } from "~~/services/store/permitModalStore";
 import { PermitV2StatusIndicator } from "../PermitModal/StatusIndicator";
 
 export const PermitModalButton = () => {

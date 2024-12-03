@@ -4,7 +4,7 @@ import { InputBase } from "../scaffold-eth";
 import { PermitTypeIcon, PermitTypeText } from "./PermitTypeComponents";
 import { PermitV2 } from "~~/permits/permitV2";
 import truncateAddress from "~~/utils/truncate-address";
-import { usePermitSatisfiesRequirements } from "~~/services/store/permitV2ModalStore";
+import { usePermitSatisfiesRequirements } from "~~/services/store/permitModalStore";
 import { formattedTimestamp, getTimestamp, timeUntilTimestamp } from "./utils";
 
 export type ValidityState = "error" | "warning" | "success";

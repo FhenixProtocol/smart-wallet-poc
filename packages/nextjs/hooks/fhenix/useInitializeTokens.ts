@@ -1,7 +1,7 @@
-import { useFhenixReadContracts } from "../fhenix/useFhenixReadContracts";
+import { useFhenixReadContracts } from "./useFhenixReadContracts";
 import { useDeployedContractInfo } from "../scaffold-eth";
 import { useEffect } from "react";
-import { TokenData, useEncryptoState } from "~~/services/store/encryptoStore";
+import { TokenData, useTokensStore } from "~~/services/store/tokensStore";
 import { processUnsealables } from "fhenix-utils/encryption/types";
 import { useFhenixPermit } from "~~/permits/hooks";
 import { useAccount } from "@account-kit/react";
@@ -10,9 +10,9 @@ const chunk = (a: any[], size: number) =>
   Array.from(new Array(Math.ceil(a.length / size)), (_, i) => a.slice(i * size, i * size + size));
 
 export const useInitializeTokens = (fherc20Adds: string[]) => {
-  const setTokensLoading = useEncryptoState(state => state.setTokensLoading);
-  const setTokens = useEncryptoState(state => state.setTokens);
-  const refetchKey = useEncryptoState(state => state.refetchKey);
+  const setTokensLoading = useTokensStore(state => state.setTokensLoading);
+  const setTokens = useTokensStore(state => state.setTokens);
+  const refetchKey = useTokensStore(state => state.refetchKey);
   const { address } = useAccount({ type: "LightAccount" });
   const permit = useFhenixPermit();
 

@@ -3,7 +3,7 @@
 
 import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/outline";
 import { processUnsealables } from "fhenix-utils/encryption/types";
-import { useDerivedTokens, DerivedTokenData, useEncryptoState } from "~~/services/store/encryptoStore";
+import { useDerivedTokens, DerivedTokenData, useTokensStore } from "~~/services/store/tokensStore";
 import { bigintFixed } from "~~/utils/scaffold-eth/bigint";
 import { UnsealableDisplay } from "./fhenix/UnsealableDisplay";
 

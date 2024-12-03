@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { PermitV2Tab, usePermitModalTab } from "~~/services/store/permitV2ModalStore";
+import { PermitV2Tab, usePermitModalTab } from "~~/services/store/permitModalStore";
 
 const PermitV2TabOptions = [PermitV2Tab.Create, PermitV2Tab.Import, PermitV2Tab.Select];
 export const PermitV2ModalTabs = () => {
