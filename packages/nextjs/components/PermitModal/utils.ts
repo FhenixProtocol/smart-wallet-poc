@@ -1,5 +1,3 @@
-import { z } from "zod";
-
 export const getTimestamp = () => Math.floor(Date.now() / 1000);
 
 export const timeUntilTimestamp = (ts: number): string => {
@@ -37,17 +35,17 @@ export const formattedTimestamp = (ts: number): string => {
 
 // JSON PARSING
 
-const literalSchema = z.union([z.string(), z.number(), z.boolean(), z.null()]);
-type Literal = z.infer<typeof literalSchema>;
-type Json = Literal | { [key: string]: Json } | Json[];
-const jsonSchema: z.ZodType<Json> = z.lazy(() => z.union([literalSchema, z.array(jsonSchema), z.record(jsonSchema)]));
-const json = () => jsonSchema;
+// const literalSchema = z.union([z.string(), z.number(), z.boolean(), z.null()]);
+// type Literal = z.infer<typeof literalSchema>;
+// type Json = Literal | { [key: string]: Json } | Json[];
+// const jsonSchema: z.ZodType<Json> = z.lazy(() => z.union([literalSchema, z.array(jsonSchema), z.record(jsonSchema)]));
+// const json = () => jsonSchema;
 
-export const stringToJSON = z.string().transform((str, ctx): z.infer<ReturnType<typeof json>> => {
-  try {
-    return JSON.parse(str);
-  } catch (e) {
-    ctx.addIssue({ code: "custom", message: "Invalid JSON" });
-    return z.NEVER;
-  }
-});
+// export const stringToJSON = z.string().transform((str, ctx): z.infer<ReturnType<typeof json>> => {
+//   try {
+//     return JSON.parse(str);
+//   } catch (e) {
+//     ctx.addIssue({ code: "custom", message: "Invalid JSON" });
+//     return z.NEVER;
+//   }
+// });

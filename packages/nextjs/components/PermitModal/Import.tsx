@@ -7,7 +7,7 @@ import { PermitV2 } from "~~/permits/permitV2";
 import { PermitV2Options } from "~~/permits/types";
 import { usePermitModalImporting, usePermitModalUpdateImportingPermitName } from "~~/services/store/permitModalStore";
 import { TextArea } from "../scaffold-eth/Input/TextArea";
-import { stringToJSON } from "./utils";
+// import { stringToJSyON } from "./utils";
 import { PermitV2ParamsValidator } from "~~/permits/permitV2.z";
 import {
   PermitTypeDisplayRow,
@@ -28,17 +28,21 @@ const PermitV2ModalImportEntry = () => {
   const importPermitData = async (value: string) => {
     setImported(value);
 
-    const { success: jsonParseSuccess, data: jsonParseData, error: jsonParseError } = stringToJSON.safeParse(value);
-    if (!jsonParseSuccess) {
-      setError(`Json Parsing Failed: ${jsonParseError.format()._errors}`);
+    let parsedData: object = {};
+    try {
+      parsedData = JSON.parse(value);
+    } catch (e) {
+      console.log({ e });
+      setError(`Json Parsing Failed: ${e}`);
       return;
     }
 
-    const { success, data: parsedPermit, error: permitParsingError } = PermitV2ParamsValidator.safeParse(jsonParseData);
+    const { success, data: parsedPermit, error: permitParsingError } = PermitV2ParamsValidator.safeParse(parsedData);
     if (!success) {
       const errorString = Object.entries(permitParsingError.flatten().fieldErrors)
         .map(([field, err]) => `- ${field}: ${err}`)
         .join("\n");
+      console.log({ permitParsingError });
       setError(`Invalid Permit Data:\n${errorString}`);
       return;
     }

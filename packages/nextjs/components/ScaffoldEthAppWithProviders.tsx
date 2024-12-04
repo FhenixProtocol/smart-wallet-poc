@@ -24,7 +24,7 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   useInitializeNativeCurrencyPrice();
   useInitializeTokenPrices();
   useInitializeTokens(FHERC20s);
-  useInitializePermitModalAccessRequirements({ projects: ["FHERC20"] });
+  useInitializePermitModalAccessRequirements({ projects: ["FHERC20", "UNISWAP"] });
 
   return (
     <>

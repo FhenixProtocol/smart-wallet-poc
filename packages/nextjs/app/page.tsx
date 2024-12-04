@@ -1,5 +1,3 @@
-"use client";
-
 import type { NextPage } from "next";
 import { ConfidentialityRatioHeader } from "~~/components/ConfidentialityRatioHeader";
 import { ConnectedAccountAndPermitHeader } from "~~/components/ConnectedAccountAndPermitHeader";
