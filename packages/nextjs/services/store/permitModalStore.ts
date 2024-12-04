@@ -1,6 +1,8 @@
+import { useAccount } from "@account-kit/react";
 import { useCallback, useMemo } from "react";
 import { create } from "zustand";
 import { PermitV2 } from "~~/permits/permitV2";
+import { getActivePermitHash } from "~~/permits/store";
 import { SerializedPermitV2 } from "~~/permits/types";
 
 export enum PermitV2Tab {
@@ -93,8 +95,12 @@ export const useInitializePermitModalAccessRequirements = (accessRequirements: P
 };
 
 export const usePermitModalOpen = () => {
+  const { address } = useAccount({ type: "LightAccount" });
+
   const open = usePermitModalStore(state => state.open);
-  const setOpen = useCallback((open: boolean, tab: PermitV2Tab = PermitV2Tab.Select) => {
+
+  const setOpen = useCallback((open: boolean, selectedTab?: PermitV2Tab) => {
+    const tab = selectedTab ?? getActivePermitHash(address) == null ? PermitV2Tab.Create : PermitV2Tab.Select;
     if (open) {
       usePermitModalStore.setState({ open, tab });
     } else {
@@ -107,6 +113,7 @@ export const usePermitModalOpen = () => {
         createOptions: initialCreateOptions,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { open, setOpen };
