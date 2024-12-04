@@ -12,11 +12,11 @@ const accountKitUiConfig: AlchemyAccountsUIConfig = {
       [
         {
           type: "external_wallets",
-          walletConnect: { projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID as string },
+          walletConnect: { projectId: scaffoldConfig.walletConnectProjectId },
         },
       ],
     ],
-    addPasskeyOnSignup: true,
+    addPasskeyOnSignup: false,
   },
 };
 
