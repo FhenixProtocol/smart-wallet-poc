@@ -1,4 +1,12 @@
-Smart Wallet POC
+# Fhenix Smart Wallet POC
+
+url: https://smart-wallet-poc-nine.vercel.app/
+
+View your confidential balances using an alchemy LightAccount smart wallet. Built using the new Fhenix Permit V2 system (not provided by fhenix.js) on top of scaffold-eth.
+
+! NOTE: The mock tokens are deployed on Sepolia, and don't use FHE operations for the encrypted data. This will be fixed when the alchemy account-kit contracts have been deployed on Fhenix Nitrogen. See [FHERC20.sol](packages/hardhat/contracts/FHERC20.sol) for more.
+
+! NOTE: Logging in with an EOA does not work, the existing rainbowkit connection logic has been removed, only smart wallets will work.
 
 Relevant Links:
 
@@ -16,10 +24,6 @@ Defaults that should be changed:
 Current issues
 
 - Handles **only** smart accounts, no support for eoa accounts
-- Deployed site at https://smart-wallet-poc-nine.vercel.app/
-  - Not able to login with oauth - Error: enablePopupOauth must be set in configuration or signer.preparePopupOauth must be called before using popup-based OAuth login
-  - Not able to login with email - 400 Bad Request / https://api.g.alchemy.com/signer/v1/lookup
-    / error: You have not signed the Alchemy Accounts terms of service. Please sign at https://dashboard.alchemy.com/accounts before using this API.
 
 Task List
 
@@ -55,5 +59,12 @@ Task List
     - [x] Copy only relevant data in JSON format
   - [x] See full info of permit
 - [x] Import permit blob
+
   - [x] Validate (check issuer / recipient matches user address)
   - [x] Sign if necessary (recipientSignature)
+
+- [x] Not able to login with oauth - Error: enablePopupOauth must be set in configuration or signer.preparePopupOauth must be called before using popup-based OAuth login
+  - [x] FIXED: Missing env var
+- [x] - Not able to login with email - 400 Bad Request / https://api.g.alchemy.com/signer/v1/lookup
+    / error: You have not signed the Alchemy Accounts terms of service. Please sign at https://dashboard.alchemy.com/accounts before using this API.
+  - [x] FIXED: Missing env var
