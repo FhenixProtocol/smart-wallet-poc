@@ -40,6 +40,10 @@ export const getAlchemyHttpUrl = (chainId: number) => {
     : undefined;
 };
 
+export const getAlchemySepoliaUrl = () => {
+  return `https://eth-sepolia.g.alchemy.com/v2/${scaffoldConfig.alchemyApiKey}`;
+};
+
 export const NETWORKS_EXTRA_DATA: Record<string, ChainAttributes> = {
   [chains.hardhat.id]: {
     color: "#b8af0c",
