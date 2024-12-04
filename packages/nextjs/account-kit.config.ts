@@ -9,12 +9,13 @@ const accountKitUiConfig: AlchemyAccountsUIConfig = {
     sections: [
       [{ type: "email" }],
       [{ type: "passkey" }, { type: "social", authProviderId: "google", mode: "popup" }],
-      [
-        {
-          type: "external_wallets",
-          walletConnect: { projectId: scaffoldConfig.walletConnectProjectId },
-        },
-      ],
+      // NOTE: Disabled for POC
+      // [
+      //   {
+      //     type: "external_wallets",
+      //     walletConnect: { projectId: scaffoldConfig.walletConnectProjectId },
+      //   },
+      // ],
     ],
     addPasskeyOnSignup: false,
   },
