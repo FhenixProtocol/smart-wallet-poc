@@ -11,11 +11,15 @@ Defaults that should be changed:
 - Google oauth in Alchemy Account Kit config
 - Arch Alchemy Api Key
 - Need a WalletConnect api key
+- Add deployed site url to alchemy account kit config
 
-Questions for Alchemy
+Current issues
 
-- What infrastructure needs to be deployed on Nitrogen to enable the smart wallet sdk
-- How can we add nitrogen to the account-kit sdk chains
+- Handles **only** smart accounts, no support for eoa accounts
+- Deployed site at https://smart-wallet-poc-nine.vercel.app/
+  - Not able to login with oauth - Error: enablePopupOauth must be set in configuration or signer.preparePopupOauth must be called before using popup-based OAuth login
+  - Not able to login with email - 400 Bad Request / https://api.g.alchemy.com/signer/v1/lookup
+    / error: You have not signed the Alchemy Accounts terms of service. Please sign at https://dashboard.alchemy.com/accounts before using this API.
 
 Task List
 
@@ -38,7 +42,7 @@ Task List
 - [x] PermitV2 Modal for create / import permit
   - [x] Permit explanation and link to docs
   - [x] Create permit option (for me / for sharing)
-  - [ ] Importing shared permit - sign and populate `recipientSignature`
+  - [x] Importing shared permit - sign and populate `recipientSignature`
   - [x] Selecting permit from list of available permits
   - [x] Checking satisfies project requirements
   - [x] Add status indicator row to modal
