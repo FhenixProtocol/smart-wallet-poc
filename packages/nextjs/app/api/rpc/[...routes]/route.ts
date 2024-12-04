@@ -16,6 +16,15 @@ export async function POST(req: Request, { params }: { params: { routes: string[
     headers[key] = value;
   });
 
+  console.log("routes", getAlchemySepoliaUrl() + `/${params.routes.join("/")}`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${scaffoldConfig.alchemyApiKey}`,
+      ...headers,
+    },
+    body,
+  });
+
   const res = await fetch(getAlchemySepoliaUrl() + `/${params.routes.join("/")}`, {
     method: "POST",
     headers: {
@@ -24,6 +33,8 @@ export async function POST(req: Request, { params }: { params: { routes: string[
     },
     body,
   });
+
+  console.log("routes", res);
 
   if (!res.ok) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

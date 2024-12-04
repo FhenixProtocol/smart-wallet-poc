@@ -11,6 +11,8 @@ export async function POST(req: NextRequest) {
     headers[key] = value;
   });
 
+  console.log("abi/rpc", req);
+
   const res = await fetch(getAlchemySepoliaUrl(), {
     method: "POST",
     headers: {
@@ -18,6 +20,8 @@ export async function POST(req: NextRequest) {
     },
     body,
   });
+
+  console.log("api/rpc", res);
 
   if (!res.ok) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
